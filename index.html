@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>London Road &amp; Transport Updates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #161920;
+    --surface2: #1e2229;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e8eaf0;
+    --muted: #7c8190;
+    --dim: #4a4f5c;
+
+    --red:    #e05555;
+    --red-bg: rgba(224,85,85,0.12);
+    --red-border: rgba(224,85,85,0.25);
+
+    --amber:    #e09355;
+    --amber-bg: rgba(224,147,85,0.12);
+    --amber-border: rgba(224,147,85,0.25);
+
+    --blue:    #5591e0;
+    --blue-bg: rgba(85,145,224,0.12);
+    --blue-border: rgba(85,145,224,0.25);
+
+    --purple:    #9b72e0;
+    --purple-bg: rgba(155,114,224,0.12);
+    --purple-border: rgba(155,114,224,0.25);
+
+    --teal:    #3fbfa0;
+    --teal-bg: rgba(63,191,160,0.12);
+    --teal-border: rgba(63,191,160,0.25);
+
+    --green:    #5bb56e;
+    --green-bg: rgba(91,181,110,0.12);
+    --green-border: rgba(91,181,110,0.25);
+
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(13,15,20,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-left { display: flex; align-items: center; gap: 10px; }
+
+  .header-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  header h1 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  .header-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 8px;
+  }
+
+  /* ─── LAYOUT ─── */
+  .container { max-width: 500px; margin: 0 auto; padding: 16px 14px; }
+
+  /* ─── ALERT BANNER ─── */
+  .alert-banner {
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    border-radius: var(--radius);
+    padding: 13px 15px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    animation: slideDown 0.4s ease both;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .alert-title { font-size: 13px; font-weight: 600; color: var(--red); }
+  .alert-body  { font-size: 12px; color: #c07070; margin-top: 3px; line-height: 1.5; }
+
+  /* ─── SECTION LABEL ─── */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin: 22px 0 10px;
+    padding-left: 2px;
+  }
+
+  /* ─── CARD ─── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 15px 16px;
+    margin-bottom: 10px;
+    animation: fadeUp 0.35s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:nth-child(2) { animation-delay: 0.05s; }
+  .card:nth-child(3) { animation-delay: 0.10s; }
+  .card:nth-child(4) { animation-delay: 0.15s; }
+  .card:nth-child(5) { animation-delay: 0.20s; }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-bottom: 10px;
+  }
+
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .icon-red    { background: var(--red-bg);    border: 1px solid var(--red-border); }
+  .icon-amber  { background: var(--amber-bg);  border: 1px solid var(--amber-border); }
+  .icon-blue   { background: var(--blue-bg);   border: 1px solid var(--blue-border); }
+  .icon-purple { background: var(--purple-bg); border: 1px solid var(--purple-border); }
+  .icon-teal   { background: var(--teal-bg);   border: 1px solid var(--teal-border); }
+  .icon-green  { background: var(--green-bg);  border: 1px solid var(--green-border); }
+
+  .card-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .card-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* ─── PILLS ─── */
+  .pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+
+  .pill {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .pill-red    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
+  .pill-amber  { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
+  .pill-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+  .pill-purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+  .pill-teal   { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-border); }
+  .pill-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+
+  /* ─── DIVIDER ─── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 10px 0; }
+
+  /* ─── DETAIL ROWS ─── */
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 4px 0;
+    font-size: 13px;
+  }
+
+  .detail-label { color: var(--muted); flex-shrink: 0; }
+  .detail-val { color: var(--text); font-weight: 500; text-align: right; max-width: 62%; }
+
+  /* ─── TIP BOX ─── */
+  .tip {
+    background: var(--surface2);
+    border-left: 2px solid var(--blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 9px 11px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+
+  .tip strong { color: var(--blue); font-weight: 500; }
+
+  /* ─── STRIKE ROWS ─── */
+  .strike-list { display: flex; flex-direction: column; gap: 0; }
+
+  .strike-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .strike-row:last-child { border-bottom: none; }
+
+  .strike-cal {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--purple-bg);
+    border: 1px solid var(--purple-border);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .strike-cal.amber-cal {
+    background: var(--amber-bg);
+    border-color: var(--amber-border);
+  }
+
+  .s-day { font-size: 17px; font-weight: 600; color: var(--purple); line-height: 1; }
+  .s-mon { font-size: 9px; font-weight: 500; color: var(--purple); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .amber-cal .s-day { color: var(--amber); }
+  .amber-cal .s-mon { color: var(--amber); }
+
+  .strike-info { flex: 1; min-width: 0; }
+  .strike-title { font-size: 13px; font-weight: 500; color: var(--text); }
+  .strike-desc  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* ─── MONTH DIVIDER ─── */
+  .month-sep {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding: 8px 0 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2px;
+  }
+
+  /* ─── SOURCE LINK ─── */
+  .src {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .src a {
+    font-size: 11px;
+    color: var(--blue);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+
+  .src a:hover { opacity: 1; text-decoration: underline; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 24px 20px 0;
+    font-size: 11px;
+    color: var(--dim);
+    line-height: 1.7;
+  }
+
+  footer a { color: var(--blue); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="header-dot"></div>
+    <h1>London Transport Updates</h1>
+  </div>
+  <div class="header-date" id="live-date">—</div>
+</header>
+
+<div class="container">
+
+  <!-- ALERT BANNER -->
+  <div class="alert-banner">
+    <div class="alert-icon">🚨</div>
+    <div>
+      <div class="alert-title">Today — London Marathon, Sun 26 Apr</div>
+      <div class="alert-body">Major road closures across Greenwich, Tower Bridge, Canary Wharf &amp; Embankment all day. Most roads clear by ~19:00.</div>
+    </div>
+  </div>
+
+  <!-- ── ROAD EVENTS ── -->
+  <div class="section-label">Upcoming road events</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-red">🏃</div>
+      <div>
+        <div class="card-title">London Marathon 2026</div>
+        <div class="card-sub">Greenwich · Tower Bridge · Canary Wharf · Embankment</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill pill-red">Active today</span>
+      <span class="pill pill-amber">Roads close from 05:30</span>
+      <span class="pill pill-blue">Clear by ~19:00</span>
+    </div>
+    <hr class="divider">
+    <div class="detail-row"><span class="detail-label">Date</span><span class="detail-val">Sun 26 Apr 2026</span></div>
+    <div class="detail-row"><span class="detail-label">Buses on diversion</span><span class="detail-val">47, 51, 53, 54, 89, 108, 122, 129, 132 + more</span></div>
+    <div class="detail-row"><span class="detail-label">DLR</span><span class="detail-val">Earlier start — from 05:30 Lewisham</span></div>
+    <div class="detail-row"><span class="detail-label">Woolwich Ferry</span><span class="detail-val">Suspended 06:00–15:30</span></div>
+    <div class="tip"><strong>Tip:</strong> Thames Clipper running as normal. Use Elizabeth line or DLR to reach ExCeL and central London.</div>
+    <div class="src">
+      <a href="https://www.londonmarathonevents.co.uk/london-marathon/road-closures" target="_blank">londonmarathonevents.co.uk ↗</a>
+      <a href="https://www.royalgreenwich.gov.uk/news/2026/your-marks-your-guide-london-marathon-royal-greenwich" target="_blank">royalgreenwich.gov.uk ↗</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-purple">🎖️</div>
+      <div>
+        <div class="card-title">VE Day 80 Commemorations</div>
+        <div class="card-sub">Central London</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill pill-purple">Upcoming</span>
+      <span class="pill pill-amber">Road closures planned</span>
+    </div>
+    <hr class="divider">
+    <div class="detail-row"><span class="detail-label">Date</span><span class="detail-val">Mon 5 May 2026 (Bank Holiday)</span></div>
+    <div class="detail-row"><span class="detail-label">Impact</span><span class="detail-val">Road closures across central London</span></div>
+    <div class="tip"><strong>Tip:</strong> Bank holiday — plan ahead. Allow extra time for any central London journeys.</div>
+    <div class="src">
+      <a href="https://www.londontravelwatch.org.uk/news/may-travel-disruption/" target="_blank">londontravelwatch.org.uk ↗</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-teal">🌸</div>
+      <div>
+        <div class="card-title">Chelsea Flower Show</div>
+        <div class="card-sub">Royal Hospital Chelsea, SW3</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill pill-teal">Throughout May 2026</span>
+      <span class="pill pill-amber">High congestion nearby</span>
+    </div>
+    <hr class="divider">
+    <div class="detail-row"><span class="detail-label">Dates</span><span class="detail-val">Throughout May 2026</span></div>
+    <div class="detail-row"><span class="detail-label">Area</span><span class="detail-val">Chelsea, West London</span></div>
+    <div class="tip"><strong>Tip:</strong> Surrounding roads become very congested. Use Sloane Square tube or book transport early.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-blue">🏟️</div>
+      <div>
+        <div class="card-title">Wembley Stadium — FA Cup &amp; Play-Off Finals</div>
+        <div class="card-sub">Wembley, HA9</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill pill-blue">Mid–Late May 2026</span>
+      <span class="pill pill-amber">Delays expected</span>
+    </div>
+    <hr class="divider">
+    <div class="detail-row"><span class="detail-label">Period</span><span class="detail-val">Mid–late May 2026</span></div>
+    <div class="detail-row"><span class="detail-label">Impact</span><span class="detail-val">Delays near Wembley; transport much busier</span></div>
+    <div class="tip"><strong>Tip:</strong> Check match fixtures for exact dates. Avoid Empire Way and Olympic Way on match days.</div>
+    <div class="src">
+      <a href="https://www.londontravelwatch.org.uk/news/may-travel-disruption/" target="_blank">londontravelwatch.org.uk ↗</a>
+    </div>
+  </div>
+
+  <!-- ── TUNNEL WORKS ── -->
+  <div class="section-label">Tunnel works</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-amber">🚧</div>
+      <div>
+        <div class="card-title">Blackwall Tunnel (A102)</div>
+        <div class="card-sub">Greenwich / Tower Hamlets</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill pill-amber">Overnight closure</span>
+      <span class="pill pill-blue">Southbound</span>
+    </div>
+    <hr class="divider">
+    <div class="detail-row"><span class="detail-label">Next closure</span><span class="detail-val">Mon 28 Apr, 21:00</span></div>
+    <div class="detail-row"><span class="detail-label">Reopens</span><span class="detail-val">Tue 29 Apr, 04:00</span></div>
+    <div class="detail-row"><span class="detail-label">Reason</span><span class="detail-val">Routine maintenance, A12 northern approach</span></div>
+    <div class="tip"><strong>Tip:</strong> Use Silvertown Tunnel or Rotherhithe Tunnel as alternatives. Traffic flowing well on diversion.</div>
+    <div class="src">
+      <a href="https://www.londontraffic.org/blackwalltunnel/" target="_blank">londontraffic.org ↗</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-amber">🚧</div>
+      <div>
+        <div class="card-title">Limehouse Link (A1203)</div>
+        <div class="card-sub">Tower Hamlets</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill pill-amber">Nightly restrictions</span>
+      <span class="pill pill-blue">Lane closures</span>
+    </div>
+    <hr class="divider">
+    <div class="detail-row"><span class="detail-label">Pattern</span><span class="detail-val">Intermittent overnight, ongoing</span></div>
+    <div class="detail-row"><span class="detail-label">Impact</span><span class="detail-val">Short delays; diversions signposted</span></div>
+    <div class="src">
+      <a href="https://www.londontraffic.org/limehouselink/" target="_blank">londontraffic.org ↗</a>
+    </div>
+  </div>
+
+  <!-- ── TUBE STRIKES ── -->
+  <div class="section-label">RMT tube strikes — upcoming</div>
+
+  <div class="card">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.5">
+      RMT drivers striking over compressed 4-day week proposals. <strong style="color:var(--teal)">Elizabeth line, DLR &amp; Overground not affected.</strong> All strikes run midday–midday the following day.
+    </div>
+
+    <div class="strike-list">
+      <div class="month-sep">May 2026</div>
+
+      <div class="strike-row">
+        <div class="strike-cal">
+          <div class="s-day">19</div>
+          <div class="s-mon">May</div>
+        </div>
+        <div class="strike-info">
+          <div class="strike-title">Strike begins 12:00</div>
+          <div class="strike-desc">Finish travel by 20:00 · All Underground lines</div>
+        </div>
+        <span class="pill pill-purple">Tue</span>
+      </div>
+
+      <div class="strike-row">
+        <div class="strike-cal amber-cal">
+          <div class="s-day">20</div>
+          <div class="s-mon">May</div>
+        </div>
+        <div class="strike-info">
+          <div class="strike-title">No service before 07:30</div>
+          <div class="strike-desc">Disruption until midday · Recovering by evening</div>
+        </div>
+        <span class="pill pill-amber">Wed</span>
+      </div>
+
+      <div class="strike-row">
+        <div class="strike-cal">
+          <div class="s-day">21</div>
+          <div class="s-mon">May</div>
+        </div>
+        <div class="strike-info">
+          <div class="strike-title">Strike begins 12:00</div>
+          <div class="strike-desc">Finish travel by 20:00 · All Underground lines</div>
+        </div>
+        <span class="pill pill-purple">Thu</span>
+      </div>
+
+      <div class="strike-row">
+        <div class="strike-cal amber-cal">
+          <div class="s-day">22</div>
+          <div class="s-mon">May</div>
+        </div>
+        <div class="strike-info">
+          <div class="strike-title">No service before 07:30</div>
+          <div class="strike-desc">Disruption until midday · Recovering by evening</div>
+        </div>
+        <span class="pill pill-amber">Fri</span>
+      </div>
+
+      <div class="month-sep" style="margin-top:8px">June 2026</div>
+
+      <div class="strike-row">
+        <div class="strike-cal">
+          <div class="s-day">16</div>
+          <div class="s-mon">Jun</div>
+        </div>
+        <div class="strike-info">
+          <div class="strike-title">Strike begins 12:00</div>
+          <div class="strike-desc">Finish travel by 20:00</div>
+        </div>
+        <span class="pill pill-purple">Tue</span>
+      </div>
+
+      <div class="strike-row">
+        <div class="strike-cal amber-cal">
+          <div class="s-day">17</div>
+          <div class="s-mon">Jun</div>
+        </div>
+        <div class="strike-info">
+          <div class="strike-title">No service before 07:30</div>
+          <div class="strike-desc">Disruption until midday</div>
+        </div>
+        <span class="pill pill-amber">Wed</span>
+      </div>
+
+      <div class="strike-row">
+        <div class="strike-cal">
+          <div class="s-day">18</div>
+          <div class="s-mon">Jun</div>
+        </div>
+        <div class="strike-info">
+          <div class="strike-title">Strike begins 12:00</div>
+          <div class="strike-desc">Finish travel by 20:00</div>
+        </div>
+        <span class="pill pill-purple">Thu</span>
+      </div>
+
+      <div class="strike-row">
+        <div class="strike-cal amber-cal">
+          <div class="s-day">19</div>
+          <div class="s-mon">Jun</div>
+        </div>
+        <div class="strike-info">
+          <div class="strike-title">No service before 07:30</div>
+          <div class="strike-desc">Disruption until midday</div>
+        </div>
+        <span class="pill pill-amber">Fri</span>
+      </div>
+    </div>
+
+    <div class="tip" style="margin-top:12px"><strong>On strike days:</strong> Use Elizabeth line, DLR, National Rail or bus. Expect all to be very busy — allow extra time.</div>
+    <div class="src">
+      <a href="https://tubenotifications.co.uk/tube-strikes" target="_blank">tubenotifications.co.uk ↗</a>
+      <a href="https://tfl.gov.uk/campaign/strikes" target="_blank">tfl.gov.uk ↗</a>
+    </div>
+  </div>
+
+  <!-- ── RAIL DISRUPTION ── -->
+  <div class="section-label">Rail disruption</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-blue">🚆</div>
+      <div>
+        <div class="card-title">Bedford–St Pancras line blocked</div>
+        <div class="card-sub">Bedford to Harpenden engineering works</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill pill-red">Major disruption</span>
+      <span class="pill pill-blue">24–25 May</span>
+    </div>
+    <hr class="divider">
+    <div class="detail-row"><span class="detail-label">Dates</span><span class="detail-val">24–25 May 2026</span></div>
+    <div class="detail-row"><span class="detail-label">Affected from</span><span class="detail-val">Sheffield, Derby, Nottingham, Leicester</span></div>
+    <div class="tip"><strong>Tip:</strong> Alternative ways into central London will be provided. Check National Rail before travel.</div>
+    <div class="src">
+      <a href="https://www.londontravelwatch.org.uk/news/may-travel-disruption/" target="_blank">londontravelwatch.org.uk ↗</a>
+    </div>
+  </div>
+
+  <!-- ── LIVE LINKS ── -->
+  <div class="section-label">Live sources</div>
+  <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;display:block">
+      <div style="font-size:12px;font-weight:600;color:var(--blue)">TfL Status</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Major works &amp; events</div>
+    </a>
+    <a href="https://nationalhighways.co.uk/travel-updates/road-closure-report/" target="_blank" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;display:block">
+      <div style="font-size:12px;font-weight:600;color:var(--blue)">National Highways</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Road closure report</div>
+    </a>
+    <a href="https://tubenotifications.co.uk/tube-strikes" target="_blank" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;display:block">
+      <div style="font-size:12px;font-weight:600;color:var(--purple)">Tube Strike Dates</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Live schedule &amp; alerts</div>
+    </a>
+    <a href="https://www.londontraffic.org" target="_blank" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;display:block">
+      <div style="font-size:12px;font-weight:600;color:var(--amber)">London Traffic</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Tunnel &amp; road updates</div>
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  Sources: TfL &nbsp;·&nbsp; Time Out &nbsp;·&nbsp; London TravelWatch &nbsp;·&nbsp; London Marathon Events<br>
+  tubenotifications.co.uk &nbsp;·&nbsp; National Highways &nbsp;·&nbsp; City of London<br><br>
+  Last updated: 25 April 2026
+</footer>
+
+<script>
+  // Live date in header
+  const d = new Date();
+  const opts = { weekday:'short', day:'numeric', month:'short' };
+  document.getElementById('live-date').textContent = d.toLocaleDateString('en-GB', opts);
+</script>
+
+</body>
+</html>
