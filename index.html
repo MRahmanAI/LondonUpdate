@@ -9,45 +9,43 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d0f14;
-    --surface: #161920;
-    --surface2: #1e2229;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
-    --text: #e8eaf0;
-    --muted: #7c8190;
-    --dim: #4a4f5c;
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --surface2: #f0f2f5;
+    --border: #e2e5ea;
+    --text: #111318;
+    --muted: #4f5663;
+    --dim: #8a929f;
 
-    --red:    #e05555;
-    --red-bg: rgba(224,85,85,0.12);
-    --red-border: rgba(224,85,85,0.25);
+    --red:        #c0392b;
+    --red-bg:     #fdf0ef;
+    --red-border: #f5c6c2;
 
-    --amber:    #e09355;
-    --amber-bg: rgba(224,147,85,0.12);
-    --amber-border: rgba(224,147,85,0.25);
+    --amber:        #b45309;
+    --amber-bg:     #fef8ec;
+    --amber-border: #fad999;
 
-    --blue:    #5591e0;
-    --blue-bg: rgba(85,145,224,0.12);
-    --blue-border: rgba(85,145,224,0.25);
+    --blue:        #1d5fa8;
+    --blue-bg:     #eff5fd;
+    --blue-border: #bad4f5;
 
-    --purple:    #9b72e0;
-    --purple-bg: rgba(155,114,224,0.12);
-    --purple-border: rgba(155,114,224,0.25);
+    --purple:        #6027b0;
+    --purple-bg:     #f4f0fd;
+    --purple-border: #d3bef7;
 
-    --teal:    #3fbfa0;
-    --teal-bg: rgba(63,191,160,0.12);
-    --teal-border: rgba(63,191,160,0.25);
+    --teal:        #0f7a5e;
+    --teal-bg:     #edf7f4;
+    --teal-border: #9fdece;
 
-    --green:    #5bb56e;
-    --green-bg: rgba(91,181,110,0.12);
-    --green-border: rgba(91,181,110,0.25);
+    --green:        #276b38;
+    --green-bg:     #eef7f0;
+    --green-border: #a8d9b3;
 
     --radius: 14px;
     --radius-sm: 8px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { font-size: 16px; }
 
   body {
@@ -58,41 +56,43 @@
     padding-bottom: 40px;
   }
 
-  /* ─── HEADER ─── */
+  /* HEADER */
   header {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgba(13,15,20,0.92);
+    background: rgba(255,255,255,0.93);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
-    padding: 14px 18px;
+    padding: 13px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
   }
 
-  .header-left { display: flex; align-items: center; gap: 10px; }
+  .header-left { display: flex; align-items: center; gap: 9px; min-width: 0; }
 
   .header-dot {
     width: 9px; height: 9px; border-radius: 50%;
     background: var(--red);
-    box-shadow: 0 0 8px var(--red);
+    box-shadow: 0 0 8px rgba(192,57,43,0.5);
+    flex-shrink: 0;
     animation: pulse 2s ease-in-out infinite;
   }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
 
   header h1 {
     font-size: 15px;
     font-weight: 600;
-    letter-spacing: -0.01em;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
+  .header-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
   .header-date {
     font-family: 'DM Mono', monospace;
@@ -101,35 +101,39 @@
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 4px 8px;
+    padding: 4px 7px;
+    white-space: nowrap;
   }
 
-  /* ─── LAYOUT ─── */
+  /* REFRESH BUTTON */
+  .refresh-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--blue-bg);
+    border: 1px solid var(--blue-border);
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .refresh-btn:hover   { background: #d9eaf8; }
+  .refresh-btn:active  { transform: scale(0.96); }
+  .refresh-btn:disabled{ opacity: 0.6; cursor: default; }
+
+  .refresh-icon { font-size: 14px; display: inline-block; }
+  .refresh-icon.spinning { animation: spin 0.65s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* LAYOUT */
   .container { max-width: 500px; margin: 0 auto; padding: 16px 14px; }
 
-  /* ─── ALERT BANNER ─── */
-  .alert-banner {
-    background: var(--red-bg);
-    border: 1px solid var(--red-border);
-    border-radius: var(--radius);
-    padding: 13px 15px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    animation: slideDown 0.4s ease both;
-  }
-
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-  .alert-title { font-size: 13px; font-weight: 600; color: var(--red); }
-  .alert-body  { font-size: 12px; color: #c07070; margin-top: 3px; line-height: 1.5; }
-
-  /* ─── SECTION LABEL ─── */
+  /* SECTION LABEL */
   .section-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -139,9 +143,24 @@
     color: var(--dim);
     margin: 22px 0 10px;
     padding-left: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  /* ─── CARD ─── */
+  .live-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    background: var(--teal-bg);
+    color: var(--teal);
+    border: 1px solid var(--teal-border);
+    border-radius: 10px;
+    padding: 2px 7px;
+    letter-spacing: 0.04em;
+  }
+
+  /* CARD */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -150,63 +169,41 @@
     margin-bottom: 10px;
     animation: fadeUp 0.35s ease both;
   }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .card:nth-child(2) { animation-delay: 0.05s; }
-  .card:nth-child(3) { animation-delay: 0.10s; }
-  .card:nth-child(4) { animation-delay: 0.15s; }
-  .card:nth-child(5) { animation-delay: 0.20s; }
-
-  .card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 11px;
-    margin-bottom: 10px;
-  }
+  .card-header { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 10px; }
 
   .card-icon {
     width: 36px; height: 36px;
     border-radius: var(--radius-sm);
     display: flex; align-items: center; justify-content: center;
-    font-size: 17px;
-    flex-shrink: 0;
+    font-size: 17px; flex-shrink: 0;
   }
-
   .icon-red    { background: var(--red-bg);    border: 1px solid var(--red-border); }
   .icon-amber  { background: var(--amber-bg);  border: 1px solid var(--amber-border); }
   .icon-blue   { background: var(--blue-bg);   border: 1px solid var(--blue-border); }
   .icon-purple { background: var(--purple-bg); border: 1px solid var(--purple-border); }
   .icon-teal   { background: var(--teal-bg);   border: 1px solid var(--teal-border); }
-  .icon-green  { background: var(--green-bg);  border: 1px solid var(--green-border); }
 
   .card-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
   .card-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-  /* ─── PILLS ─── */
+  /* PILLS */
   .pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
-
   .pill {
-    font-size: 11px;
-    font-weight: 500;
-    padding: 3px 9px;
-    border-radius: 20px;
+    font-size: 11px; font-weight: 500;
+    padding: 3px 9px; border-radius: 20px;
   }
-
   .pill-red    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
   .pill-amber  { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
   .pill-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
   .pill-purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
   .pill-teal   { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-border); }
-  .pill-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
 
-  /* ─── DIVIDER ─── */
+  /* DIVIDER */
   .divider { border: none; border-top: 1px solid var(--border); margin: 10px 0; }
 
-  /* ─── DETAIL ROWS ─── */
+  /* DETAIL ROWS */
   .detail-row {
     display: flex;
     justify-content: space-between;
@@ -214,13 +211,12 @@
     padding: 4px 0;
     font-size: 13px;
   }
+  .detail-label { color: var(--muted); flex-shrink: 0; padding-right: 8px; }
+  .detail-val   { color: var(--text); font-weight: 500; text-align: right; }
 
-  .detail-label { color: var(--muted); flex-shrink: 0; }
-  .detail-val { color: var(--text); font-weight: 500; text-align: right; max-width: 62%; }
-
-  /* ─── TIP BOX ─── */
+  /* TIP BOX */
   .tip {
-    background: var(--surface2);
+    background: var(--blue-bg);
     border-left: 2px solid var(--blue);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     padding: 9px 11px;
@@ -229,87 +225,124 @@
     line-height: 1.5;
     margin-top: 10px;
   }
+  .tip strong { color: var(--blue); font-weight: 600; }
 
-  .tip strong { color: var(--blue); font-weight: 500; }
+  /* ALERT BANNER */
+  .alert-banner {
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    border-radius: var(--radius);
+    padding: 13px 15px;
+    display: flex; gap: 12px; align-items: flex-start;
+    margin-bottom: 20px;
+    animation: slideDown 0.4s ease both;
+  }
+  @keyframes slideDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+  .alert-icon  { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .alert-title { font-size: 13px; font-weight: 600; color: var(--red); }
+  .alert-body  { font-size: 12px; color: #7a2e2e; margin-top: 3px; line-height: 1.5; }
 
-  /* ─── STRIKE ROWS ─── */
-  .strike-list { display: flex; flex-direction: column; gap: 0; }
+  /* LIVE TUBE ROWS */
+  #tube-grid { display: flex; flex-direction: column; }
 
-  .strike-row {
+  .tube-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     padding: 9px 0;
     border-bottom: 1px solid var(--border);
   }
+  .tube-row:last-child { border-bottom: none; }
 
+  .tube-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .tube-name { flex: 1; font-size: 13px; font-weight: 500; color: var(--text); }
+
+  .status-pill {
+    font-size: 11px; font-weight: 600;
+    padding: 3px 9px; border-radius: 20px;
+    white-space: nowrap;
+  }
+  .s-good    { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+  .s-minor   { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
+  .s-severe  { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
+  .s-closed  { background: #f0f0f2;           color: #555;           border: 1px solid #ccc; }
+  .s-special { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+
+  /* SKELETON */
+  .skel {
+    background: linear-gradient(90deg,var(--surface2) 25%,#e6e8ec 50%,var(--surface2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite;
+    border-radius: 6px;
+  }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+  .skel-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+  }
+  .skel-row:last-child { border-bottom: none; }
+
+  .last-upd {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--dim);
+    margin-top: 10px; text-align: right;
+  }
+
+  .api-error {
+    font-size: 13px; color: var(--red);
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    border-radius: var(--radius-sm);
+    padding: 14px; text-align: center; line-height: 1.5;
+  }
+  .api-error a { color: var(--red); font-weight: 600; }
+
+  /* STRIKE ROWS */
+  .strike-list { display: flex; flex-direction: column; }
+  .strike-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+  }
   .strike-row:last-child { border-bottom: none; }
 
   .strike-cal {
-    width: 40px; height: 40px;
-    border-radius: var(--radius-sm);
-    background: var(--purple-bg);
-    border: 1px solid var(--purple-border);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: var(--radius-sm);
+    background: var(--purple-bg); border: 1px solid var(--purple-border);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-
-  .strike-cal.amber-cal {
-    background: var(--amber-bg);
-    border-color: var(--amber-border);
-  }
+  .strike-cal.amber-cal { background: var(--amber-bg); border-color: var(--amber-border); }
 
   .s-day { font-size: 17px; font-weight: 600; color: var(--purple); line-height: 1; }
-  .s-mon { font-size: 9px; font-weight: 500; color: var(--purple); text-transform: uppercase; letter-spacing: 0.05em; }
-
-  .amber-cal .s-day { color: var(--amber); }
-  .amber-cal .s-mon { color: var(--amber); }
+  .s-mon { font-size: 9px;  font-weight: 500; color: var(--purple); text-transform: uppercase; letter-spacing: 0.05em; }
+  .amber-cal .s-day, .amber-cal .s-mon { color: var(--amber); }
 
   .strike-info { flex: 1; min-width: 0; }
   .strike-title { font-size: 13px; font-weight: 500; color: var(--text); }
   .strike-desc  { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-  /* ─── MONTH DIVIDER ─── */
   .month-sep {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--dim);
     padding: 8px 0 4px;
     border-bottom: 1px solid var(--border);
     margin-bottom: 2px;
   }
 
-  /* ─── SOURCE LINK ─── */
-  .src {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .src a {
-    font-size: 11px;
-    color: var(--blue);
-    text-decoration: none;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-  }
-
+  /* SOURCE LINKS */
+  .src { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .src a { font-size: 11px; color: var(--blue); text-decoration: none; opacity: 0.8; }
   .src a:hover { opacity: 1; text-decoration: underline; }
 
-  /* ─── FOOTER ─── */
+  /* FOOTER */
   footer {
     text-align: center;
     padding: 24px 20px 0;
-    font-size: 11px;
-    color: var(--dim);
-    line-height: 1.7;
+    font-size: 11px; color: var(--dim); line-height: 1.7;
   }
-
   footer a { color: var(--blue); text-decoration: none; }
 </style>
 </head>
@@ -318,14 +351,38 @@
 <header>
   <div class="header-left">
     <div class="header-dot"></div>
-    <h1>London Transport Updates</h1>
+    <h1>London Transport</h1>
   </div>
-  <div class="header-date" id="live-date">—</div>
+  <div class="header-right">
+    <div class="header-date" id="live-date">—</div>
+    <button class="refresh-btn" id="refresh-btn" onclick="loadTubeStatus()">
+      <span class="refresh-icon" id="refresh-icon">↻</span> Refresh
+    </button>
+  </div>
 </header>
 
 <div class="container">
 
-  <!-- ALERT BANNER -->
+  <!-- ══ LIVE TUBE STATUS ══ -->
+  <div class="section-label">
+    Live tube status
+    <span class="live-badge">LIVE · TfL API</span>
+  </div>
+
+  <div class="card">
+    <div id="tube-grid">
+      <!-- skeletons shown until API responds -->
+      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 6px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 6px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 6px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 6px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 6px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
+    </div>
+    <div class="last-upd" id="last-upd"></div>
+    <div class="src"><a href="https://tfl.gov.uk/tube-dlr-overground/status/" target="_blank">tfl.gov.uk status ↗</a></div>
+  </div>
+
+  <!-- ══ ALERT BANNER ══ -->
   <div class="alert-banner">
     <div class="alert-icon">🚨</div>
     <div>
@@ -334,7 +391,7 @@
     </div>
   </div>
 
-  <!-- ── ROAD EVENTS ── -->
+  <!-- ══ ROAD EVENTS ══ -->
   <div class="section-label">Upcoming road events</div>
 
   <div class="card">
@@ -347,18 +404,17 @@
     </div>
     <div class="pills">
       <span class="pill pill-red">Active today</span>
-      <span class="pill pill-amber">Roads close from 05:30</span>
-      <span class="pill pill-blue">Clear by ~19:00</span>
+      <span class="pill pill-amber">Roads close 05:30</span>
+      <span class="pill pill-blue">Clear ~19:00</span>
     </div>
     <hr class="divider">
     <div class="detail-row"><span class="detail-label">Date</span><span class="detail-val">Sun 26 Apr 2026</span></div>
-    <div class="detail-row"><span class="detail-label">Buses on diversion</span><span class="detail-val">47, 51, 53, 54, 89, 108, 122, 129, 132 + more</span></div>
-    <div class="detail-row"><span class="detail-label">DLR</span><span class="detail-val">Earlier start — from 05:30 Lewisham</span></div>
+    <div class="detail-row"><span class="detail-label">Buses diverted</span><span class="detail-val">47, 51, 53, 54, 89, 108, 122, 129, 132 + more</span></div>
+    <div class="detail-row"><span class="detail-label">DLR</span><span class="detail-val">Earlier start from 05:30 Lewisham</span></div>
     <div class="detail-row"><span class="detail-label">Woolwich Ferry</span><span class="detail-val">Suspended 06:00–15:30</span></div>
     <div class="tip"><strong>Tip:</strong> Thames Clipper running as normal. Use Elizabeth line or DLR to reach ExCeL and central London.</div>
     <div class="src">
       <a href="https://www.londonmarathonevents.co.uk/london-marathon/road-closures" target="_blank">londonmarathonevents.co.uk ↗</a>
-      <a href="https://www.royalgreenwich.gov.uk/news/2026/your-marks-your-guide-london-marathon-royal-greenwich" target="_blank">royalgreenwich.gov.uk ↗</a>
     </div>
   </div>
 
@@ -405,8 +461,8 @@
     <div class="card-header">
       <div class="card-icon icon-blue">🏟️</div>
       <div>
-        <div class="card-title">Wembley Stadium — FA Cup &amp; Play-Off Finals</div>
-        <div class="card-sub">Wembley, HA9</div>
+        <div class="card-title">Wembley — FA Cup &amp; Play-Off Finals</div>
+        <div class="card-sub">Wembley Stadium, HA9</div>
       </div>
     </div>
     <div class="pills">
@@ -422,7 +478,7 @@
     </div>
   </div>
 
-  <!-- ── TUNNEL WORKS ── -->
+  <!-- ══ TUNNEL WORKS ══ -->
   <div class="section-label">Tunnel works</div>
 
   <div class="card">
@@ -441,10 +497,8 @@
     <div class="detail-row"><span class="detail-label">Next closure</span><span class="detail-val">Mon 28 Apr, 21:00</span></div>
     <div class="detail-row"><span class="detail-label">Reopens</span><span class="detail-val">Tue 29 Apr, 04:00</span></div>
     <div class="detail-row"><span class="detail-label">Reason</span><span class="detail-val">Routine maintenance, A12 northern approach</span></div>
-    <div class="tip"><strong>Tip:</strong> Use Silvertown Tunnel or Rotherhithe Tunnel as alternatives. Traffic flowing well on diversion.</div>
-    <div class="src">
-      <a href="https://www.londontraffic.org/blackwalltunnel/" target="_blank">londontraffic.org ↗</a>
-    </div>
+    <div class="tip"><strong>Tip:</strong> Use Silvertown Tunnel or Rotherhithe Tunnel as alternatives.</div>
+    <div class="src"><a href="https://www.londontraffic.org/blackwalltunnel/" target="_blank">londontraffic.org ↗</a></div>
   </div>
 
   <div class="card">
@@ -462,117 +516,61 @@
     <hr class="divider">
     <div class="detail-row"><span class="detail-label">Pattern</span><span class="detail-val">Intermittent overnight, ongoing</span></div>
     <div class="detail-row"><span class="detail-label">Impact</span><span class="detail-val">Short delays; diversions signposted</span></div>
-    <div class="src">
-      <a href="https://www.londontraffic.org/limehouselink/" target="_blank">londontraffic.org ↗</a>
-    </div>
+    <div class="src"><a href="https://www.londontraffic.org/limehouselink/" target="_blank">londontraffic.org ↗</a></div>
   </div>
 
-  <!-- ── TUBE STRIKES ── -->
+  <!-- ══ TUBE STRIKES ══ -->
   <div class="section-label">RMT tube strikes — upcoming</div>
 
   <div class="card">
     <div style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.5">
-      RMT drivers striking over compressed 4-day week proposals. <strong style="color:var(--teal)">Elizabeth line, DLR &amp; Overground not affected.</strong> All strikes run midday–midday the following day.
+      RMT drivers striking over compressed 4-day week proposals.
+      <strong style="color:var(--teal);font-weight:600">Elizabeth line, DLR &amp; Overground not affected.</strong>
+      All strikes run midday–midday the following day.
     </div>
 
     <div class="strike-list">
       <div class="month-sep">May 2026</div>
-
       <div class="strike-row">
-        <div class="strike-cal">
-          <div class="s-day">19</div>
-          <div class="s-mon">May</div>
-        </div>
-        <div class="strike-info">
-          <div class="strike-title">Strike begins 12:00</div>
-          <div class="strike-desc">Finish travel by 20:00 · All Underground lines</div>
-        </div>
+        <div class="strike-cal"><div class="s-day">19</div><div class="s-mon">May</div></div>
+        <div class="strike-info"><div class="strike-title">Strike begins 12:00</div><div class="strike-desc">Finish travel by 20:00 · All Underground lines</div></div>
         <span class="pill pill-purple">Tue</span>
       </div>
-
       <div class="strike-row">
-        <div class="strike-cal amber-cal">
-          <div class="s-day">20</div>
-          <div class="s-mon">May</div>
-        </div>
-        <div class="strike-info">
-          <div class="strike-title">No service before 07:30</div>
-          <div class="strike-desc">Disruption until midday · Recovering by evening</div>
-        </div>
+        <div class="strike-cal amber-cal"><div class="s-day">20</div><div class="s-mon">May</div></div>
+        <div class="strike-info"><div class="strike-title">No service before 07:30</div><div class="strike-desc">Disruption until midday · Recovering by evening</div></div>
         <span class="pill pill-amber">Wed</span>
       </div>
-
       <div class="strike-row">
-        <div class="strike-cal">
-          <div class="s-day">21</div>
-          <div class="s-mon">May</div>
-        </div>
-        <div class="strike-info">
-          <div class="strike-title">Strike begins 12:00</div>
-          <div class="strike-desc">Finish travel by 20:00 · All Underground lines</div>
-        </div>
+        <div class="strike-cal"><div class="s-day">21</div><div class="s-mon">May</div></div>
+        <div class="strike-info"><div class="strike-title">Strike begins 12:00</div><div class="strike-desc">Finish travel by 20:00 · All Underground lines</div></div>
         <span class="pill pill-purple">Thu</span>
       </div>
-
       <div class="strike-row">
-        <div class="strike-cal amber-cal">
-          <div class="s-day">22</div>
-          <div class="s-mon">May</div>
-        </div>
-        <div class="strike-info">
-          <div class="strike-title">No service before 07:30</div>
-          <div class="strike-desc">Disruption until midday · Recovering by evening</div>
-        </div>
+        <div class="strike-cal amber-cal"><div class="s-day">22</div><div class="s-mon">May</div></div>
+        <div class="strike-info"><div class="strike-title">No service before 07:30</div><div class="strike-desc">Disruption until midday · Recovering by evening</div></div>
         <span class="pill pill-amber">Fri</span>
       </div>
 
       <div class="month-sep" style="margin-top:8px">June 2026</div>
-
       <div class="strike-row">
-        <div class="strike-cal">
-          <div class="s-day">16</div>
-          <div class="s-mon">Jun</div>
-        </div>
-        <div class="strike-info">
-          <div class="strike-title">Strike begins 12:00</div>
-          <div class="strike-desc">Finish travel by 20:00</div>
-        </div>
+        <div class="strike-cal"><div class="s-day">16</div><div class="s-mon">Jun</div></div>
+        <div class="strike-info"><div class="strike-title">Strike begins 12:00</div><div class="strike-desc">Finish travel by 20:00</div></div>
         <span class="pill pill-purple">Tue</span>
       </div>
-
       <div class="strike-row">
-        <div class="strike-cal amber-cal">
-          <div class="s-day">17</div>
-          <div class="s-mon">Jun</div>
-        </div>
-        <div class="strike-info">
-          <div class="strike-title">No service before 07:30</div>
-          <div class="strike-desc">Disruption until midday</div>
-        </div>
+        <div class="strike-cal amber-cal"><div class="s-day">17</div><div class="s-mon">Jun</div></div>
+        <div class="strike-info"><div class="strike-title">No service before 07:30</div><div class="strike-desc">Disruption until midday</div></div>
         <span class="pill pill-amber">Wed</span>
       </div>
-
       <div class="strike-row">
-        <div class="strike-cal">
-          <div class="s-day">18</div>
-          <div class="s-mon">Jun</div>
-        </div>
-        <div class="strike-info">
-          <div class="strike-title">Strike begins 12:00</div>
-          <div class="strike-desc">Finish travel by 20:00</div>
-        </div>
+        <div class="strike-cal"><div class="s-day">18</div><div class="s-mon">Jun</div></div>
+        <div class="strike-info"><div class="strike-title">Strike begins 12:00</div><div class="strike-desc">Finish travel by 20:00</div></div>
         <span class="pill pill-purple">Thu</span>
       </div>
-
       <div class="strike-row">
-        <div class="strike-cal amber-cal">
-          <div class="s-day">19</div>
-          <div class="s-mon">Jun</div>
-        </div>
-        <div class="strike-info">
-          <div class="strike-title">No service before 07:30</div>
-          <div class="strike-desc">Disruption until midday</div>
-        </div>
+        <div class="strike-cal amber-cal"><div class="s-day">19</div><div class="s-mon">Jun</div></div>
+        <div class="strike-info"><div class="strike-title">No service before 07:30</div><div class="strike-desc">Disruption until midday</div></div>
         <span class="pill pill-amber">Fri</span>
       </div>
     </div>
@@ -584,7 +582,7 @@
     </div>
   </div>
 
-  <!-- ── RAIL DISRUPTION ── -->
+  <!-- ══ RAIL DISRUPTION ══ -->
   <div class="section-label">Rail disruption</div>
 
   <div class="card">
@@ -608,7 +606,7 @@
     </div>
   </div>
 
-  <!-- ── LIVE LINKS ── -->
+  <!-- ══ LIVE SOURCES ══ -->
   <div class="section-label">Live sources</div>
   <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
     <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;display:block">
@@ -632,16 +630,118 @@
 </div>
 
 <footer>
-  Sources: TfL &nbsp;·&nbsp; Time Out &nbsp;·&nbsp; London TravelWatch &nbsp;·&nbsp; London Marathon Events<br>
-  tubenotifications.co.uk &nbsp;·&nbsp; National Highways &nbsp;·&nbsp; City of London<br><br>
-  Last updated: 25 April 2026
+  Live tube data: <a href="https://api.tfl.gov.uk" target="_blank">TfL Unified API</a> (free, no key required) · Refreshes on every page load &amp; manual refresh<br>
+  Road data: TfL · Time Out · London TravelWatch · London Marathon Events · National Highways
 </footer>
 
 <script>
-  // Live date in header
-  const d = new Date();
-  const opts = { weekday:'short', day:'numeric', month:'short' };
-  document.getElementById('live-date').textContent = d.toLocaleDateString('en-GB', opts);
+  /* ── TfL line metadata ── */
+  const LINES = {
+    'bakerloo':           { name: 'Bakerloo',           color: '#B36305' },
+    'central':            { name: 'Central',             color: '#E32017' },
+    'circle':             { name: 'Circle',              color: '#E8AE00' },
+    'district':           { name: 'District',            color: '#00782A' },
+    'hammersmith-city':   { name: 'Hammersmith & City', color: '#D4618A' },
+    'jubilee':            { name: 'Jubilee',             color: '#737578' },
+    'metropolitan':       { name: 'Metropolitan',       color: '#9B0056' },
+    'northern':           { name: 'Northern',            color: '#000000' },
+    'piccadilly':         { name: 'Piccadilly',          color: '#003688' },
+    'victoria':           { name: 'Victoria',            color: '#0098D4' },
+    'waterloo-city':      { name: 'Waterloo & City',    color: '#70C3CE' },
+    'dlr':                { name: 'DLR',                 color: '#00A4A7' },
+    'elizabeth':          { name: 'Elizabeth line',      color: '#6950A1' },
+    'overground':         { name: 'London Overground',  color: '#EE7C0E' },
+  };
+
+  /* ── Map TfL severity → display ── */
+  function classify(severity, description) {
+    const d = (description || '').toLowerCase();
+    if (d.includes('good service'))                          return { label: 'Good service',   cls: 's-good' };
+    if (d.includes('severe delay'))                         return { label: 'Severe delays',   cls: 's-severe' };
+    if (d.includes('part suspended') || d.includes('part closure')) return { label: 'Part suspended', cls: 's-severe' };
+    if (d.includes('suspended') || d.includes('no service'))        return { label: 'Suspended',       cls: 's-closed' };
+    if (d.includes('minor delay'))                          return { label: 'Minor delays',    cls: 's-minor' };
+    if (d.includes('reduced') || d.includes('service change'))      return { label: 'Reduced service', cls: 's-minor' };
+    if (d.includes('planned closure') || d.includes('closed'))      return { label: 'Planned closure', cls: 's-closed' };
+    if (d.includes('special'))                              return { label: 'Special service', cls: 's-special' };
+    if (severity === 10)  return { label: 'Good service',   cls: 's-good' };
+    if (severity <= 5)    return { label: 'Severe delays',  cls: 's-severe' };
+    if (severity <= 9)    return { label: 'Minor delays',   cls: 's-minor' };
+    return { label: description || 'Check TfL', cls: 's-minor' };
+  }
+
+  function skeletons(n) {
+    return Array.from({length: n}, () =>
+      `<div class="skel-row">
+        <div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div>
+        <div class="skel" style="flex:1;height:13px;margin:0 8px"></div>
+        <div class="skel" style="width:88px;height:22px;border-radius:20px"></div>
+      </div>`
+    ).join('');
+  }
+
+  async function loadTubeStatus() {
+    const grid  = document.getElementById('tube-grid');
+    const upd   = document.getElementById('last-upd');
+    const icon  = document.getElementById('refresh-icon');
+    const btn   = document.getElementById('refresh-btn');
+
+    /* spinning state */
+    icon.classList.add('spinning');
+    btn.disabled = true;
+    grid.innerHTML = skeletons(7);
+    upd.textContent = 'Fetching live data…';
+
+    const lineIds = Object.keys(LINES).join(',');
+    const url = `https://api.tfl.gov.uk/Line/${lineIds}/Status`;
+
+    try {
+      const res  = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+
+      /* sort: disrupted first, then alphabetical */
+      data.sort((a, b) => {
+        const aGood = (a.lineStatuses[0]?.statusSeverityDescription || '').toLowerCase().includes('good');
+        const bGood = (b.lineStatuses[0]?.statusSeverityDescription || '').toLowerCase().includes('good');
+        if (aGood !== bGood) return aGood ? 1 : -1;
+        return (LINES[a.id]?.name || a.name).localeCompare(LINES[b.id]?.name || b.name);
+      });
+
+      grid.innerHTML = data.map(line => {
+        const meta = LINES[line.id] || { name: line.name, color: '#888' };
+        const statuses = (line.lineStatuses || []).slice().sort((a,b) => a.statusSeverity - b.statusSeverity);
+        const top = statuses[0] || {};
+        const { label, cls } = classify(top.statusSeverity, top.statusSeverityDescription);
+        return `
+          <div class="tube-row">
+            <div class="tube-dot" style="background:${meta.color}"></div>
+            <div class="tube-name">${meta.name}</div>
+            <span class="status-pill ${cls}">${label}</span>
+          </div>`;
+      }).join('');
+
+      const t = new Date().toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
+      upd.textContent = `Updated ${t}`;
+
+    } catch (err) {
+      grid.innerHTML = `
+        <div class="api-error">
+          Couldn't load live data — check your connection or
+          <a href="https://tfl.gov.uk/tube-dlr-overground/status/" target="_blank">view TfL directly ↗</a>
+        </div>`;
+      upd.textContent = '';
+    } finally {
+      icon.classList.remove('spinning');
+      btn.disabled = false;
+    }
+  }
+
+  /* ── Init ── */
+  document.getElementById('live-date').textContent =
+    new Date().toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+
+  loadTubeStatus();
 </script>
 
 </body>
