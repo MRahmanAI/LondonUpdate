@@ -6,7 +6,7 @@
 <title>London Road &amp; Transport Updates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #f4f5f7;
@@ -53,7 +53,7 @@
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    padding-bottom: 40px;
+    padding-bottom: 48px;
   }
 
   /* HEADER */
@@ -79,9 +79,9 @@
     background: var(--red);
     box-shadow: 0 0 8px rgba(192,57,43,0.5);
     flex-shrink: 0;
-    animation: pulse 2s ease-in-out infinite;
+    animation: blink 2s ease-in-out infinite;
   }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
   header h1 {
     font-size: 15px;
@@ -105,7 +105,6 @@
     white-space: nowrap;
   }
 
-  /* REFRESH BUTTON */
   .refresh-btn {
     display: flex;
     align-items: center;
@@ -126,7 +125,7 @@
   .refresh-btn:active  { transform: scale(0.96); }
   .refresh-btn:disabled{ opacity: 0.6; cursor: default; }
 
-  .refresh-icon { font-size: 14px; display: inline-block; }
+  .refresh-icon { font-size: 14px; display: inline-block; line-height: 1; }
   .refresh-icon.spinning { animation: spin 0.65s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -184,9 +183,10 @@
   .icon-blue   { background: var(--blue-bg);   border: 1px solid var(--blue-border); }
   .icon-purple { background: var(--purple-bg); border: 1px solid var(--purple-border); }
   .icon-teal   { background: var(--teal-bg);   border: 1px solid var(--teal-border); }
+  .icon-green  { background: var(--green-bg);  border: 1px solid var(--green-border); }
 
   .card-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
-  .card-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .card-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
 
   /* PILLS */
   .pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
@@ -199,6 +199,8 @@
   .pill-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
   .pill-purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
   .pill-teal   { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-border); }
+  .pill-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+  .pill-gray   { background: var(--surface2);  color: var(--muted);  border: 1px solid var(--border); }
 
   /* DIVIDER */
   .divider { border: none; border-top: 1px solid var(--border); margin: 10px 0; }
@@ -229,20 +231,33 @@
 
   /* ALERT BANNER */
   .alert-banner {
-    background: var(--red-bg);
-    border: 1px solid var(--red-border);
     border-radius: var(--radius);
     padding: 13px 15px;
     display: flex; gap: 12px; align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     animation: slideDown 0.4s ease both;
+  }
+  .alert-banner.alert-red {
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+  }
+  .alert-banner.alert-amber {
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+  }
+  .alert-banner.alert-teal {
+    background: var(--teal-bg);
+    border: 1px solid var(--teal-border);
   }
   @keyframes slideDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
   .alert-icon  { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-  .alert-title { font-size: 13px; font-weight: 600; color: var(--red); }
-  .alert-body  { font-size: 12px; color: #7a2e2e; margin-top: 3px; line-height: 1.5; }
+  .alert-title { font-size: 13px; font-weight: 600; }
+  .alert-title.red    { color: var(--red); }
+  .alert-title.amber  { color: var(--amber); }
+  .alert-title.teal   { color: var(--teal); }
+  .alert-body  { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
 
-  /* LIVE TUBE ROWS */
+  /* TUBE ROWS */
   #tube-grid { display: flex; flex-direction: column; }
 
   .tube-row {
@@ -256,6 +271,13 @@
 
   .tube-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
   .tube-name { flex: 1; font-size: 13px; font-weight: 500; color: var(--text); }
+  .tube-reason {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+    max-width: 260px; line-height: 1.4;
+    display: none;
+  }
+  .tube-row.expanded .tube-reason { display: block; }
+  .tube-name-wrap { flex: 1; cursor: pointer; }
 
   .status-pill {
     font-size: 11px; font-weight: 600;
@@ -265,8 +287,32 @@
   .s-good    { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
   .s-minor   { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
   .s-severe  { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
-  .s-closed  { background: #f0f0f2;           color: #555;           border: 1px solid #ccc; }
+  .s-closed  { background: #f0f0f2;           color: #555;          border: 1px solid #ccc; }
   .s-special { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+
+  /* ROAD DISRUPTION ROWS */
+  .disruption-list { display: flex; flex-direction: column; gap: 0; }
+  .disruption-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .disruption-row:last-child { border-bottom: none; }
+  .d-sev-bar { width: 3px; border-radius: 2px; min-height: 36px; flex-shrink: 0; align-self: stretch; }
+  .d-sev-serious { background: var(--red); }
+  .d-sev-moderate { background: var(--amber); }
+  .d-sev-slight, .d-sev-other { background: var(--dim); }
+  .d-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .d-meta  { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+
+  /* ROADWORKS ROWS */
+  .work-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .work-row:last-child { border-bottom: none; }
+  .work-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .work-title { font-size: 13px; font-weight: 500; color: var(--text); }
+  .work-meta  { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
 
   /* SKELETON */
   .skel {
@@ -298,39 +344,57 @@
   }
   .api-error a { color: var(--red); font-weight: 600; }
 
-  /* STRIKE ROWS */
-  .strike-list { display: flex; flex-direction: column; }
-  .strike-row {
-    display: flex; align-items: center; gap: 12px;
-    padding: 9px 0; border-bottom: 1px solid var(--border);
+  /* EVENTS */
+  .event-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
   }
-  .strike-row:last-child { border-bottom: none; }
-
-  .strike-cal {
-    width: 40px; height: 40px; border-radius: var(--radius-sm);
+  .event-row:last-child { border-bottom: none; }
+  .event-cal {
+    width: 40px; min-height: 40px; border-radius: var(--radius-sm);
     background: var(--purple-bg); border: 1px solid var(--purple-border);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    flex-shrink: 0; padding: 3px;
   }
-  .strike-cal.amber-cal { background: var(--amber-bg); border-color: var(--amber-border); }
+  .event-cal.red-cal   { background: var(--red-bg);   border-color: var(--red-border); }
+  .event-cal.amber-cal { background: var(--amber-bg); border-color: var(--amber-border); }
+  .event-cal.blue-cal  { background: var(--blue-bg);  border-color: var(--blue-border); }
+  .event-cal.teal-cal  { background: var(--teal-bg);  border-color: var(--teal-border); }
+  .e-day { font-size: 16px; font-weight: 600; color: var(--purple); line-height: 1; }
+  .e-mon { font-size: 9px; font-weight: 500; color: var(--purple); text-transform: uppercase; letter-spacing: 0.05em; }
+  .red-cal .e-day, .red-cal .e-mon    { color: var(--red); }
+  .amber-cal .e-day, .amber-cal .e-mon { color: var(--amber); }
+  .blue-cal .e-day, .blue-cal .e-mon  { color: var(--blue); }
+  .teal-cal .e-day, .teal-cal .e-mon  { color: var(--teal); }
+  .event-info { flex: 1; min-width: 0; }
+  .event-title { font-size: 13px; font-weight: 500; color: var(--text); }
+  .event-desc  { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
 
-  .s-day { font-size: 17px; font-weight: 600; color: var(--purple); line-height: 1; }
-  .s-mon { font-size: 9px;  font-weight: 500; color: var(--purple); text-transform: uppercase; letter-spacing: 0.05em; }
-  .amber-cal .s-day, .amber-cal .s-mon { color: var(--amber); }
-
-  .strike-info { flex: 1; min-width: 0; }
-  .strike-title { font-size: 13px; font-weight: 500; color: var(--text); }
-  .strike-desc  { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-  .month-sep {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--dim);
-    padding: 8px 0 4px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 2px;
+  /* EMPTY STATE */
+  .empty-state {
+    font-size: 13px; color: var(--muted);
+    padding: 16px 0; text-align: center; line-height: 1.6;
   }
+
+  /* SUMMARY STRIP */
+  .summary-strip {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
+    margin-bottom: 10px;
+  }
+  .summary-cell {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+  }
+  .summary-num { font-size: 22px; font-weight: 600; }
+  .summary-lbl { font-size: 10px; color: var(--muted); margin-top: 2px; letter-spacing: 0.02em; }
+  .num-red    { color: var(--red); }
+  .num-amber  { color: var(--amber); }
+  .num-teal   { color: var(--teal); }
+
+  /* ALERT STRIP */
+  #alert-strip { margin-bottom: 4px; }
 
   /* SOURCE LINKS */
   .src { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -341,9 +405,33 @@
   footer {
     text-align: center;
     padding: 24px 20px 0;
-    font-size: 11px; color: var(--dim); line-height: 1.7;
+    font-size: 11px; color: var(--dim); line-height: 1.8;
   }
   footer a { color: var(--blue); text-decoration: none; }
+
+  /* TUNNEL STATUS TABLE */
+  .tunnel-list { display: flex; flex-direction: column; }
+  .tunnel-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+  }
+  .tunnel-row:last-child { border-bottom: none; }
+  .tunnel-icon { font-size: 16px; flex-shrink: 0; }
+  .tunnel-name { flex: 1; font-size: 13px; font-weight: 500; }
+  .tunnel-meta { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+  /* COUNT BADGE */
+  .count-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 20px; height: 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    border-radius: 10px; padding: 0 5px;
+  }
+  .count-red    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
+  .count-amber  { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
+  .count-teal   { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-border); }
+  .count-gray   { background: var(--surface2);  color: var(--muted);  border: 1px solid var(--border); }
 </style>
 </head>
 <body>
@@ -355,13 +443,32 @@
   </div>
   <div class="header-right">
     <div class="header-date" id="live-date">—</div>
-    <button class="refresh-btn" id="refresh-btn" onclick="loadTubeStatus()">
+    <button class="refresh-btn" id="refresh-btn" onclick="refreshAll()">
       <span class="refresh-icon" id="refresh-icon">↻</span> Refresh
     </button>
   </div>
 </header>
 
 <div class="container">
+
+  <!-- ALERT STRIP: live severe alerts -->
+  <div id="alert-strip"></div>
+
+  <!-- SUMMARY STRIP -->
+  <div class="summary-strip" style="margin-top:16px">
+    <div class="summary-cell">
+      <div class="summary-num num-red" id="sum-disruptions">—</div>
+      <div class="summary-lbl">Tube disruptions</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-num num-amber" id="sum-incidents">—</div>
+      <div class="summary-lbl">Road incidents</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-num num-teal" id="sum-works">—</div>
+      <div class="summary-lbl">Active roadworks</div>
+    </div>
+  </div>
 
   <!-- ══ LIVE TUBE STATUS ══ -->
   <div class="section-label">
@@ -371,238 +478,81 @@
 
   <div class="card">
     <div id="tube-grid">
-      <!-- skeletons shown until API responds -->
-      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 6px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
-      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 6px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
-      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 6px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
-      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 6px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
-      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 6px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
     </div>
-    <div class="last-upd" id="last-upd"></div>
+    <div class="last-upd" id="tube-upd"></div>
     <div class="src"><a href="https://tfl.gov.uk/tube-dlr-overground/status/" target="_blank">tfl.gov.uk status ↗</a></div>
   </div>
 
-  <!-- ══ ALERT BANNER ══ -->
-  <div class="alert-banner">
-    <div class="alert-icon">🚨</div>
-    <div>
-      <div class="alert-title">Today — London Marathon, Sun 26 Apr</div>
-      <div class="alert-body">Major road closures across Greenwich, Tower Bridge, Canary Wharf &amp; Embankment all day. Most roads clear by ~19:00.</div>
-    </div>
+  <!-- ══ ROAD DISRUPTIONS ══ -->
+  <div class="section-label">
+    Live road disruptions
+    <span class="live-badge">LIVE · TfL API</span>
   </div>
 
-  <!-- ══ ROAD EVENTS ══ -->
-  <div class="section-label">Upcoming road events</div>
-
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon icon-red">🏃</div>
-      <div>
-        <div class="card-title">London Marathon 2026</div>
-        <div class="card-sub">Greenwich · Tower Bridge · Canary Wharf · Embankment</div>
-      </div>
+  <div class="card" id="road-card">
+    <div id="road-list">
+      <div class="skel-row"><div class="skel" style="width:3px;height:36px;border-radius:2px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:70px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:3px;height:36px;border-radius:2px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:70px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:3px;height:36px;border-radius:2px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:70px;height:22px;border-radius:20px"></div></div>
     </div>
-    <div class="pills">
-      <span class="pill pill-red">Active today</span>
-      <span class="pill pill-amber">Roads close 05:30</span>
-      <span class="pill pill-blue">Clear ~19:00</span>
-    </div>
-    <hr class="divider">
-    <div class="detail-row"><span class="detail-label">Date</span><span class="detail-val">Sun 26 Apr 2026</span></div>
-    <div class="detail-row"><span class="detail-label">Buses diverted</span><span class="detail-val">47, 51, 53, 54, 89, 108, 122, 129, 132 + more</span></div>
-    <div class="detail-row"><span class="detail-label">DLR</span><span class="detail-val">Earlier start from 05:30 Lewisham</span></div>
-    <div class="detail-row"><span class="detail-label">Woolwich Ferry</span><span class="detail-val">Suspended 06:00–15:30</span></div>
-    <div class="tip"><strong>Tip:</strong> Thames Clipper running as normal. Use Elizabeth line or DLR to reach ExCeL and central London.</div>
+    <div class="last-upd" id="road-upd"></div>
     <div class="src">
-      <a href="https://www.londonmarathonevents.co.uk/london-marathon/road-closures" target="_blank">londonmarathonevents.co.uk ↗</a>
+      <a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk/traffic ↗</a>
     </div>
   </div>
 
+  <!-- ══ TUNNEL STATUS ══ -->
+  <div class="section-label">
+    Tunnel status
+    <span class="live-badge">LIVE · TfL API</span>
+  </div>
+
   <div class="card">
-    <div class="card-header">
-      <div class="card-icon icon-purple">🎖️</div>
-      <div>
-        <div class="card-title">VE Day 80 Commemorations</div>
-        <div class="card-sub">Central London</div>
-      </div>
+    <div class="tunnel-list" id="tunnel-list">
+      <div class="skel-row"><div class="skel" style="width:16px;height:16px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:80px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:16px;height:16px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:80px;height:22px;border-radius:20px"></div></div>
     </div>
-    <div class="pills">
-      <span class="pill pill-purple">Upcoming</span>
-      <span class="pill pill-amber">Road closures planned</span>
-    </div>
-    <hr class="divider">
-    <div class="detail-row"><span class="detail-label">Date</span><span class="detail-val">Mon 5 May 2026 (Bank Holiday)</span></div>
-    <div class="detail-row"><span class="detail-label">Impact</span><span class="detail-val">Road closures across central London</span></div>
-    <div class="tip"><strong>Tip:</strong> Bank holiday — plan ahead. Allow extra time for any central London journeys.</div>
+    <div class="last-upd" id="tunnel-upd"></div>
     <div class="src">
-      <a href="https://www.londontravelwatch.org.uk/news/may-travel-disruption/" target="_blank">londontravelwatch.org.uk ↗</a>
+      <a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk traffic ↗</a>
+      <a href="https://www.trafficengland.com/" target="_blank">trafficengland.com ↗</a>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon icon-teal">🌸</div>
-      <div>
-        <div class="card-title">Chelsea Flower Show</div>
-        <div class="card-sub">Royal Hospital Chelsea, SW3</div>
-      </div>
+  <!-- ══ ROADWORKS (gas / water / utility) ══ -->
+  <div class="section-label">
+    Active roadworks
+    <span class="live-badge">LIVE · TfL API</span>
+  </div>
+
+  <div class="card" id="works-card">
+    <div id="works-list">
+      <div class="skel-row"><div class="skel" style="width:18px;height:18px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:55px;height:20px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:18px;height:18px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:55px;height:20px;border-radius:20px"></div></div>
     </div>
-    <div class="pills">
-      <span class="pill pill-teal">Throughout May 2026</span>
-      <span class="pill pill-amber">High congestion nearby</span>
-    </div>
-    <hr class="divider">
-    <div class="detail-row"><span class="detail-label">Dates</span><span class="detail-val">Throughout May 2026</span></div>
-    <div class="detail-row"><span class="detail-label">Area</span><span class="detail-val">Chelsea, West London</span></div>
-    <div class="tip"><strong>Tip:</strong> Surrounding roads become very congested. Use Sloane Square tube or book transport early.</div>
+    <div class="last-upd" id="works-upd"></div>
+    <div class="src"><a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">tfl.gov.uk major works ↗</a></div>
+  </div>
+
+  <!-- ══ SPECIAL EVENTS ══ -->
+  <div class="section-label">
+    Special events &amp; road impacts
+    <span class="live-badge">LIVE · TfL API</span>
   </div>
 
   <div class="card">
-    <div class="card-header">
-      <div class="card-icon icon-blue">🏟️</div>
-      <div>
-        <div class="card-title">Wembley — FA Cup &amp; Play-Off Finals</div>
-        <div class="card-sub">Wembley Stadium, HA9</div>
-      </div>
+    <div id="events-list">
+      <div class="skel-row"><div class="skel" style="width:40px;height:40px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:28px;margin:0 8px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:40px;height:40px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:28px;margin:0 8px"></div></div>
     </div>
-    <div class="pills">
-      <span class="pill pill-blue">Mid–Late May 2026</span>
-      <span class="pill pill-amber">Delays expected</span>
-    </div>
-    <hr class="divider">
-    <div class="detail-row"><span class="detail-label">Period</span><span class="detail-val">Mid–late May 2026</span></div>
-    <div class="detail-row"><span class="detail-label">Impact</span><span class="detail-val">Delays near Wembley; transport much busier</span></div>
-    <div class="tip"><strong>Tip:</strong> Check match fixtures for exact dates. Avoid Empire Way and Olympic Way on match days.</div>
+    <div class="last-upd" id="events-upd"></div>
     <div class="src">
-      <a href="https://www.londontravelwatch.org.uk/news/may-travel-disruption/" target="_blank">londontravelwatch.org.uk ↗</a>
-    </div>
-  </div>
-
-  <!-- ══ TUNNEL WORKS ══ -->
-  <div class="section-label">Tunnel works</div>
-
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon icon-amber">🚧</div>
-      <div>
-        <div class="card-title">Blackwall Tunnel (A102)</div>
-        <div class="card-sub">Greenwich / Tower Hamlets</div>
-      </div>
-    </div>
-    <div class="pills">
-      <span class="pill pill-amber">Overnight closure</span>
-      <span class="pill pill-blue">Southbound</span>
-    </div>
-    <hr class="divider">
-    <div class="detail-row"><span class="detail-label">Next closure</span><span class="detail-val">Mon 28 Apr, 21:00</span></div>
-    <div class="detail-row"><span class="detail-label">Reopens</span><span class="detail-val">Tue 29 Apr, 04:00</span></div>
-    <div class="detail-row"><span class="detail-label">Reason</span><span class="detail-val">Routine maintenance, A12 northern approach</span></div>
-    <div class="tip"><strong>Tip:</strong> Use Silvertown Tunnel or Rotherhithe Tunnel as alternatives.</div>
-    <div class="src"><a href="https://www.londontraffic.org/blackwalltunnel/" target="_blank">londontraffic.org ↗</a></div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon icon-amber">🚧</div>
-      <div>
-        <div class="card-title">Limehouse Link (A1203)</div>
-        <div class="card-sub">Tower Hamlets</div>
-      </div>
-    </div>
-    <div class="pills">
-      <span class="pill pill-amber">Nightly restrictions</span>
-      <span class="pill pill-blue">Lane closures</span>
-    </div>
-    <hr class="divider">
-    <div class="detail-row"><span class="detail-label">Pattern</span><span class="detail-val">Intermittent overnight, ongoing</span></div>
-    <div class="detail-row"><span class="detail-label">Impact</span><span class="detail-val">Short delays; diversions signposted</span></div>
-    <div class="src"><a href="https://www.londontraffic.org/limehouselink/" target="_blank">londontraffic.org ↗</a></div>
-  </div>
-
-  <!-- ══ TUBE STRIKES ══ -->
-  <div class="section-label">RMT tube strikes — upcoming</div>
-
-  <div class="card">
-    <div style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.5">
-      RMT drivers striking over compressed 4-day week proposals.
-      <strong style="color:var(--teal);font-weight:600">Elizabeth line, DLR &amp; Overground not affected.</strong>
-      All strikes run midday–midday the following day.
-    </div>
-
-    <div class="strike-list">
-      <div class="month-sep">May 2026</div>
-      <div class="strike-row">
-        <div class="strike-cal"><div class="s-day">19</div><div class="s-mon">May</div></div>
-        <div class="strike-info"><div class="strike-title">Strike begins 12:00</div><div class="strike-desc">Finish travel by 20:00 · All Underground lines</div></div>
-        <span class="pill pill-purple">Tue</span>
-      </div>
-      <div class="strike-row">
-        <div class="strike-cal amber-cal"><div class="s-day">20</div><div class="s-mon">May</div></div>
-        <div class="strike-info"><div class="strike-title">No service before 07:30</div><div class="strike-desc">Disruption until midday · Recovering by evening</div></div>
-        <span class="pill pill-amber">Wed</span>
-      </div>
-      <div class="strike-row">
-        <div class="strike-cal"><div class="s-day">21</div><div class="s-mon">May</div></div>
-        <div class="strike-info"><div class="strike-title">Strike begins 12:00</div><div class="strike-desc">Finish travel by 20:00 · All Underground lines</div></div>
-        <span class="pill pill-purple">Thu</span>
-      </div>
-      <div class="strike-row">
-        <div class="strike-cal amber-cal"><div class="s-day">22</div><div class="s-mon">May</div></div>
-        <div class="strike-info"><div class="strike-title">No service before 07:30</div><div class="strike-desc">Disruption until midday · Recovering by evening</div></div>
-        <span class="pill pill-amber">Fri</span>
-      </div>
-
-      <div class="month-sep" style="margin-top:8px">June 2026</div>
-      <div class="strike-row">
-        <div class="strike-cal"><div class="s-day">16</div><div class="s-mon">Jun</div></div>
-        <div class="strike-info"><div class="strike-title">Strike begins 12:00</div><div class="strike-desc">Finish travel by 20:00</div></div>
-        <span class="pill pill-purple">Tue</span>
-      </div>
-      <div class="strike-row">
-        <div class="strike-cal amber-cal"><div class="s-day">17</div><div class="s-mon">Jun</div></div>
-        <div class="strike-info"><div class="strike-title">No service before 07:30</div><div class="strike-desc">Disruption until midday</div></div>
-        <span class="pill pill-amber">Wed</span>
-      </div>
-      <div class="strike-row">
-        <div class="strike-cal"><div class="s-day">18</div><div class="s-mon">Jun</div></div>
-        <div class="strike-info"><div class="strike-title">Strike begins 12:00</div><div class="strike-desc">Finish travel by 20:00</div></div>
-        <span class="pill pill-purple">Thu</span>
-      </div>
-      <div class="strike-row">
-        <div class="strike-cal amber-cal"><div class="s-day">19</div><div class="s-mon">Jun</div></div>
-        <div class="strike-info"><div class="strike-title">No service before 07:30</div><div class="strike-desc">Disruption until midday</div></div>
-        <span class="pill pill-amber">Fri</span>
-      </div>
-    </div>
-
-    <div class="tip" style="margin-top:12px"><strong>On strike days:</strong> Use Elizabeth line, DLR, National Rail or bus. Expect all to be very busy — allow extra time.</div>
-    <div class="src">
-      <a href="https://tubenotifications.co.uk/tube-strikes" target="_blank">tubenotifications.co.uk ↗</a>
-      <a href="https://tfl.gov.uk/campaign/strikes" target="_blank">tfl.gov.uk ↗</a>
-    </div>
-  </div>
-
-  <!-- ══ RAIL DISRUPTION ══ -->
-  <div class="section-label">Rail disruption</div>
-
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon icon-blue">🚆</div>
-      <div>
-        <div class="card-title">Bedford–St Pancras line blocked</div>
-        <div class="card-sub">Bedford to Harpenden engineering works</div>
-      </div>
-    </div>
-    <div class="pills">
-      <span class="pill pill-red">Major disruption</span>
-      <span class="pill pill-blue">24–25 May</span>
-    </div>
-    <hr class="divider">
-    <div class="detail-row"><span class="detail-label">Dates</span><span class="detail-val">24–25 May 2026</span></div>
-    <div class="detail-row"><span class="detail-label">Affected from</span><span class="detail-val">Sheffield, Derby, Nottingham, Leicester</span></div>
-    <div class="tip"><strong>Tip:</strong> Alternative ways into central London will be provided. Check National Rail before travel.</div>
-    <div class="src">
-      <a href="https://www.londontravelwatch.org.uk/news/may-travel-disruption/" target="_blank">londontravelwatch.org.uk ↗</a>
+      <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">tfl.gov.uk events ↗</a>
     </div>
   </div>
 
@@ -617,132 +567,503 @@
       <div style="font-size:12px;font-weight:600;color:var(--blue)">National Highways</div>
       <div style="font-size:11px;color:var(--muted);margin-top:2px">Road closure report</div>
     </a>
-    <a href="https://tubenotifications.co.uk/tube-strikes" target="_blank" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;display:block">
-      <div style="font-size:12px;font-weight:600;color:var(--purple)">Tube Strike Dates</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px">Live schedule &amp; alerts</div>
+    <a href="https://www.trafficengland.com/" target="_blank" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;display:block">
+      <div style="font-size:12px;font-weight:600;color:var(--amber)">Traffic England</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Live road &amp; tunnel status</div>
     </a>
-    <a href="https://www.londontraffic.org" target="_blank" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;display:block">
-      <div style="font-size:12px;font-weight:600;color:var(--amber)">London Traffic</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px">Tunnel &amp; road updates</div>
+    <a href="https://tfl.gov.uk/traffic/status/" target="_blank" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;display:block">
+      <div style="font-size:12px;font-weight:600;color:var(--teal)">TfL Traffic</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px">Live road network</div>
     </a>
   </div>
 
-</div>
+</div><!-- /container -->
 
 <footer>
-  Live tube data: <a href="https://api.tfl.gov.uk" target="_blank">TfL Unified API</a> (free, no key required) · Refreshes on every page load &amp; manual refresh<br>
-  Road data: TfL · Time Out · London TravelWatch · London Marathon Events · National Highways
+  All data pulled live from <a href="https://api.tfl.gov.uk" target="_blank">TfL Unified API</a> · Auto-refreshes every 2 minutes<br>
+  Tube · Road disruptions · Roadworks · Tunnel status · Special events
 </footer>
 
 <script>
-  /* ── TfL line metadata ── */
-  const LINES = {
-    'bakerloo':           { name: 'Bakerloo',           color: '#B36305' },
-    'central':            { name: 'Central',             color: '#E32017' },
-    'circle':             { name: 'Circle',              color: '#E8AE00' },
-    'district':           { name: 'District',            color: '#00782A' },
-    'hammersmith-city':   { name: 'Hammersmith & City', color: '#D4618A' },
-    'jubilee':            { name: 'Jubilee',             color: '#737578' },
-    'metropolitan':       { name: 'Metropolitan',       color: '#9B0056' },
-    'northern':           { name: 'Northern',            color: '#000000' },
-    'piccadilly':         { name: 'Piccadilly',          color: '#003688' },
-    'victoria':           { name: 'Victoria',            color: '#0098D4' },
-    'waterloo-city':      { name: 'Waterloo & City',    color: '#70C3CE' },
-    'dlr':                { name: 'DLR',                 color: '#00A4A7' },
-    'elizabeth':          { name: 'Elizabeth line',      color: '#6950A1' },
-    'overground':         { name: 'London Overground',  color: '#EE7C0E' },
+/* ─────────────────────────────────────────────
+   CONFIG
+───────────────────────────────────────────── */
+const API_KEY = 'c669b2e1c07744fe8489b5f419cf1971';
+const BASE    = 'https://api.tfl.gov.uk';
+
+const LINES = {
+  'bakerloo':          { name: 'Bakerloo',           color: '#B36305' },
+  'central':           { name: 'Central',             color: '#E32017' },
+  'circle':            { name: 'Circle',              color: '#E8AE00' },
+  'district':          { name: 'District',            color: '#00782A' },
+  'hammersmith-city':  { name: 'Hammersmith & City',  color: '#D4618A' },
+  'jubilee':           { name: 'Jubilee',             color: '#737578' },
+  'metropolitan':      { name: 'Metropolitan',        color: '#9B0056' },
+  'northern':          { name: 'Northern',            color: '#000000' },
+  'piccadilly':        { name: 'Piccadilly',          color: '#003688' },
+  'victoria':          { name: 'Victoria',            color: '#0098D4' },
+  'waterloo-city':     { name: 'Waterloo & City',     color: '#70C3CE' },
+  'dlr':               { name: 'DLR',                 color: '#00A4A7' },
+  'elizabeth':         { name: 'Elizabeth line',      color: '#6950A1' },
+  'overground':        { name: 'London Overground',   color: '#EE7C0E' },
+};
+
+/* Known London tunnels on the TLRN / major network */
+const KNOWN_TUNNELS = [
+  { id: 'A102',  name: 'Blackwall Tunnel',    tip: 'Alternative: Silvertown Tunnel or Rotherhithe Tunnel' },
+  { id: 'A1203', name: 'Limehouse Link',      tip: 'Alternative: A13 or Commercial Road' },
+  { id: 'A102T', name: 'Silvertown Tunnel',   tip: 'New crossing — check TfL for opening updates' },
+  { id: 'A2',    name: 'Rotherhithe Tunnel',  tip: 'Height restriction: 4.1m' },
+];
+
+/* ─────────────────────────────────────────────
+   HELPERS
+───────────────────────────────────────────── */
+async function tfl(path) {
+  const sep = path.includes('?') ? '&' : '?';
+  const res = await fetch(`${BASE}${path}${sep}app_key=${API_KEY}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+function skels(n, template) {
+  return Array.from({length:n}, () => template).join('');
+}
+
+function skelRow() {
+  return `<div class="skel-row">
+    <div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div>
+    <div class="skel" style="flex:1;height:13px;margin:0 8px"></div>
+    <div class="skel" style="width:88px;height:22px;border-radius:20px"></div>
+  </div>`;
+}
+
+function ts() {
+  return new Date().toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+}
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-GB', {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
+}
+
+function fmtShort(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-GB', {day:'numeric', month:'short'});
+}
+
+function calInfo(iso) {
+  if (!iso) return {day:'?', mon:'???'};
+  const d = new Date(iso);
+  return {
+    day: d.getDate(),
+    mon: d.toLocaleString('en-GB', {month:'short'}).toUpperCase()
   };
+}
 
-  /* ── Map TfL severity → display ── */
-  function classify(severity, description) {
-    const d = (description || '').toLowerCase();
-    if (d.includes('good service'))                          return { label: 'Good service',   cls: 's-good' };
-    if (d.includes('severe delay'))                         return { label: 'Severe delays',   cls: 's-severe' };
-    if (d.includes('part suspended') || d.includes('part closure')) return { label: 'Part suspended', cls: 's-severe' };
-    if (d.includes('suspended') || d.includes('no service'))        return { label: 'Suspended',       cls: 's-closed' };
-    if (d.includes('minor delay'))                          return { label: 'Minor delays',    cls: 's-minor' };
-    if (d.includes('reduced') || d.includes('service change'))      return { label: 'Reduced service', cls: 's-minor' };
-    if (d.includes('planned closure') || d.includes('closed'))      return { label: 'Planned closure', cls: 's-closed' };
-    if (d.includes('special'))                              return { label: 'Special service', cls: 's-special' };
-    if (severity === 10)  return { label: 'Good service',   cls: 's-good' };
-    if (severity <= 5)    return { label: 'Severe delays',  cls: 's-severe' };
-    if (severity <= 9)    return { label: 'Minor delays',   cls: 's-minor' };
-    return { label: description || 'Check TfL', cls: 's-minor' };
-  }
+function classifyTube(severity, description) {
+  const d = (description || '').toLowerCase();
+  if (d.includes('good service'))  return { label: 'Good service',   cls: 's-good' };
+  if (d.includes('severe'))        return { label: 'Severe delays',  cls: 's-severe' };
+  if (d.includes('part suspend') || d.includes('part clos')) return { label: 'Part suspended', cls: 's-severe' };
+  if (d.includes('suspended') || d.includes('no service'))   return { label: 'Suspended',      cls: 's-closed' };
+  if (d.includes('minor delay'))   return { label: 'Minor delays',   cls: 's-minor' };
+  if (d.includes('reduced') || d.includes('service change')) return { label: 'Reduced service', cls: 's-minor' };
+  if (d.includes('planned clos') || d.includes('closed'))   return { label: 'Planned closure', cls: 's-closed' };
+  if (d.includes('special'))       return { label: 'Special service', cls: 's-special' };
+  if (severity === 10) return { label: 'Good service',  cls: 's-good' };
+  if (severity <= 5)   return { label: 'Severe delays', cls: 's-severe' };
+  if (severity <= 9)   return { label: 'Minor delays',  cls: 's-minor' };
+  return { label: description || 'Check TfL', cls: 's-minor' };
+}
 
-  function skeletons(n) {
-    return Array.from({length: n}, () =>
-      `<div class="skel-row">
-        <div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div>
-        <div class="skel" style="flex:1;height:13px;margin:0 8px"></div>
-        <div class="skel" style="width:88px;height:22px;border-radius:20px"></div>
-      </div>`
-    ).join('');
-  }
+function severityOf(s) {
+  const sl = (s||'').toLowerCase();
+  if (sl.includes('serious') || sl.includes('severe')) return 'serious';
+  if (sl.includes('moderate')) return 'moderate';
+  return 'slight';
+}
 
-  async function loadTubeStatus() {
-    const grid  = document.getElementById('tube-grid');
-    const upd   = document.getElementById('last-upd');
-    const icon  = document.getElementById('refresh-icon');
-    const btn   = document.getElementById('refresh-btn');
+function workIcon(type) {
+  const t = (type||'').toLowerCase();
+  if (t.includes('gas'))          return '🔥';
+  if (t.includes('water'))        return '💧';
+  if (t.includes('electric') || t.includes('power') || t.includes('cable')) return '⚡';
+  if (t.includes('sewer') || t.includes('drain')) return '🚿';
+  if (t.includes('telecom') || t.includes('bt') || t.includes('openreach')) return '📡';
+  if (t.includes('event'))        return '🎉';
+  if (t.includes('survey'))       return '📋';
+  return '🚧';
+}
 
-    /* spinning state */
-    icon.classList.add('spinning');
-    btn.disabled = true;
-    grid.innerHTML = skeletons(7);
-    upd.textContent = 'Fetching live data…';
+function isEventLike(disruption) {
+  const cats = ['event','festival','marathon','parade','closure','filming','ceremony','race','concert'];
+  const haystack = [(disruption.category||''), (disruption.subCategory||''), (disruption.comments||''), (disruption.location||'')].join(' ').toLowerCase();
+  return cats.some(c => haystack.includes(c));
+}
 
+/* ─────────────────────────────────────────────
+   TUBE STATUS
+───────────────────────────────────────────── */
+async function loadTube() {
+  const grid = document.getElementById('tube-grid');
+  const upd  = document.getElementById('tube-upd');
+  grid.innerHTML = skels(7, skelRow());
+  upd.textContent = 'Fetching…';
+
+  try {
     const lineIds = Object.keys(LINES).join(',');
-    const url = `https://api.tfl.gov.uk/Line/${lineIds}/Status`;
+    const data = await tfl(`/Line/${lineIds}/Status`);
 
-    try {
-      const res  = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
+    data.sort((a, b) => {
+      const ag = (a.lineStatuses[0]?.statusSeverityDescription||'').toLowerCase().includes('good');
+      const bg = (b.lineStatuses[0]?.statusSeverityDescription||'').toLowerCase().includes('good');
+      if (ag !== bg) return ag ? 1 : -1;
+      return (LINES[a.id]?.name||a.name).localeCompare(LINES[b.id]?.name||b.name);
+    });
 
-      /* sort: disrupted first, then alphabetical */
-      data.sort((a, b) => {
-        const aGood = (a.lineStatuses[0]?.statusSeverityDescription || '').toLowerCase().includes('good');
-        const bGood = (b.lineStatuses[0]?.statusSeverityDescription || '').toLowerCase().includes('good');
-        if (aGood !== bGood) return aGood ? 1 : -1;
-        return (LINES[a.id]?.name || a.name).localeCompare(LINES[b.id]?.name || b.name);
-      });
-
-      grid.innerHTML = data.map(line => {
-        const meta = LINES[line.id] || { name: line.name, color: '#888' };
-        const statuses = (line.lineStatuses || []).slice().sort((a,b) => a.statusSeverity - b.statusSeverity);
-        const top = statuses[0] || {};
-        const { label, cls } = classify(top.statusSeverity, top.statusSeverityDescription);
-        return `
-          <div class="tube-row">
-            <div class="tube-dot" style="background:${meta.color}"></div>
+    let disrupted = 0;
+    grid.innerHTML = data.map(line => {
+      const meta = LINES[line.id] || { name: line.name, color: '#888' };
+      const statuses = (line.lineStatuses||[]).slice().sort((a,b) => a.statusSeverity - b.statusSeverity);
+      const top = statuses[0] || {};
+      const { label, cls } = classifyTube(top.statusSeverity, top.statusSeverityDescription);
+      const isGood = cls === 's-good';
+      if (!isGood) disrupted++;
+      const reason = top.reason ? top.reason.replace(/^[A-Z]+:\s*/,'').replace(/\[.+?\]/g,'').trim() : '';
+      return `
+        <div class="tube-row${!isGood && reason ? ' clickable' : ''}" ${!isGood && reason ? `onclick="this.classList.toggle('expanded')"` : ''}>
+          <div class="tube-dot" style="background:${meta.color}"></div>
+          <div class="tube-name-wrap">
             <div class="tube-name">${meta.name}</div>
-            <span class="status-pill ${cls}">${label}</span>
-          </div>`;
-      }).join('');
-
-      const t = new Date().toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
-      upd.textContent = `Updated ${t}`;
-
-    } catch (err) {
-      grid.innerHTML = `
-        <div class="api-error">
-          Couldn't load live data — check your connection or
-          <a href="https://tfl.gov.uk/tube-dlr-overground/status/" target="_blank">view TfL directly ↗</a>
+            ${reason ? `<div class="tube-reason">${reason.substring(0,220)}</div>` : ''}
+          </div>
+          <span class="status-pill ${cls}">${label}</span>
         </div>`;
-      upd.textContent = '';
-    } finally {
-      icon.classList.remove('spinning');
-      btn.disabled = false;
-    }
+    }).join('');
+
+    document.getElementById('sum-disruptions').textContent = disrupted;
+    upd.textContent = `Updated ${ts()}`;
+
+    // Banner for severe disruptions
+    buildAlerts(data);
+
+  } catch(e) {
+    grid.innerHTML = `<div class="api-error">Couldn't load live tube data — <a href="https://tfl.gov.uk/tube-dlr-overground/status/" target="_blank">view TfL directly ↗</a></div>`;
+    upd.textContent = '';
   }
+}
 
-  /* ── Init ── */
-  document.getElementById('live-date').textContent =
-    new Date().toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+function buildAlerts(data) {
+  const strip = document.getElementById('alert-strip');
+  const severes = data.filter(l => {
+    const d = (l.lineStatuses[0]?.statusSeverityDescription||'').toLowerCase();
+    return d.includes('suspended') || d.includes('severe') || d.includes('part suspend');
+  });
+  if (!severes.length) { strip.innerHTML = ''; return; }
+  strip.innerHTML = severes.map(l => {
+    const meta = LINES[l.id] || {name: l.name, color:'#888'};
+    const st = l.lineStatuses[0]?.statusSeverityDescription || 'Disruption';
+    return `<div class="alert-banner alert-red">
+      <div class="alert-icon">🚨</div>
+      <div>
+        <div class="alert-title red">${meta.name} — ${st}</div>
+        <div class="alert-body">${(l.lineStatuses[0]?.reason||'').replace(/^[A-Z]+:\s*/,'').substring(0,160) || 'See TfL for details'}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
 
-  loadTubeStatus();
+/* ─────────────────────────────────────────────
+   ROAD DISRUPTIONS
+───────────────────────────────────────────── */
+async function loadRoads() {
+  const list = document.getElementById('road-list');
+  const upd  = document.getElementById('road-upd');
+  list.innerHTML = skels(3, `<div class="skel-row"><div class="skel" style="width:3px;height:36px;border-radius:2px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:70px;height:20px;border-radius:20px"></div></div>`);
+
+  try {
+    const data = await tfl('/Road/all/Disruption?severities=Serious,Moderate,Slight');
+    const items = Array.isArray(data) ? data : [];
+
+    // Filter out tunnel-specific entries (handled separately)
+    const roadItems = items.filter(d => {
+      const loc = (d.location||d.street||'').toLowerCase();
+      return !loc.includes('tunnel');
+    });
+
+    document.getElementById('sum-incidents').textContent = roadItems.length;
+
+    if (!roadItems.length) {
+      list.innerHTML = `<div class="empty-state">No active road disruptions on the TLRN right now.</div>`;
+      upd.textContent = `Updated ${ts()}`;
+      return;
+    }
+
+    // Sort: serious first
+    roadItems.sort((a,b) => {
+      const order = {serious:0, moderate:1, slight:2};
+      return (order[severityOf(a.severity)]||2) - (order[severityOf(b.severity)]||2);
+    });
+
+    list.innerHTML = `<div class="disruption-list">${roadItems.slice(0,20).map(d => {
+      const sev = severityOf(d.severity);
+      const startStr = d.startAt ? fmtDate(d.startAt) : '';
+      const endStr   = d.endAt   ? fmtShort(d.endAt)  : 'ongoing';
+      const sevLabel = {serious:'Serious', moderate:'Moderate', slight:'Slight'}[sev] || d.severity || 'Disruption';
+      const pillCls  = {serious:'pill-red', moderate:'pill-amber', slight:'pill-gray'}[sev] || 'pill-gray';
+      return `<div class="disruption-row">
+        <div class="d-sev-bar d-sev-${sev}"></div>
+        <div style="flex:1;min-width:0">
+          <div class="d-title">${d.location || d.street || d.comments?.substring(0,80) || 'Road disruption'}</div>
+          <div class="d-meta">
+            <span class="pill ${pillCls}" style="font-size:10px;padding:2px 7px">${sevLabel}</span>
+            ${d.category ? `<span class="pill pill-gray" style="font-size:10px;padding:2px 7px">${d.category}</span>` : ''}
+            ${startStr ? `· From ${startStr}${endStr !== 'ongoing' ? ' – '+endStr : ''}` : ''}
+          </div>
+          ${d.comments && d.comments !== d.location ? `<div class="d-meta" style="margin-top:3px">${d.comments.substring(0,140)}${d.comments.length>140?'…':''}</div>` : ''}
+        </div>
+      </div>`;
+    }).join('')}</div>`;
+
+    if (roadItems.length > 20) {
+      list.innerHTML += `<div class="empty-state" style="font-size:11px">Showing 20 of ${roadItems.length} — <a href="https://tfl.gov.uk/traffic/status/" target="_blank" style="color:var(--blue)">view all on TfL ↗</a></div>`;
+    }
+
+    upd.textContent = `Updated ${ts()}`;
+
+    // Also feed tunnel filter
+    renderTunnels(items);
+
+  } catch(e) {
+    list.innerHTML = `<div class="api-error">Couldn't load road disruption data — <a href="https://tfl.gov.uk/traffic/status/" target="_blank">view TfL directly ↗</a></div>`;
+    upd.textContent = '';
+    renderTunnels([]);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   TUNNEL STATUS (derived from road disruptions)
+───────────────────────────────────────────── */
+function renderTunnels(allDisruptions) {
+  const tlist = document.getElementById('tunnel-list');
+  const upd   = document.getElementById('tunnel-upd');
+
+  const tunnelKeywords = ['blackwall','limehouse link','silvertown','rotherhithe','tunnel','underpass'];
+
+  // Find disruptions that mention tunnels
+  const tunnelDisruptions = allDisruptions.filter(d => {
+    const haystack = [(d.location||''), (d.street||''), (d.comments||''), (d.subCategory||'')].join(' ').toLowerCase();
+    return tunnelKeywords.some(k => haystack.includes(k));
+  });
+
+  // Build status for each known tunnel
+  const rows = KNOWN_TUNNELS.map(t => {
+    const match = tunnelDisruptions.find(d => {
+      const h = [(d.location||''), (d.street||''), (d.comments||'')].join(' ').toLowerCase();
+      return h.includes(t.name.toLowerCase().split(' ')[0]) || h.includes(t.id.toLowerCase());
+    });
+    if (match) {
+      const sev = severityOf(match.severity);
+      const pillCls = {serious:'s-severe', moderate:'s-minor', slight:'s-special'}[sev] || 's-special';
+      const label   = {serious:'Disruption', moderate:'Delays', slight:'Minor works'}[sev] || 'Check before travel';
+      return `<div class="tunnel-row">
+        <div class="tunnel-icon">🚧</div>
+        <div style="flex:1">
+          <div class="tunnel-name">${t.name}</div>
+          <div class="tunnel-meta">${match.location || match.comments?.substring(0,100) || 'Active disruption'}</div>
+          <div class="tunnel-meta" style="margin-top:2px;color:var(--muted)"><em>${t.tip}</em></div>
+        </div>
+        <span class="status-pill ${pillCls}">${label}</span>
+      </div>`;
+    } else {
+      return `<div class="tunnel-row">
+        <div class="tunnel-icon">🟢</div>
+        <div style="flex:1">
+          <div class="tunnel-name">${t.name}</div>
+          <div class="tunnel-meta" style="color:var(--muted)"><em>${t.tip}</em></div>
+        </div>
+        <span class="status-pill s-good">Clear</span>
+      </div>`;
+    }
+  });
+
+  tlist.innerHTML = rows.join('');
+  upd.textContent = `Updated ${ts()}`;
+}
+
+/* ─────────────────────────────────────────────
+   ROADWORKS (gas, water, utilities)
+───────────────────────────────────────────── */
+async function loadRoadworks() {
+  const wlist = document.getElementById('works-list');
+  const upd   = document.getElementById('works-upd');
+  wlist.innerHTML = skels(3, `<div class="skel-row"><div class="skel" style="width:18px;height:18px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:55px;height:20px;border-radius:20px"></div></div>`);
+
+  const today = new Date().toISOString().slice(0,10);
+  const in60  = new Date(Date.now() + 60*86400000).toISOString().slice(0,10);
+
+  try {
+    const data = await tfl(`/Road/all/Street/Disruption?startDate=${today}&endDate=${in60}&includeProposals=false`);
+    const items = Array.isArray(data) ? data : [];
+
+    // Filter to utility / infrastructure works
+    const utilityTypes = ['gas','water','electric','power','cable','sewer','drain','telecom','bt','openreach','thames water','national grid','cadent','southern gas','wales & west'];
+    const works = items.filter(w => {
+      const haystack = [(w.activityType||''), (w.workingOrganisation||''), (w.permitReferenceNumber||''), (w.currentUpdate||''), (w.comments||'')].join(' ').toLowerCase();
+      return utilityTypes.some(u => haystack.includes(u));
+    });
+
+    document.getElementById('sum-works').textContent = works.length;
+
+    if (!works.length) {
+      // If no utility-filtered results, show all planned works (capped at 12)
+      const allWorks = items.slice(0,12);
+      if (!allWorks.length) {
+        wlist.innerHTML = `<div class="empty-state">No active roadworks found in the TfL feed right now.</div>`;
+      } else {
+        wlist.innerHTML = renderWorksRows(allWorks);
+        document.getElementById('sum-works').textContent = allWorks.length;
+      }
+    } else {
+      wlist.innerHTML = renderWorksRows(works.slice(0,15));
+    }
+
+    upd.textContent = `Updated ${ts()}`;
+  } catch(e) {
+    wlist.innerHTML = `<div class="api-error">Couldn't load roadworks — <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">view TfL ↗</a></div>`;
+    upd.textContent = '';
+  }
+}
+
+function renderWorksRows(works) {
+  return works.map(w => {
+    const icon  = workIcon(w.activityType || w.workingOrganisation);
+    const title = w.location || w.streetName || 'London street';
+    const org   = w.workingOrganisation || '';
+    const type  = w.activityType || '';
+    const start = w.startDate ? fmtShort(w.startDate) : '';
+    const end   = w.endDate   ? fmtShort(w.endDate)   : 'TBC';
+    const update = w.currentUpdate ? w.currentUpdate.substring(0,120) : '';
+    const borough = w.borough || '';
+    return `<div class="work-row">
+      <div class="work-icon">${icon}</div>
+      <div style="flex:1;min-width:0">
+        <div class="work-title">${title}</div>
+        <div class="work-meta">
+          ${org ? `<strong style="color:var(--text)">${org}</strong> · ` : ''}${type}
+          ${borough ? ` · ${borough}` : ''}
+        </div>
+        ${start ? `<div class="work-meta">${start} – ${end}</div>` : ''}
+        ${update ? `<div class="work-meta" style="margin-top:2px">${update}${update.length>=120?'…':''}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ─────────────────────────────────────────────
+   SPECIAL EVENTS (from TfL disruption + works feeds)
+───────────────────────────────────────────── */
+async function loadEvents() {
+  const elist = document.getElementById('events-list');
+  const upd   = document.getElementById('events-upd');
+
+  const today = new Date().toISOString().slice(0,10);
+  const in90  = new Date(Date.now() + 90*86400000).toISOString().slice(0,10);
+
+  try {
+    // Pull both feeds simultaneously
+    const [streetData, roadData] = await Promise.all([
+      tfl(`/Road/all/Street/Disruption?startDate=${today}&endDate=${in90}&includeProposals=true`).catch(() => []),
+      tfl('/Road/all/Disruption').catch(() => []),
+    ]);
+
+    const allItems = [...(Array.isArray(streetData)?streetData:[]), ...(Array.isArray(roadData)?roadData:[])];
+
+    const events = allItems.filter(d => isEventLike(d));
+
+    // Deduplicate by location+startDate
+    const seen = new Set();
+    const unique = events.filter(e => {
+      const key = (e.location||e.streetName||'') + (e.startDate||e.startAt||'');
+      if (seen.has(key)) return false;
+      seen.add(key); return true;
+    });
+
+    if (!unique.length) {
+      elist.innerHTML = `<div class="empty-state">No upcoming special events found in the TfL feed.<br><a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank" style="color:var(--blue)">Check tfl.gov.uk for latest events ↗</a></div>`;
+      upd.textContent = `Updated ${ts()}`;
+      return;
+    }
+
+    // Sort by start date
+    unique.sort((a,b) => new Date(a.startDate||a.startAt||0) - new Date(b.startDate||b.startAt||0));
+
+    const calClasses = ['red-cal','amber-cal','blue-cal','teal-cal','red-cal'];
+    elist.innerHTML = unique.slice(0,10).map((e, i) => {
+      const iso  = e.startDate || e.startAt || '';
+      const cal  = calInfo(iso);
+      const cls  = calClasses[i % calClasses.length];
+      const title = e.location || e.streetName || e.comments?.substring(0,60) || 'Special event';
+      const endStr = (e.endDate||e.endAt) ? ` – ${fmtShort(e.endDate||e.endAt)}` : '';
+      const org   = e.workingOrganisation || e.category || '';
+      const desc  = [org, e.currentUpdate||e.comments||''].filter(Boolean).join(' · ');
+      return `<div class="event-row">
+        <div class="event-cal ${cls}">
+          <div class="e-day">${cal.day}</div>
+          <div class="e-mon">${cal.mon}</div>
+        </div>
+        <div class="event-info">
+          <div class="event-title">${title}</div>
+          <div class="event-desc">${iso ? fmtShort(iso)+endStr+' · ' : ''}${desc.substring(0,120)}</div>
+        </div>
+      </div>`;
+    }).join('');
+
+    upd.textContent = `Updated ${ts()}`;
+  } catch(e) {
+    elist.innerHTML = `<div class="api-error">Couldn't load events data — <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">view TfL ↗</a></div>`;
+    upd.textContent = '';
+  }
+}
+
+/* ─────────────────────────────────────────────
+   ORCHESTRATE
+───────────────────────────────────────────── */
+let _refreshLock = false;
+
+async function refreshAll() {
+  if (_refreshLock) return;
+  _refreshLock = true;
+  const icon = document.getElementById('refresh-icon');
+  const btn  = document.getElementById('refresh-btn');
+  icon.classList.add('spinning');
+  btn.disabled = true;
+
+  await Promise.all([
+    loadTube(),
+    loadRoads(),      // also calls renderTunnels
+    loadRoadworks(),
+    loadEvents(),
+  ]);
+
+  icon.classList.remove('spinning');
+  btn.disabled = false;
+  _refreshLock = false;
+}
+
+/* ─────────────────────────────────────────────
+   INIT
+───────────────────────────────────────────── */
+document.getElementById('live-date').textContent =
+  new Date().toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+
+refreshAll();
+
+// Auto-refresh every 2 minutes
+setInterval(refreshAll, 120000);
 </script>
-
 </body>
 </html>
