@@ -432,6 +432,59 @@
   .count-amber  { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
   .count-teal   { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-border); }
   .count-gray   { background: var(--surface2);  color: var(--muted);  border: 1px solid var(--border); }
+
+  /* INCIDENT CARDS (fire / RTC) */
+  .incident-list { display: flex; flex-direction: column; }
+
+  .incident-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .incident-row:last-child { border-bottom: none; }
+
+  .incident-badge {
+    width: 38px; height: 38px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .badge-fire  { background: #fff4ec; border: 1px solid #fdc99a; }
+  .badge-rtc   { background: var(--red-bg);  border: 1px solid var(--red-border); }
+  .badge-hazard{ background: var(--amber-bg); border: 1px solid var(--amber-border); }
+
+  .incident-body { flex: 1; min-width: 0; }
+  .incident-title { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.35; }
+  .incident-loc   { font-size: 12px; color: var(--muted); margin-top: 1px; line-height: 1.4; }
+
+  .incident-timeline {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; align-items: center;
+  }
+  .tl-item {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 11px; color: var(--muted);
+  }
+  .tl-dot {
+    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+  }
+  .tl-dot.open   { background: var(--red); }
+  .tl-dot.closed { background: var(--green); }
+  .tl-dot.unknown{ background: var(--dim); }
+  .tl-arrow { font-size: 10px; color: var(--dim); }
+
+  .status-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10px; font-weight: 600;
+    padding: 3px 8px; border-radius: 20px;
+    white-space: nowrap; margin-top: 6px;
+  }
+  .tag-active   { background: var(--red-bg);   color: var(--red);   border: 1px solid var(--red-border); }
+  .tag-cleared  { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .tag-ongoing  { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+  .tag-fire     { background: #fff4ec; color: #b45309; border: 1px solid #fdc99a; }
+
+  .incident-update {
+    font-size: 11px; color: var(--muted); margin-top: 5px; line-height: 1.5;
+    font-style: italic;
+  }
 </style>
 </head>
 <body>
@@ -486,6 +539,25 @@
     </div>
     <div class="last-upd" id="tube-upd"></div>
     <div class="src"><a href="https://tfl.gov.uk/tube-dlr-overground/status/" target="_blank">tfl.gov.uk status ↗</a></div>
+  </div>
+
+  <!-- ══ SEVERE & SERIOUS DELAYS ══ -->
+  <div class="section-label">
+    Severe &amp; serious delays
+    <span class="live-badge">LIVE · TfL API</span>
+  </div>
+
+  <div class="card">
+    <div class="incident-list" id="incident-list">
+      <div class="skel-row"><div class="skel" style="width:38px;height:38px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:42px;margin:0 8px;border-radius:6px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:38px;height:38px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:42px;margin:0 8px;border-radius:6px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:38px;height:38px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:42px;margin:0 8px;border-radius:6px"></div></div>
+    </div>
+    <div class="last-upd" id="incident-upd"></div>
+    <div class="src">
+      <a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk/traffic ↗</a>
+      <a href="https://www.londontraffic.org/" target="_blank">londontraffic.org ↗</a>
+    </div>
   </div>
 
   <!-- ══ ROAD DISRUPTIONS ══ -->
@@ -777,6 +849,69 @@ function buildAlerts(data) {
 }
 
 /* ─────────────────────────────────────────────
+   SEVERE & SERIOUS DELAYS
+───────────────────────────────────────────── */
+async function loadIncidents() {
+  const ilist = document.getElementById('incident-list');
+  const upd   = document.getElementById('incident-upd');
+
+  try {
+    const data = await tfl('/Road/all/Disruption?severities=Serious');
+    const items = Array.isArray(data) ? data : [];
+
+    if (!items.length) {
+      ilist.innerHTML = `<div class="empty-state">No severe or serious delays on the TLRN right now.</div>`;
+      upd.textContent = `Updated ${ts()}`;
+      return;
+    }
+
+    // Sort most recent first
+    items.sort((a,b) => new Date(b.startAt||0) - new Date(a.startAt||0));
+
+    ilist.innerHTML = items.slice(0, 15).map(d => {
+      const startDate = d.startAt ? new Date(d.startAt) : null;
+      const endDate   = d.endAt   ? new Date(d.endAt)   : null;
+      const now       = new Date();
+      const isCleared = endDate && endDate < now;
+
+      const startStr = startDate
+        ? startDate.toLocaleString('en-GB', {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'})
+        : null;
+      const endStr = endDate
+        ? endDate.toLocaleString('en-GB', {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'})
+        : null;
+
+      const statusTag = isCleared
+        ? `<span class="status-tag tag-cleared">✓ Cleared</span>`
+        : `<span class="status-tag tag-active">● Active</span>`;
+
+      const update = (d.comments||'').replace(/\s+/g,' ').trim();
+
+      return `<div class="incident-row">
+        <div class="incident-badge badge-rtc">🚨</div>
+        <div class="incident-body">
+          <div class="incident-title">${d.location || d.street || 'London road network'}</div>
+          <div class="incident-loc">${d.category || 'Serious disruption'}${d.subCategory ? ' · '+d.subCategory : ''}</div>
+          <div class="incident-timeline">
+            ${startStr ? `<div class="tl-item"><div class="tl-dot open"></div><span>Started: ${startStr}</span></div>` : ''}
+            ${endStr   ? `<span class="tl-arrow">→</span><div class="tl-item"><div class="tl-dot closed"></div><span>Cleared: ${endStr}</span></div>` : ''}
+            ${!endStr && startStr ? `<span class="tl-arrow">→</span><div class="tl-item" style="color:var(--red);font-weight:500"><div class="tl-dot open"></div><span>Still active</span></div>` : ''}
+          </div>
+          ${statusTag}
+          ${update ? `<div class="incident-update">"${update.substring(0,180)}${update.length>180?'…':''}"</div>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+
+    upd.textContent = `Updated ${ts()} · ${items.length} serious disruption${items.length !== 1 ? 's' : ''}`;
+
+  } catch(e) {
+    ilist.innerHTML = `<div class="api-error">Couldn't load delay data — <a href="https://tfl.gov.uk/traffic/status/" target="_blank">view TfL directly ↗</a></div>`;
+    upd.textContent = '';
+  }
+}
+
+/* ─────────────────────────────────────────────
    ROAD DISRUPTIONS
 ───────────────────────────────────────────── */
 async function loadRoads() {
@@ -1044,6 +1179,7 @@ async function refreshAll() {
 
   await Promise.all([
     loadTube(),
+    loadIncidents(),
     loadRoads(),      // also calls renderTunnels
     loadRoadworks(),
     loadEvents(),
