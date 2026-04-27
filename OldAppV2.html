@@ -485,175 +485,6 @@
     font-size: 11px; color: var(--muted); margin-top: 5px; line-height: 1.5;
     font-style: italic;
   }
-
-  /* ── ARRIVALS BOARD ── */
-  --district: #00782A;
-
-  .arrivals-header {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
-  }
-  .district-bar {
-    width: 4px; height: 32px; border-radius: 2px;
-    background: #00782A; flex-shrink: 0;
-  }
-  .arrivals-station { flex: 1; }
-  .arrivals-station-name { font-size: 14px; font-weight: 600; color: var(--text); }
-  .arrivals-station-sub  { font-size: 11px; color: var(--muted); margin-top: 1px; }
-  .arrivals-upd {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; color: var(--dim);
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 5px; padding: 3px 7px; white-space: nowrap;
-  }
-
-  .arrivals-table {
-    width: 100%; border-collapse: collapse;
-  }
-  .arrivals-table thead tr {
-    border-bottom: 1px solid var(--border);
-  }
-  .arrivals-table thead th {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; font-weight: 500;
-    color: #00782A;
-    text-align: left; padding: 0 0 7px;
-    letter-spacing: 0.04em; text-transform: uppercase;
-  }
-  .arrivals-table thead th.right { text-align: right; }
-
-  .arr-row {
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
-  }
-  .arr-row:last-child { border-bottom: none; }
-  .arr-row td { padding: 9px 0; font-size: 13px; vertical-align: middle; }
-  .arr-row td.right { text-align: right; }
-
-  .arr-dest { font-weight: 500; color: var(--text); }
-  .arr-plat { color: var(--muted); font-size: 12px; }
-  .arr-arrival { font-weight: 600; }
-  .arr-arrival.approaching { color: #00782A; animation: approachPulse 0.7s ease-in-out infinite; }
-  .arr-arrival.due         { color: var(--red); font-weight: 700; }
-  .arr-arrival.soon        { color: var(--amber); }
-  .arr-arrival.normal      { color: var(--text); }
-  .arr-time   { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); }
-
-  @keyframes approachPulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-  .arr-row.flashing { animation: rowFlash 0.6s ease-in-out infinite; }
-  @keyframes rowFlash {
-    0%,100% { background: transparent; }
-    50%     { background: rgba(0,120,42,0.07); }
-  }
-
-  .arr-loading { padding: 16px 0; text-align: center; color: var(--muted); font-size: 12px; }
-  .arr-empty   { padding: 14px 0; text-align: center; color: var(--muted); font-size: 12px; }
-
-  /* EXPANDABLE ROWS — road disruptions & events */
-  .disruption-row, .event-row {
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .disruption-row:hover, .event-row:hover {
-    background: var(--surface2);
-    border-radius: var(--radius-sm);
-  }
-  .d-preview  { display: block; }
-  .d-full     { display: none; }
-  .disruption-row.expanded .d-preview { display: none; }
-  .disruption-row.expanded .d-full    { display: block; }
-
-  .event-desc-preview { display: block; }
-  .event-desc-full    { display: none; }
-  .event-row.expanded .event-desc-preview { display: none; }
-  .event-row.expanded .event-desc-full    { display: block; }
-
-  .expand-hint {
-    font-size: 10px; color: var(--dim);
-    margin-top: 4px; display: flex; align-items: center; gap: 3px;
-  }
-  .expand-hint::before { content: '▸'; font-size: 9px; }
-  .disruption-row.expanded .expand-hint::before { content: '▾'; }
-  .event-row.expanded .expand-hint::before { content: '▾'; }
-
-  .d-full-text {
-    font-size: 12px; color: var(--muted); line-height: 1.6;
-    margin-top: 5px; padding-top: 5px;
-    border-top: 1px dashed var(--border);
-  }
-    overflow: hidden;
-    transition: max-height 0.35s ease, opacity 0.25s ease;
-    max-height: 2000px;
-    opacity: 1;
-  }
-  #works-collapsible.collapsed {
-    max-height: 0;
-    opacity: 0;
-  }
-
-  /* PULSING PLUS TOGGLE BUTTON */
-  .works-toggle-btn {
-    margin-left: auto;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px; height: 22px;
-    flex-shrink: 0;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-  .works-plus {
-    position: relative; z-index: 2;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    background: var(--blue-bg);
-    border: 1.5px solid var(--blue-border);
-    color: var(--blue);
-    font-size: 14px; font-weight: 400;
-    display: flex; align-items: center; justify-content: center;
-    line-height: 1;
-    transition: transform 0.25s, background 0.2s;
-  }
-  .works-pulse-ring {
-    position: absolute; z-index: 1;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    border: 1.5px solid var(--blue);
-    animation: worksRingPulse 1.8s ease-out infinite;
-  }
-  @keyframes worksRingPulse {
-    0%   { transform: scale(1);   opacity: 0.7; }
-    100% { transform: scale(2.2); opacity: 0; }
-  }
-  /* When open: rotate plus to × and stop pulse */
-  .works-toggle-btn.open .works-plus  { transform: rotate(45deg); background: var(--red-bg); border-color: var(--red-border); color: var(--red); }
-  .works-toggle-btn.open .works-pulse-ring { animation: none; opacity: 0; }
-
-  /* BANK HOLIDAYS */
-  .bh-row {
-    display: flex; align-items: center; gap: 12px;
-    padding: 9px 0; border-bottom: 1px solid var(--border);
-  }
-  .bh-row:last-child { border-bottom: none; }
-  .bh-cal {
-    width: 40px; height: 40px; border-radius: var(--radius-sm);
-    background: var(--purple-bg); border: 1px solid var(--purple-border);
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; flex-shrink: 0;
-  }
-  .bh-cal.today { background: var(--red-bg); border-color: var(--red-border); }
-  .bh-cal.soon  { background: var(--amber-bg); border-color: var(--amber-border); }
-  .bh-day { font-size: 16px; font-weight: 600; color: var(--purple); line-height: 1; }
-  .bh-mon { font-size: 9px; font-weight: 500; color: var(--purple); text-transform: uppercase; letter-spacing: 0.05em; }
-  .bh-cal.today .bh-day, .bh-cal.today .bh-mon { color: var(--red); }
-  .bh-cal.soon .bh-day,  .bh-cal.soon .bh-mon  { color: var(--amber); }
-  .bh-info { flex: 1; }
-  .bh-title { font-size: 13px; font-weight: 500; color: var(--text); }
-  .bh-meta  { font-size: 11px; color: var(--muted); margin-top: 2px; }
 </style>
 </head>
 <body>
@@ -729,24 +560,6 @@
     </div>
   </div>
 
-  <!-- ══ TUNNEL STATUS ══ -->
-  <div class="section-label">
-    Tunnel status
-    <span class="live-badge">LIVE · TfL API</span>
-  </div>
-
-  <div class="card">
-    <div class="tunnel-list" id="tunnel-list">
-      <div class="skel-row"><div class="skel" style="width:16px;height:16px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:80px;height:22px;border-radius:20px"></div></div>
-      <div class="skel-row"><div class="skel" style="width:16px;height:16px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:80px;height:22px;border-radius:20px"></div></div>
-    </div>
-    <div class="last-upd" id="tunnel-upd"></div>
-    <div class="src">
-      <a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk traffic ↗</a>
-      <a href="https://www.trafficengland.com/" target="_blank">trafficengland.com ↗</a>
-    </div>
-  </div>
-
   <!-- ══ ROAD DISRUPTIONS ══ -->
   <div class="section-label">
     Live road disruptions
@@ -765,6 +578,39 @@
     </div>
   </div>
 
+  <!-- ══ TUNNEL STATUS ══ -->
+  <div class="section-label">
+    Tunnel status
+    <span class="live-badge">LIVE · TfL API</span>
+  </div>
+
+  <div class="card">
+    <div class="tunnel-list" id="tunnel-list">
+      <div class="skel-row"><div class="skel" style="width:16px;height:16px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:80px;height:22px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:16px;height:16px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:80px;height:22px;border-radius:20px"></div></div>
+    </div>
+    <div class="last-upd" id="tunnel-upd"></div>
+    <div class="src">
+      <a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk traffic ↗</a>
+      <a href="https://www.trafficengland.com/" target="_blank">trafficengland.com ↗</a>
+    </div>
+  </div>
+
+  <!-- ══ ROADWORKS (gas / water / utility) ══ -->
+  <div class="section-label">
+    Active roadworks
+    <span class="live-badge">LIVE · TfL API</span>
+  </div>
+
+  <div class="card" id="works-card">
+    <div id="works-list">
+      <div class="skel-row"><div class="skel" style="width:18px;height:18px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:55px;height:20px;border-radius:20px"></div></div>
+      <div class="skel-row"><div class="skel" style="width:18px;height:18px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:55px;height:20px;border-radius:20px"></div></div>
+    </div>
+    <div class="last-upd" id="works-upd"></div>
+    <div class="src"><a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">tfl.gov.uk major works ↗</a></div>
+  </div>
+
   <!-- ══ SPECIAL EVENTS ══ -->
   <div class="section-label">
     Special events &amp; road impacts
@@ -779,42 +625,6 @@
     <div class="last-upd" id="events-upd"></div>
     <div class="src">
       <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">tfl.gov.uk events ↗</a>
-    </div>
-  </div>
-
-  <!-- ══ UK BANK HOLIDAYS ══ -->
-  <div class="section-label">
-    UK Bank Holidays
-    <span class="live-badge">LIVE · GOV.UK API</span>
-  </div>
-
-  <div class="card">
-    <div id="bh-list">
-      <div class="skel-row"><div class="skel" style="width:40px;height:40px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:28px;margin:0 8px"></div></div>
-      <div class="skel-row"><div class="skel" style="width:40px;height:40px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:28px;margin:0 8px"></div></div>
-    </div>
-    <div class="last-upd" id="bh-upd"></div>
-    <div class="src"><a href="https://www.gov.uk/bank-holidays" target="_blank">gov.uk/bank-holidays ↗</a></div>
-  </div>
-
-  <!-- ══ ACTIVE ROADWORKS (collapsible, starts closed) ══ -->
-  <div class="section-label">
-    Active roadworks
-    <span class="live-badge">LIVE · TfL API</span>
-    <button id="works-toggle" class="works-toggle-btn" onclick="toggleWorks(event)" aria-label="Toggle roadworks">
-      <span class="works-plus">＋</span>
-      <span class="works-pulse-ring"></span>
-    </button>
-  </div>
-
-  <div id="works-collapsible" class="collapsed">
-    <div class="card" id="works-card">
-      <div id="works-list">
-        <div class="skel-row"><div class="skel" style="width:18px;height:18px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:55px;height:20px;border-radius:20px"></div></div>
-        <div class="skel-row"><div class="skel" style="width:18px;height:18px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:55px;height:20px;border-radius:20px"></div></div>
-      </div>
-      <div class="last-upd" id="works-upd"></div>
-      <div class="src"><a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">tfl.gov.uk major works ↗</a></div>
     </div>
   </div>
 
@@ -842,8 +652,8 @@
 </div><!-- /container -->
 
 <footer>
-  All data pulled live from <a href="https://api.tfl.gov.uk" target="_blank">TfL Unified API</a> &amp; <a href="https://www.gov.uk/bank-holidays.json" target="_blank">GOV.UK Bank Holidays API</a> · Auto-refreshes every 2 minutes<br>
-  Tube · Road disruptions · Roadworks · Tunnel status · Special events · Bank holidays
+  All data pulled live from <a href="https://api.tfl.gov.uk" target="_blank">TfL Unified API</a> · Auto-refreshes every 2 minutes<br>
+  Tube · Road disruptions · Roadworks · Tunnel status · Special events
 </footer>
 
 <script>
@@ -1139,25 +949,16 @@ async function loadRoads() {
       const endStr   = d.endAt   ? fmtShort(d.endAt)  : 'ongoing';
       const sevLabel = {serious:'Serious', moderate:'Moderate', slight:'Slight'}[sev] || d.severity || 'Disruption';
       const pillCls  = {serious:'pill-red', moderate:'pill-amber', slight:'pill-gray'}[sev] || 'pill-gray';
-      const comments = (d.comments || '').trim();
-      const previewText = comments ? comments.substring(0,120) + (comments.length > 120 ? '…' : '') : '';
-      const hasMore = comments.length > 120;
-      return `<div class="disruption-row" onclick="this.classList.toggle('expanded')">
+      return `<div class="disruption-row">
         <div class="d-sev-bar d-sev-${sev}"></div>
         <div style="flex:1;min-width:0">
-          <div class="d-title">${d.location || d.street || comments.substring(0,80) || 'Road disruption'}</div>
+          <div class="d-title">${d.location || d.street || d.comments?.substring(0,80) || 'Road disruption'}</div>
           <div class="d-meta">
             <span class="pill ${pillCls}" style="font-size:10px;padding:2px 7px">${sevLabel}</span>
             ${d.category ? `<span class="pill pill-gray" style="font-size:10px;padding:2px 7px">${d.category}</span>` : ''}
             ${startStr ? `· From ${startStr}${endStr !== 'ongoing' ? ' – '+endStr : ''}` : ''}
           </div>
-          ${comments && comments !== d.location ? `
-            <div class="d-preview d-meta" style="margin-top:3px">${previewText}</div>
-            <div class="d-full">
-              <div class="d-full-text">${comments}</div>
-            </div>
-            <div class="expand-hint">${hasMore ? 'Tap to read full description' : 'Tap to expand'}</div>
-          ` : ''}
+          ${d.comments && d.comments !== d.location ? `<div class="d-meta" style="margin-top:3px">${d.comments.substring(0,140)}${d.comments.length>140?'…':''}</div>` : ''}
         </div>
       </div>`;
     }).join('')}</div>`;
@@ -1337,27 +1138,21 @@ async function loadEvents() {
 
     const calClasses = ['red-cal','amber-cal','blue-cal','teal-cal','red-cal'];
     elist.innerHTML = unique.slice(0,10).map((e, i) => {
-      const iso   = e.startDate || e.startAt || '';
-      const cal   = calInfo(iso);
-      const cls   = calClasses[i % calClasses.length];
+      const iso  = e.startDate || e.startAt || '';
+      const cal  = calInfo(iso);
+      const cls  = calClasses[i % calClasses.length];
       const title = e.location || e.streetName || e.comments?.substring(0,60) || 'Special event';
       const endStr = (e.endDate||e.endAt) ? ` – ${fmtShort(e.endDate||e.endAt)}` : '';
       const org   = e.workingOrganisation || e.category || '';
-      const fullDesc = [org, e.currentUpdate||e.comments||''].filter(Boolean).join(' · ');
-      const previewDesc = fullDesc.substring(0,120) + (fullDesc.length > 120 ? '…' : '');
-      const hasMore = fullDesc.length > 120;
-      return `<div class="event-row" onclick="this.classList.toggle('expanded')">
+      const desc  = [org, e.currentUpdate||e.comments||''].filter(Boolean).join(' · ');
+      return `<div class="event-row">
         <div class="event-cal ${cls}">
           <div class="e-day">${cal.day}</div>
           <div class="e-mon">${cal.mon}</div>
         </div>
         <div class="event-info">
           <div class="event-title">${title}</div>
-          <div class="event-desc-preview event-desc">${iso ? fmtShort(iso)+endStr+' · ' : ''}${previewDesc}</div>
-          <div class="event-desc-full">
-            <div class="d-full-text">${iso ? `<strong>${fmtShort(iso)}${endStr}</strong><br>` : ''}${fullDesc}</div>
-          </div>
-          <div class="expand-hint">${hasMore ? 'Tap to read full description' : 'Tap to expand'}</div>
+          <div class="event-desc">${iso ? fmtShort(iso)+endStr+' · ' : ''}${desc.substring(0,120)}</div>
         </div>
       </div>`;
     }).join('');
@@ -1365,78 +1160,6 @@ async function loadEvents() {
     upd.textContent = `Updated ${ts()}`;
   } catch(e) {
     elist.innerHTML = `<div class="api-error">Couldn't load events data — <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">view TfL ↗</a></div>`;
-    upd.textContent = '';
-  }
-}
-
-/* ─────────────────────────────────────────────
-   COLLAPSIBLE ROADWORKS
-───────────────────────────────────────────── */
-let _worksOpen = false; // starts closed
-function toggleWorks(e) {
-  if (e) e.stopPropagation();
-  _worksOpen = !_worksOpen;
-  const el     = document.getElementById('works-collapsible');
-  const toggle = document.getElementById('works-toggle');
-  el.classList.toggle('collapsed', !_worksOpen);
-  toggle.classList.toggle('open', _worksOpen);
-}
-
-/* ─────────────────────────────────────────────
-   UK BANK HOLIDAYS — GOV.UK API
-───────────────────────────────────────────── */
-async function loadBankHolidays() {
-  const blist = document.getElementById('bh-list');
-  const upd   = document.getElementById('bh-upd');
-  try {
-    const res  = await fetch('https://www.gov.uk/bank-holidays.json');
-    const data = await res.json();
-
-    // England & Wales division
-    const events = (data['england-and-wales']?.events || []);
-    const today  = new Date();
-    today.setHours(0,0,0,0);
-
-    // Show upcoming (next 6) + today if it's a bank holiday
-    const upcoming = events
-      .filter(e => new Date(e.date) >= today)
-      .slice(0, 6);
-
-    if (!upcoming.length) {
-      blist.innerHTML = `<div class="empty-state">No upcoming bank holidays found.</div>`;
-      upd.textContent = `Updated ${ts()}`;
-      return;
-    }
-
-    blist.innerHTML = upcoming.map(e => {
-      const d       = new Date(e.date);
-      const isToday = d.toDateString() === today.toDateString();
-      const diffMs  = d - today;
-      const diffDays = Math.round(diffMs / 86400000);
-      const isSoon  = diffDays <= 7 && !isToday;
-
-      const calCls  = isToday ? 'today' : isSoon ? 'soon' : '';
-      const dayNum  = d.getDate();
-      const monStr  = d.toLocaleString('en-GB', {month:'short'}).toUpperCase();
-      const fullDate = d.toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
-      const daysLabel = isToday ? '🎉 Today!' : diffDays === 1 ? 'Tomorrow' : `In ${diffDays} days`;
-      const notesHtml = e.notes ? `<span class="pill pill-gray" style="font-size:10px;padding:2px 7px;margin-left:4px">${e.notes}</span>` : '';
-
-      return `<div class="bh-row">
-        <div class="bh-cal ${calCls}">
-          <div class="bh-day">${dayNum}</div>
-          <div class="bh-mon">${monStr}</div>
-        </div>
-        <div class="bh-info">
-          <div class="bh-title">${e.title}${notesHtml}</div>
-          <div class="bh-meta">${fullDate} · ${daysLabel}</div>
-        </div>
-      </div>`;
-    }).join('');
-
-    upd.textContent = `Updated ${ts()} · England & Wales`;
-  } catch(e) {
-    blist.innerHTML = `<div class="api-error">Couldn't load bank holidays — <a href="https://www.gov.uk/bank-holidays" target="_blank">view gov.uk ↗</a></div>`;
     upd.textContent = '';
   }
 }
@@ -1460,7 +1183,6 @@ async function refreshAll() {
     loadRoads(),      // also calls renderTunnels
     loadRoadworks(),
     loadEvents(),
-    loadBankHolidays(),
   ]);
 
   icon.classList.remove('spinning');
