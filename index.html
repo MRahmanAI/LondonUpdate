@@ -16,115 +16,30 @@
     --text: #111318;
     --muted: #4f5663;
     --dim: #8a929f;
-
-    --red:        #c0392b;
-    --red-bg:     #fdf0ef;
-    --red-border: #f5c6c2;
-
-    --amber:        #b45309;
-    --amber-bg:     #fef8ec;
-    --amber-border: #fad999;
-
-    --blue:        #1d5fa8;
-    --blue-bg:     #eff5fd;
-    --blue-border: #bad4f5;
-
-    --purple:        #6027b0;
-    --purple-bg:     #f4f0fd;
-    --purple-border: #d3bef7;
-
-    --teal:        #0f7a5e;
-    --teal-bg:     #edf7f4;
-    --teal-border: #9fdece;
-
-    --green:        #276b38;
-    --green-bg:     #eef7f0;
-    --green-border: #a8d9b3;
-
-    --radius: 14px;
-    --radius-sm: 8px;
+    --red:        #c0392b; --red-bg:     #fdf0ef; --red-border: #f5c6c2;
+    --amber:      #b45309; --amber-bg:   #fef8ec; --amber-border: #fad999;
+    --blue:       #1d5fa8; --blue-bg:    #eff5fd; --blue-border: #bad4f5;
+    --purple:     #6027b0; --purple-bg:  #f4f0fd; --purple-border: #d3bef7;
+    --teal:       #0f7a5e; --teal-bg:    #edf7f4; --teal-border: #9fdece;
+    --green:      #276b38; --green-bg:   #eef7f0; --green-border: #a8d9b3;
+    --district:   #00782A;
+    --radius: 14px; --radius-sm: 8px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding-bottom: 48px;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 48px; }
 
   /* HEADER */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: rgba(255,255,255,0.93);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-    padding: 13px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-  }
-
+  header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,0.93); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 13px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
   .header-left { display: flex; align-items: center; gap: 9px; min-width: 0; }
-
-  .header-dot {
-    width: 9px; height: 9px; border-radius: 50%;
-    background: var(--red);
-    box-shadow: 0 0 8px rgba(192,57,43,0.5);
-    flex-shrink: 0;
-    animation: blink 2s ease-in-out infinite;
-  }
+  .header-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--red); box-shadow: 0 0 8px rgba(192,57,43,0.5); flex-shrink: 0; animation: blink 2s ease-in-out infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
-
-  header h1 {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
+  header h1 { font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .header-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-
-  .header-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 4px 7px;
-    white-space: nowrap;
-  }
-
-  .refresh-btn {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background: var(--blue-bg);
-    border: 1px solid var(--blue-border);
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--blue);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.15s, transform 0.1s;
-  }
-  .refresh-btn:hover   { background: #d9eaf8; }
-  .refresh-btn:active  { transform: scale(0.96); }
-  .refresh-btn:disabled{ opacity: 0.6; cursor: default; }
-
+  .header-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 7px; white-space: nowrap; }
+  .refresh-btn { display: flex; align-items: center; gap: 4px; background: var(--blue-bg); border: 1px solid var(--blue-border); border-radius: 8px; padding: 5px 10px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: var(--blue); cursor: pointer; white-space: nowrap; transition: background 0.15s, transform 0.1s; }
+  .refresh-btn:hover { background: #d9eaf8; } .refresh-btn:active { transform: scale(0.96); } .refresh-btn:disabled { opacity: 0.6; cursor: default; }
   .refresh-icon { font-size: 14px; display: inline-block; line-height: 1; }
   .refresh-icon.spinning { animation: spin 0.65s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -133,67 +48,15 @@
   .container { max-width: 500px; margin: 0 auto; padding: 16px 14px; }
 
   /* SECTION LABEL */
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin: 22px 0 10px;
-    padding-left: 2px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .live-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    font-weight: 500;
-    background: var(--teal-bg);
-    color: var(--teal);
-    border: 1px solid var(--teal-border);
-    border-radius: 10px;
-    padding: 2px 7px;
-    letter-spacing: 0.04em;
-  }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin: 22px 0 10px; padding-left: 2px; display: flex; align-items: center; gap: 8px; }
+  .live-badge { font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 500; background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); border-radius: 10px; padding: 2px 7px; letter-spacing: 0.04em; }
 
   /* CARD */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 15px 16px;
-    margin-bottom: 10px;
-    animation: fadeUp 0.35s ease both;
-  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 16px; margin-bottom: 10px; animation: fadeUp 0.35s ease both; }
   @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
-  .card-header { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 10px; }
-
-  .card-icon {
-    width: 36px; height: 36px;
-    border-radius: var(--radius-sm);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 17px; flex-shrink: 0;
-  }
-  .icon-red    { background: var(--red-bg);    border: 1px solid var(--red-border); }
-  .icon-amber  { background: var(--amber-bg);  border: 1px solid var(--amber-border); }
-  .icon-blue   { background: var(--blue-bg);   border: 1px solid var(--blue-border); }
-  .icon-purple { background: var(--purple-bg); border: 1px solid var(--purple-border); }
-  .icon-teal   { background: var(--teal-bg);   border: 1px solid var(--teal-border); }
-  .icon-green  { background: var(--green-bg);  border: 1px solid var(--green-border); }
-
-  .card-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
-  .card-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
-
   /* PILLS */
-  .pills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
-  .pill {
-    font-size: 11px; font-weight: 500;
-    padding: 3px 9px; border-radius: 20px;
-  }
+  .pill { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; }
   .pill-red    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
   .pill-amber  { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
   .pill-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
@@ -202,198 +65,101 @@
   .pill-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
   .pill-gray   { background: var(--surface2);  color: var(--muted);  border: 1px solid var(--border); }
 
-  /* DIVIDER */
-  .divider { border: none; border-top: 1px solid var(--border); margin: 10px 0; }
-
-  /* DETAIL ROWS */
-  .detail-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 4px 0;
-    font-size: 13px;
-  }
-  .detail-label { color: var(--muted); flex-shrink: 0; padding-right: 8px; }
-  .detail-val   { color: var(--text); font-weight: 500; text-align: right; }
-
-  /* TIP BOX */
-  .tip {
-    background: var(--blue-bg);
-    border-left: 2px solid var(--blue);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    padding: 9px 11px;
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-top: 10px;
-  }
-  .tip strong { color: var(--blue); font-weight: 600; }
-
   /* ALERT BANNER */
-  .alert-banner {
-    border-radius: var(--radius);
-    padding: 13px 15px;
-    display: flex; gap: 12px; align-items: flex-start;
-    margin-bottom: 10px;
-    animation: slideDown 0.4s ease both;
-  }
-  .alert-banner.alert-red {
-    background: var(--red-bg);
-    border: 1px solid var(--red-border);
-  }
-  .alert-banner.alert-amber {
-    background: var(--amber-bg);
-    border: 1px solid var(--amber-border);
-  }
-  .alert-banner.alert-teal {
-    background: var(--teal-bg);
-    border: 1px solid var(--teal-border);
-  }
+  .alert-banner { border-radius: var(--radius); padding: 13px 15px; display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; animation: slideDown 0.4s ease both; }
+  .alert-banner.alert-red   { background: var(--red-bg);   border: 1px solid var(--red-border); }
+  .alert-banner.alert-amber { background: var(--amber-bg); border: 1px solid var(--amber-border); }
+  .alert-banner.alert-teal  { background: var(--teal-bg);  border: 1px solid var(--teal-border); }
   @keyframes slideDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
-  .alert-icon  { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
   .alert-title { font-size: 13px; font-weight: 600; }
-  .alert-title.red    { color: var(--red); }
-  .alert-title.amber  { color: var(--amber); }
-  .alert-title.teal   { color: var(--teal); }
-  .alert-body  { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+  .alert-title.red   { color: var(--red); }
+  .alert-title.amber { color: var(--amber); }
+  .alert-title.teal  { color: var(--teal); }
+  .alert-body { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
 
   /* TUBE ROWS */
   #tube-grid { display: flex; flex-direction: column; }
-
-  .tube-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 0;
-    border-bottom: 1px solid var(--border);
-  }
+  .tube-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
   .tube-row:last-child { border-bottom: none; }
-
   .tube-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
   .tube-name { flex: 1; font-size: 13px; font-weight: 500; color: var(--text); }
-  .tube-reason {
-    font-size: 11px; color: var(--muted); margin-top: 2px;
-    max-width: 260px; line-height: 1.4;
-    display: none;
-  }
+  .tube-reason { font-size: 11px; color: var(--muted); margin-top: 2px; max-width: 260px; line-height: 1.4; display: none; }
   .tube-row.expanded .tube-reason { display: block; }
   .tube-name-wrap { flex: 1; cursor: pointer; }
-
-  .status-pill {
-    font-size: 11px; font-weight: 600;
-    padding: 3px 9px; border-radius: 20px;
-    white-space: nowrap;
-  }
+  .status-pill { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
   .s-good    { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
   .s-minor   { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
   .s-severe  { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
-  .s-closed  { background: #f0f0f2;           color: #555;          border: 1px solid #ccc; }
+  .s-closed  { background: #f0f0f2;          color: #555;          border: 1px solid #ccc; }
   .s-special { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
 
   /* ROAD DISRUPTION ROWS */
-  .disruption-list { display: flex; flex-direction: column; gap: 0; }
-  .disruption-row {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 10px 0; border-bottom: 1px solid var(--border);
-  }
+  .disruption-list { display: flex; flex-direction: column; }
+  .disruption-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+  .disruption-row:hover { background: var(--surface2); }
   .disruption-row:last-child { border-bottom: none; }
   .d-sev-bar { width: 3px; border-radius: 2px; min-height: 36px; flex-shrink: 0; align-self: stretch; }
-  .d-sev-serious { background: var(--red); }
+  .d-sev-serious  { background: var(--red); }
   .d-sev-moderate { background: var(--amber); }
   .d-sev-slight, .d-sev-other { background: var(--dim); }
   .d-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.3; }
   .d-meta  { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
-
-  /* ROADWORKS ROWS */
-  .work-row {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 10px 0; border-bottom: 1px solid var(--border);
-  }
-  .work-row:last-child { border-bottom: none; }
-  .work-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-  .work-title { font-size: 13px; font-weight: 500; color: var(--text); }
-  .work-meta  { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
+  .d-desc-preview { display: block; }
+  .d-desc-full    { display: none; font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 5px; padding-top: 6px; border-top: 1px dashed var(--border); }
+  .disruption-row.expanded .d-desc-preview { display: none; }
+  .disruption-row.expanded .d-desc-full    { display: block; }
+  .d-expand-hint { font-size: 10px; color: var(--dim); margin-top: 5px; display: flex; align-items: center; gap: 3px; }
+  .d-expand-hint::before { content: '▸ '; }
+  .disruption-row.expanded .d-expand-hint::before { content: '▾ '; }
 
   /* SKELETON */
-  .skel {
-    background: linear-gradient(90deg,var(--surface2) 25%,#e6e8ec 50%,var(--surface2) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.2s infinite;
-    border-radius: 6px;
-  }
+  .skel { background: linear-gradient(90deg,var(--surface2) 25%,#e6e8ec 50%,var(--surface2) 75%); background-size: 200% 100%; animation: shimmer 1.2s infinite; border-radius: 6px; }
   @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-
-  .skel-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 0; border-bottom: 1px solid var(--border);
-  }
+  .skel-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
   .skel-row:last-child { border-bottom: none; }
 
-  .last-upd {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--dim);
-    margin-top: 10px; text-align: right;
-  }
-
-  .api-error {
-    font-size: 13px; color: var(--red);
-    background: var(--red-bg);
-    border: 1px solid var(--red-border);
-    border-radius: var(--radius-sm);
-    padding: 14px; text-align: center; line-height: 1.5;
-  }
+  .last-upd { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); margin-top: 10px; text-align: right; }
+  .api-error { font-size: 13px; color: var(--red); background: var(--red-bg); border: 1px solid var(--red-border); border-radius: var(--radius-sm); padding: 14px; text-align: center; line-height: 1.5; }
   .api-error a { color: var(--red); font-weight: 600; }
 
   /* EVENTS */
-  .event-row {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 10px 0; border-bottom: 1px solid var(--border);
-  }
+  .event-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+  .event-row:hover { background: var(--surface2); }
   .event-row:last-child { border-bottom: none; }
-  .event-cal {
-    width: 40px; min-height: 40px; border-radius: var(--radius-sm);
-    background: var(--purple-bg); border: 1px solid var(--purple-border);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    flex-shrink: 0; padding: 3px;
-  }
+  .event-cal { width: 40px; min-height: 40px; border-radius: var(--radius-sm); background: var(--purple-bg); border: 1px solid var(--purple-border); display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; padding: 3px; }
   .event-cal.red-cal   { background: var(--red-bg);   border-color: var(--red-border); }
   .event-cal.amber-cal { background: var(--amber-bg); border-color: var(--amber-border); }
   .event-cal.blue-cal  { background: var(--blue-bg);  border-color: var(--blue-border); }
   .event-cal.teal-cal  { background: var(--teal-bg);  border-color: var(--teal-border); }
   .e-day { font-size: 16px; font-weight: 600; color: var(--purple); line-height: 1; }
   .e-mon { font-size: 9px; font-weight: 500; color: var(--purple); text-transform: uppercase; letter-spacing: 0.05em; }
-  .red-cal .e-day, .red-cal .e-mon    { color: var(--red); }
+  .red-cal .e-day,   .red-cal .e-mon   { color: var(--red); }
   .amber-cal .e-day, .amber-cal .e-mon { color: var(--amber); }
-  .blue-cal .e-day, .blue-cal .e-mon  { color: var(--blue); }
-  .teal-cal .e-day, .teal-cal .e-mon  { color: var(--teal); }
+  .blue-cal .e-day,  .blue-cal .e-mon  { color: var(--blue); }
+  .teal-cal .e-day,  .teal-cal .e-mon  { color: var(--teal); }
   .event-info { flex: 1; min-width: 0; }
   .event-title { font-size: 13px; font-weight: 500; color: var(--text); }
   .event-desc  { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
+  .e-desc-preview { display: block; }
+  .e-desc-full    { display: none; font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 5px; padding-top: 6px; border-top: 1px dashed var(--border); }
+  .event-row.expanded .e-desc-preview { display: none; }
+  .event-row.expanded .e-desc-full    { display: block; }
+  .e-expand-hint { font-size: 10px; color: var(--dim); margin-top: 5px; display: flex; align-items: center; gap: 3px; }
+  .e-expand-hint::before { content: '▸ '; }
+  .event-row.expanded .e-expand-hint::before { content: '▾ '; }
 
-  /* EMPTY STATE */
-  .empty-state {
-    font-size: 13px; color: var(--muted);
-    padding: 16px 0; text-align: center; line-height: 1.6;
-  }
+  .empty-state { font-size: 13px; color: var(--muted); padding: 16px 0; text-align: center; line-height: 1.6; }
 
   /* SUMMARY STRIP */
-  .summary-strip {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
-    margin-bottom: 10px;
-  }
-  .summary-cell {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 10px 12px;
-  }
+  .summary-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px; }
+  .summary-cell { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; }
   .summary-num { font-size: 22px; font-weight: 600; }
   .summary-lbl { font-size: 10px; color: var(--muted); margin-top: 2px; letter-spacing: 0.02em; }
-  .num-red    { color: var(--red); }
-  .num-amber  { color: var(--amber); }
-  .num-teal   { color: var(--teal); }
+  .num-red   { color: var(--red); }
+  .num-amber { color: var(--amber); }
+  .num-teal  { color: var(--teal); }
 
-  /* ALERT STRIP */
   #alert-strip { margin-bottom: 4px; }
 
   /* SOURCE LINKS */
@@ -402,258 +168,91 @@
   .src a:hover { opacity: 1; text-decoration: underline; }
 
   /* FOOTER */
-  footer {
-    text-align: center;
-    padding: 24px 20px 0;
-    font-size: 11px; color: var(--dim); line-height: 1.8;
-  }
+  footer { text-align: center; padding: 24px 20px 0; font-size: 11px; color: var(--dim); line-height: 1.8; }
   footer a { color: var(--blue); text-decoration: none; }
 
-  /* TUNNEL STATUS TABLE */
+  /* TUNNEL STATUS */
   .tunnel-list { display: flex; flex-direction: column; }
-  .tunnel-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 0; border-bottom: 1px solid var(--border);
-  }
+  .tunnel-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
   .tunnel-row:last-child { border-bottom: none; }
   .tunnel-icon { font-size: 16px; flex-shrink: 0; }
   .tunnel-name { flex: 1; font-size: 13px; font-weight: 500; }
   .tunnel-meta { font-size: 11px; color: var(--muted); margin-top: 1px; }
 
-  /* COUNT BADGE */
-  .count-badge {
-    display: inline-flex; align-items: center; justify-content: center;
-    min-width: 20px; height: 20px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; font-weight: 500;
-    border-radius: 10px; padding: 0 5px;
-  }
-  .count-red    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
-  .count-amber  { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
-  .count-teal   { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-border); }
-  .count-gray   { background: var(--surface2);  color: var(--muted);  border: 1px solid var(--border); }
-
-  /* INCIDENT CARDS (fire / RTC) */
+  /* INCIDENT CARDS */
   .incident-list { display: flex; flex-direction: column; }
-
-  .incident-row {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 12px 0; border-bottom: 1px solid var(--border);
-  }
+  .incident-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
   .incident-row:last-child { border-bottom: none; }
-
-  .incident-badge {
-    width: 38px; height: 38px; border-radius: var(--radius-sm);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-  }
-  .badge-fire  { background: #fff4ec; border: 1px solid #fdc99a; }
-  .badge-rtc   { background: var(--red-bg);  border: 1px solid var(--red-border); }
-  .badge-hazard{ background: var(--amber-bg); border: 1px solid var(--amber-border); }
-
-  .incident-body { flex: 1; min-width: 0; }
+  .incident-badge { width: 38px; height: 38px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .badge-rtc  { background: var(--red-bg);   border: 1px solid var(--red-border); }
+  .incident-body  { flex: 1; min-width: 0; }
   .incident-title { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.35; }
   .incident-loc   { font-size: 12px; color: var(--muted); margin-top: 1px; line-height: 1.4; }
-
-  .incident-timeline {
-    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; align-items: center;
-  }
-  .tl-item {
-    display: flex; align-items: center; gap: 4px;
-    font-size: 11px; color: var(--muted);
-  }
-  .tl-dot {
-    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
-  }
+  .incident-timeline { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; align-items: center; }
+  .tl-item   { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--muted); }
+  .tl-dot    { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .tl-dot.open   { background: var(--red); }
   .tl-dot.closed { background: var(--green); }
-  .tl-dot.unknown{ background: var(--dim); }
-  .tl-arrow { font-size: 10px; color: var(--dim); }
-
-  .status-tag {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 10px; font-weight: 600;
-    padding: 3px 8px; border-radius: 20px;
-    white-space: nowrap; margin-top: 6px;
-  }
-  .tag-active   { background: var(--red-bg);   color: var(--red);   border: 1px solid var(--red-border); }
-  .tag-cleared  { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
-  .tag-ongoing  { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
-  .tag-fire     { background: #fff4ec; color: #b45309; border: 1px solid #fdc99a; }
-
-  .incident-update {
-    font-size: 11px; color: var(--muted); margin-top: 5px; line-height: 1.5;
-    font-style: italic;
-  }
-
-  /* ── ARRIVALS BOARD ── */
-  --district: #00782A;
-
-  .arrivals-header {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
-  }
-  .district-bar {
-    width: 4px; height: 32px; border-radius: 2px;
-    background: #00782A; flex-shrink: 0;
-  }
-  .arrivals-station { flex: 1; }
-  .arrivals-station-name { font-size: 14px; font-weight: 600; color: var(--text); }
-  .arrivals-station-sub  { font-size: 11px; color: var(--muted); margin-top: 1px; }
-  .arrivals-upd {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; color: var(--dim);
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 5px; padding: 3px 7px; white-space: nowrap;
-  }
-
-  .arrivals-table {
-    width: 100%; border-collapse: collapse;
-  }
-  .arrivals-table thead tr {
-    border-bottom: 1px solid var(--border);
-  }
-  .arrivals-table thead th {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; font-weight: 500;
-    color: #00782A;
-    text-align: left; padding: 0 0 7px;
-    letter-spacing: 0.04em; text-transform: uppercase;
-  }
-  .arrivals-table thead th.right { text-align: right; }
-
-  .arr-row {
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
-  }
-  .arr-row:last-child { border-bottom: none; }
-  .arr-row td { padding: 9px 0; font-size: 13px; vertical-align: middle; }
-  .arr-row td.right { text-align: right; }
-
-  .arr-dest { font-weight: 500; color: var(--text); }
-  .arr-plat { color: var(--muted); font-size: 12px; }
-  .arr-arrival { font-weight: 600; }
-  .arr-arrival.approaching { color: #00782A; animation: approachPulse 0.7s ease-in-out infinite; }
-  .arr-arrival.due         { color: var(--red); font-weight: 700; }
-  .arr-arrival.soon        { color: var(--amber); }
-  .arr-arrival.normal      { color: var(--text); }
-  .arr-time   { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); }
-
-  @keyframes approachPulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-  .arr-row.flashing { animation: rowFlash 0.6s ease-in-out infinite; }
-  @keyframes rowFlash {
-    0%,100% { background: transparent; }
-    50%     { background: rgba(0,120,42,0.07); }
-  }
-
-  .arr-loading { padding: 16px 0; text-align: center; color: var(--muted); font-size: 12px; }
-  .arr-empty   { padding: 14px 0; text-align: center; color: var(--muted); font-size: 12px; }
-
-  /* EXPANDABLE ROWS — road disruptions & events */
-  .disruption-row, .event-row {
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .disruption-row:hover, .event-row:hover {
-    background: var(--surface2);
-    border-radius: var(--radius-sm);
-  }
-  .d-preview  { display: block; }
-  .d-full     { display: none; }
-  .disruption-row.expanded .d-preview { display: none; }
-  .disruption-row.expanded .d-full    { display: block; }
-
-  .event-desc-preview { display: block; }
-  .event-desc-full    { display: none; }
-  .event-row.expanded .event-desc-preview { display: none; }
-  .event-row.expanded .event-desc-full    { display: block; }
-
-  .expand-hint {
-    font-size: 10px; color: var(--dim);
-    margin-top: 4px; display: flex; align-items: center; gap: 3px;
-  }
-  .expand-hint::before { content: '▸'; font-size: 9px; }
-  .disruption-row.expanded .expand-hint::before { content: '▾'; }
-  .event-row.expanded .expand-hint::before { content: '▾'; }
-
-  .d-full-text {
-    font-size: 12px; color: var(--muted); line-height: 1.6;
-    margin-top: 5px; padding-top: 5px;
-    border-top: 1px dashed var(--border);
-  }
-    overflow: hidden;
-    transition: max-height 0.35s ease, opacity 0.25s ease;
-    max-height: 2000px;
-    opacity: 1;
-  }
-  #works-collapsible.collapsed {
-    max-height: 0;
-    opacity: 0;
-  }
-
-  /* PULSING PLUS TOGGLE BUTTON */
-  .works-toggle-btn {
-    margin-left: auto;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px; height: 22px;
-    flex-shrink: 0;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-  .works-plus {
-    position: relative; z-index: 2;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    background: var(--blue-bg);
-    border: 1.5px solid var(--blue-border);
-    color: var(--blue);
-    font-size: 14px; font-weight: 400;
-    display: flex; align-items: center; justify-content: center;
-    line-height: 1;
-    transition: transform 0.25s, background 0.2s;
-  }
-  .works-pulse-ring {
-    position: absolute; z-index: 1;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    border: 1.5px solid var(--blue);
-    animation: worksRingPulse 1.8s ease-out infinite;
-  }
-  @keyframes worksRingPulse {
-    0%   { transform: scale(1);   opacity: 0.7; }
-    100% { transform: scale(2.2); opacity: 0; }
-  }
-  /* When open: rotate plus to × and stop pulse */
-  .works-toggle-btn.open .works-plus  { transform: rotate(45deg); background: var(--red-bg); border-color: var(--red-border); color: var(--red); }
-  .works-toggle-btn.open .works-pulse-ring { animation: none; opacity: 0; }
+  .tl-arrow  { font-size: 10px; color: var(--dim); }
+  .status-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; margin-top: 6px; }
+  .tag-active  { background: var(--red-bg);   color: var(--red);   border: 1px solid var(--red-border); }
+  .tag-cleared { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .incident-update { font-size: 11px; color: var(--muted); margin-top: 5px; line-height: 1.5; font-style: italic; }
 
   /* BANK HOLIDAYS */
-  .bh-row {
-    display: flex; align-items: center; gap: 12px;
-    padding: 9px 0; border-bottom: 1px solid var(--border);
-  }
+  .bh-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); }
   .bh-row:last-child { border-bottom: none; }
-  .bh-cal {
-    width: 40px; height: 40px; border-radius: var(--radius-sm);
-    background: var(--purple-bg); border: 1px solid var(--purple-border);
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; flex-shrink: 0;
-  }
-  .bh-cal.today { background: var(--red-bg); border-color: var(--red-border); }
+  .bh-cal { width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--purple-bg); border: 1px solid var(--purple-border); display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+  .bh-cal.today { background: var(--red-bg);   border-color: var(--red-border); }
   .bh-cal.soon  { background: var(--amber-bg); border-color: var(--amber-border); }
   .bh-day { font-size: 16px; font-weight: 600; color: var(--purple); line-height: 1; }
   .bh-mon { font-size: 9px; font-weight: 500; color: var(--purple); text-transform: uppercase; letter-spacing: 0.05em; }
   .bh-cal.today .bh-day, .bh-cal.today .bh-mon { color: var(--red); }
-  .bh-cal.soon .bh-day,  .bh-cal.soon .bh-mon  { color: var(--amber); }
-  .bh-info { flex: 1; }
+  .bh-cal.soon  .bh-day, .bh-cal.soon  .bh-mon { color: var(--amber); }
+  .bh-info  { flex: 1; }
   .bh-title { font-size: 13px; font-weight: 500; color: var(--text); }
   .bh-meta  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* ══ ARRIVALS BOARD ══ */
+  .arr-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .arr-district-bar { width: 4px; border-radius: 2px; background: var(--district); align-self: stretch; min-height: 32px; flex-shrink: 0; }
+  .arr-station-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .arr-station-sub  { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .arr-clock-pill { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--dim); background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; padding: 3px 7px; white-space: nowrap; margin-left: auto; }
+
+  .arr-table { width: 100%; border-collapse: collapse; }
+  .arr-table thead tr { border-bottom: 2px solid var(--border); }
+  .arr-table thead th {
+    font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 500;
+    color: #EE7C0E; text-align: left; padding: 0 0 7px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .arr-table thead th.r { text-align: right; }
+  .arr-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  .arr-table tbody tr:last-child { border-bottom: none; }
+  .arr-table tbody tr:hover { background: var(--surface2); }
+  .arr-table tbody td { padding: 8px 0; font-size: 13px; vertical-align: middle; }
+  .arr-table tbody td.r { text-align: right; }
+
+  .arr-dest { font-weight: 500; color: var(--text); }
+  .arr-dest.estimated { color: var(--muted); font-weight: 400; font-style: italic; }
+  .arr-plat { font-size: 12px; color: var(--muted); }
+  .arr-mins { font-weight: 600; }
+  .arr-mins.approaching { color: #EE7C0E; animation: arrPulse 0.8s ease-in-out infinite; }
+  .arr-mins.due   { color: var(--red); font-weight: 700; }
+  .arr-mins.soon  { color: var(--amber); }
+  .arr-mins.later { color: var(--text); }
+  @keyframes arrPulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+  .arr-time { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); }
+  .arr-status-live { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; font-weight: 600; color: #EE7C0E; }
+  .arr-status-live::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #EE7C0E; }
+  .arr-status-est  { font-size: 10px; color: var(--dim); }
+
+  .arr-row-flash { animation: rowFlash 0.7s ease-in-out infinite; }
+  @keyframes rowFlash { 0%,100%{background:transparent} 50%{background:rgba(238,124,14,0.07)} }
+
+  .arr-empty { padding: 16px 0; text-align: center; font-size: 13px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -673,31 +272,16 @@
 
 <div class="container">
 
-  <!-- ALERT STRIP: live severe alerts -->
   <div id="alert-strip"></div>
 
-  <!-- SUMMARY STRIP -->
   <div class="summary-strip" style="margin-top:16px">
-    <div class="summary-cell">
-      <div class="summary-num num-red" id="sum-disruptions">—</div>
-      <div class="summary-lbl">Tube disruptions</div>
-    </div>
-    <div class="summary-cell">
-      <div class="summary-num num-amber" id="sum-incidents">—</div>
-      <div class="summary-lbl">Road incidents</div>
-    </div>
-    <div class="summary-cell">
-      <div class="summary-num num-teal" id="sum-works">—</div>
-      <div class="summary-lbl">Active roadworks</div>
-    </div>
+    <div class="summary-cell"><div class="summary-num num-red" id="sum-disruptions">—</div><div class="summary-lbl">Tube disruptions</div></div>
+    <div class="summary-cell"><div class="summary-num num-amber" id="sum-incidents">—</div><div class="summary-lbl">Road incidents</div></div>
+    <div class="summary-cell"><div class="summary-num num-teal" id="sum-works">—</div><div class="summary-lbl">Road disruptions</div></div>
   </div>
 
   <!-- ══ LIVE TUBE STATUS ══ -->
-  <div class="section-label">
-    Live tube status
-    <span class="live-badge">LIVE · TfL API</span>
-  </div>
-
+  <div class="section-label">Live tube status <span class="live-badge">LIVE · TfL API</span></div>
   <div class="card">
     <div id="tube-grid">
       <div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
@@ -711,83 +295,81 @@
   </div>
 
   <!-- ══ SEVERE & SERIOUS DELAYS ══ -->
-  <div class="section-label">
-    Severe &amp; serious delays
-    <span class="live-badge">LIVE · TfL API</span>
-  </div>
-
+  <div class="section-label">Severe &amp; serious delays <span class="live-badge">LIVE · TfL API</span></div>
   <div class="card">
     <div class="incident-list" id="incident-list">
       <div class="skel-row"><div class="skel" style="width:38px;height:38px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:42px;margin:0 8px;border-radius:6px"></div></div>
       <div class="skel-row"><div class="skel" style="width:38px;height:38px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:42px;margin:0 8px;border-radius:6px"></div></div>
-      <div class="skel-row"><div class="skel" style="width:38px;height:38px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:42px;margin:0 8px;border-radius:6px"></div></div>
     </div>
     <div class="last-upd" id="incident-upd"></div>
-    <div class="src">
-      <a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk/traffic ↗</a>
-      <a href="https://www.londontraffic.org/" target="_blank">londontraffic.org ↗</a>
-    </div>
+    <div class="src"><a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk/traffic ↗</a></div>
   </div>
 
   <!-- ══ TUNNEL STATUS ══ -->
-  <div class="section-label">
-    Tunnel status
-    <span class="live-badge">LIVE · TfL API</span>
-  </div>
-
+  <div class="section-label">Tunnel status <span class="live-badge">LIVE · TfL API</span></div>
   <div class="card">
     <div class="tunnel-list" id="tunnel-list">
       <div class="skel-row"><div class="skel" style="width:16px;height:16px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:80px;height:22px;border-radius:20px"></div></div>
       <div class="skel-row"><div class="skel" style="width:16px;height:16px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:80px;height:22px;border-radius:20px"></div></div>
     </div>
     <div class="last-upd" id="tunnel-upd"></div>
-    <div class="src">
-      <a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk traffic ↗</a>
-      <a href="https://www.trafficengland.com/" target="_blank">trafficengland.com ↗</a>
-    </div>
+    <div class="src"><a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk traffic ↗</a> <a href="https://www.trafficengland.com/" target="_blank">trafficengland.com ↗</a></div>
   </div>
+
+  <!-- ══ UPNEY ARRIVALS — REMOVED ══ -->
 
   <!-- ══ ROAD DISRUPTIONS ══ -->
-  <div class="section-label">
-    Live road disruptions
-    <span class="live-badge">LIVE · TfL API</span>
-  </div>
-
+  <div class="section-label">Live road disruptions <span class="live-badge">LIVE · TfL API</span></div>
   <div class="card" id="road-card">
+
+    <!-- Filter bar -->
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center">
+      <div style="flex:1;min-width:120px">
+        <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:3px">Category</label>
+        <select id="rd-cat" style="width:100%;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:5px 8px;cursor:pointer">
+          <option value="">All</option>
+        </select>
+      </div>
+      <div style="flex:1;min-width:110px">
+        <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:3px">Severity</label>
+        <select id="rd-sev" style="width:100%;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:5px 8px;cursor:pointer">
+          <option value="">All</option>
+          <option>Low</option>
+          <option>Moderate</option>
+          <option>High</option>
+          <option>Severe</option>
+        </select>
+      </div>
+      <div style="flex:1;min-width:130px">
+        <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:3px">Borough</label>
+        <select id="rd-borough" style="width:100%;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:5px 8px;cursor:pointer">
+          <option value="">All</option>
+        </select>
+      </div>
+    </div>
+
     <div id="road-list">
       <div class="skel-row"><div class="skel" style="width:3px;height:36px;border-radius:2px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:70px;height:22px;border-radius:20px"></div></div>
       <div class="skel-row"><div class="skel" style="width:3px;height:36px;border-radius:2px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:70px;height:22px;border-radius:20px"></div></div>
       <div class="skel-row"><div class="skel" style="width:3px;height:36px;border-radius:2px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:70px;height:22px;border-radius:20px"></div></div>
     </div>
     <div class="last-upd" id="road-upd"></div>
-    <div class="src">
-      <a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk/traffic ↗</a>
-    </div>
+    <div class="src"><a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk/traffic ↗</a></div>
   </div>
 
   <!-- ══ SPECIAL EVENTS ══ -->
-  <div class="section-label">
-    Special events &amp; road impacts
-    <span class="live-badge">LIVE · TfL API</span>
-  </div>
-
+  <div class="section-label">Special events &amp; road impacts <span class="live-badge">LIVE · TfL API</span></div>
   <div class="card">
     <div id="events-list">
       <div class="skel-row"><div class="skel" style="width:40px;height:40px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:28px;margin:0 8px"></div></div>
       <div class="skel-row"><div class="skel" style="width:40px;height:40px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:28px;margin:0 8px"></div></div>
     </div>
     <div class="last-upd" id="events-upd"></div>
-    <div class="src">
-      <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">tfl.gov.uk events ↗</a>
-    </div>
+    <div class="src"><a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">tfl.gov.uk events ↗</a></div>
   </div>
 
   <!-- ══ UK BANK HOLIDAYS ══ -->
-  <div class="section-label">
-    UK Bank Holidays
-    <span class="live-badge">LIVE · GOV.UK API</span>
-  </div>
-
+  <div class="section-label">UK Bank Holidays <span class="live-badge">LIVE · GOV.UK API</span></div>
   <div class="card">
     <div id="bh-list">
       <div class="skel-row"><div class="skel" style="width:40px;height:40px;border-radius:8px;flex-shrink:0"></div><div class="skel" style="flex:1;height:28px;margin:0 8px"></div></div>
@@ -795,27 +377,6 @@
     </div>
     <div class="last-upd" id="bh-upd"></div>
     <div class="src"><a href="https://www.gov.uk/bank-holidays" target="_blank">gov.uk/bank-holidays ↗</a></div>
-  </div>
-
-  <!-- ══ ACTIVE ROADWORKS (collapsible, starts closed) ══ -->
-  <div class="section-label">
-    Active roadworks
-    <span class="live-badge">LIVE · TfL API</span>
-    <button id="works-toggle" class="works-toggle-btn" onclick="toggleWorks(event)" aria-label="Toggle roadworks">
-      <span class="works-plus">＋</span>
-      <span class="works-pulse-ring"></span>
-    </button>
-  </div>
-
-  <div id="works-collapsible" class="collapsed">
-    <div class="card" id="works-card">
-      <div id="works-list">
-        <div class="skel-row"><div class="skel" style="width:18px;height:18px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:55px;height:20px;border-radius:20px"></div></div>
-        <div class="skel-row"><div class="skel" style="width:18px;height:18px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:55px;height:20px;border-radius:20px"></div></div>
-      </div>
-      <div class="last-upd" id="works-upd"></div>
-      <div class="src"><a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">tfl.gov.uk major works ↗</a></div>
-    </div>
   </div>
 
   <!-- ══ LIVE SOURCES ══ -->
@@ -839,644 +400,291 @@
     </a>
   </div>
 
-</div><!-- /container -->
+</div>
 
 <footer>
   All data pulled live from <a href="https://api.tfl.gov.uk" target="_blank">TfL Unified API</a> &amp; <a href="https://www.gov.uk/bank-holidays.json" target="_blank">GOV.UK Bank Holidays API</a> · Auto-refreshes every 2 minutes<br>
-  Tube · Road disruptions · Roadworks · Tunnel status · Special events · Bank holidays
+  Tube · Road disruptions · Tunnel status · Arrivals · Special events · Bank holidays
 </footer>
 
 <script>
-/* ─────────────────────────────────────────────
-   CONFIG
-───────────────────────────────────────────── */
 const API_KEY = 'c669b2e1c07744fe8489b5f419cf1971';
 const BASE    = 'https://api.tfl.gov.uk';
 
 const LINES = {
-  'bakerloo':          { name: 'Bakerloo',           color: '#B36305' },
-  'central':           { name: 'Central',             color: '#E32017' },
-  'circle':            { name: 'Circle',              color: '#E8AE00' },
-  'district':          { name: 'District',            color: '#00782A' },
-  'hammersmith-city':  { name: 'Hammersmith & City',  color: '#D4618A' },
-  'jubilee':           { name: 'Jubilee',             color: '#737578' },
-  'metropolitan':      { name: 'Metropolitan',        color: '#9B0056' },
-  'northern':          { name: 'Northern',            color: '#000000' },
-  'piccadilly':        { name: 'Piccadilly',          color: '#003688' },
-  'victoria':          { name: 'Victoria',            color: '#0098D4' },
-  'waterloo-city':     { name: 'Waterloo & City',     color: '#70C3CE' },
-  'dlr':               { name: 'DLR',                 color: '#00A4A7' },
-  'elizabeth':         { name: 'Elizabeth line',      color: '#6950A1' },
-  'overground':        { name: 'London Overground',   color: '#EE7C0E' },
+  'bakerloo':         { name: 'Bakerloo',          color: '#B36305' },
+  'central':          { name: 'Central',            color: '#E32017' },
+  'circle':           { name: 'Circle',             color: '#E8AE00' },
+  'district':         { name: 'District',           color: '#00782A' },
+  'hammersmith-city': { name: 'Hammersmith & City', color: '#D4618A' },
+  'jubilee':          { name: 'Jubilee',            color: '#737578' },
+  'metropolitan':     { name: 'Metropolitan',       color: '#9B0056' },
+  'northern':         { name: 'Northern',           color: '#000000' },
+  'piccadilly':       { name: 'Piccadilly',         color: '#003688' },
+  'victoria':         { name: 'Victoria',           color: '#0098D4' },
+  'waterloo-city':    { name: 'Waterloo & City',    color: '#70C3CE' },
+  'dlr':              { name: 'DLR',                color: '#00A4A7' },
+  'elizabeth':        { name: 'Elizabeth line',     color: '#6950A1' },
+  'overground':       { name: 'London Overground',  color: '#EE7C0E' },
 };
 
-/* Known London tunnels on the TLRN / major network */
 const KNOWN_TUNNELS = [
-  { id: 'A102',  name: 'Blackwall Tunnel',    tip: 'Alternative: Silvertown Tunnel or Rotherhithe Tunnel' },
-  { id: 'A1203', name: 'Limehouse Link',      tip: 'Alternative: A13 or Commercial Road' },
-  { id: 'A102T', name: 'Silvertown Tunnel',   tip: 'New crossing — check TfL for opening updates' },
-  { id: 'A2',    name: 'Rotherhithe Tunnel',  tip: 'Height restriction: 4.1m' },
+  { id:'A102',  name:'Blackwall Tunnel',   tip:'Alternative: Silvertown Tunnel or Rotherhithe Tunnel' },
+  { id:'A1203', name:'Limehouse Link',     tip:'Alternative: A13 or Commercial Road' },
+  { id:'A102T', name:'Silvertown Tunnel',  tip:'New crossing — check TfL for opening updates' },
+  { id:'A2',    name:'Rotherhithe Tunnel', tip:'Height restriction: 4.1m' },
 ];
 
-/* ─────────────────────────────────────────────
-   HELPERS
-───────────────────────────────────────────── */
+/* ── HELPERS ── */
 async function tfl(path) {
   const sep = path.includes('?') ? '&' : '?';
   const res = await fetch(`${BASE}${path}${sep}app_key=${API_KEY}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
-
-function skels(n, template) {
-  return Array.from({length:n}, () => template).join('');
-}
-
-function skelRow() {
-  return `<div class="skel-row">
-    <div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div>
-    <div class="skel" style="flex:1;height:13px;margin:0 8px"></div>
-    <div class="skel" style="width:88px;height:22px;border-radius:20px"></div>
-  </div>`;
-}
-
-function ts() {
-  return new Date().toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-}
-
-function fmtDate(iso) {
-  if (!iso) return '';
-  const d = new Date(iso);
-  return d.toLocaleDateString('en-GB', {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
-}
-
-function fmtShort(iso) {
-  if (!iso) return '';
-  const d = new Date(iso);
-  return d.toLocaleDateString('en-GB', {day:'numeric', month:'short'});
-}
-
-function calInfo(iso) {
-  if (!iso) return {day:'?', mon:'???'};
-  const d = new Date(iso);
-  return {
-    day: d.getDate(),
-    mon: d.toLocaleString('en-GB', {month:'short'}).toUpperCase()
-  };
-}
+function skels(n,t){ return Array.from({length:n},()=>t).join(''); }
+function skelRow(){ return `<div class="skel-row"><div class="skel" style="width:12px;height:12px;border-radius:50%;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>`; }
+function ts(){ return new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'}); }
+function fmtDate(iso){ if(!iso)return''; return new Date(iso).toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}); }
+function fmtShort(iso){ if(!iso)return''; return new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short'}); }
+function calInfo(iso){ if(!iso)return{day:'?',mon:'???'}; const d=new Date(iso); return{day:d.getDate(),mon:d.toLocaleString('en-GB',{month:'short'}).toUpperCase()}; }
 
 function classifyTube(severity, description) {
-  const d = (description || '').toLowerCase();
-  if (d.includes('good service'))  return { label: 'Good service',   cls: 's-good' };
-  if (d.includes('severe'))        return { label: 'Severe delays',  cls: 's-severe' };
-  if (d.includes('part suspend') || d.includes('part clos')) return { label: 'Part suspended', cls: 's-severe' };
-  if (d.includes('suspended') || d.includes('no service'))   return { label: 'Suspended',      cls: 's-closed' };
-  if (d.includes('minor delay'))   return { label: 'Minor delays',   cls: 's-minor' };
-  if (d.includes('reduced') || d.includes('service change')) return { label: 'Reduced service', cls: 's-minor' };
-  if (d.includes('planned clos') || d.includes('closed'))   return { label: 'Planned closure', cls: 's-closed' };
-  if (d.includes('special'))       return { label: 'Special service', cls: 's-special' };
-  if (severity === 10) return { label: 'Good service',  cls: 's-good' };
-  if (severity <= 5)   return { label: 'Severe delays', cls: 's-severe' };
-  if (severity <= 9)   return { label: 'Minor delays',  cls: 's-minor' };
-  return { label: description || 'Check TfL', cls: 's-minor' };
+  const d = (description||'').toLowerCase();
+  if(d.includes('good service'))                                  return{label:'Good service',  cls:'s-good'};
+  if(d.includes('severe'))                                        return{label:'Severe delays', cls:'s-severe'};
+  if(d.includes('part suspend')||d.includes('part clos'))        return{label:'Part suspended',cls:'s-severe'};
+  if(d.includes('suspended')||d.includes('no service'))          return{label:'Suspended',     cls:'s-closed'};
+  if(d.includes('minor delay'))                                   return{label:'Minor delays',  cls:'s-minor'};
+  if(d.includes('reduced')||d.includes('service change'))        return{label:'Reduced service',cls:'s-minor'};
+  if(d.includes('planned clos')||d.includes('closed'))           return{label:'Planned closure',cls:'s-closed'};
+  if(d.includes('special'))                                       return{label:'Special service',cls:'s-special'};
+  if(severity===10) return{label:'Good service', cls:'s-good'};
+  if(severity<=5)   return{label:'Severe delays',cls:'s-severe'};
+  if(severity<=9)   return{label:'Minor delays', cls:'s-minor'};
+  return{label:description||'Check TfL',cls:'s-minor'};
 }
+function severityOf(s){ const sl=(s||'').toLowerCase(); if(sl.includes('serious')||sl.includes('severe'))return'serious'; if(sl.includes('moderate'))return'moderate'; return'slight'; }
+function isEventLike(d){ const cats=['event','festival','marathon','parade','closure','filming','ceremony','race','concert']; const h=[(d.category||''),(d.subCategory||''),(d.comments||''),(d.location||'')].join(' ').toLowerCase(); return cats.some(c=>h.includes(c)); }
 
-function severityOf(s) {
-  const sl = (s||'').toLowerCase();
-  if (sl.includes('serious') || sl.includes('severe')) return 'serious';
-  if (sl.includes('moderate')) return 'moderate';
-  return 'slight';
-}
-
-function workIcon(type) {
-  const t = (type||'').toLowerCase();
-  if (t.includes('gas'))          return '🔥';
-  if (t.includes('water'))        return '💧';
-  if (t.includes('electric') || t.includes('power') || t.includes('cable')) return '⚡';
-  if (t.includes('sewer') || t.includes('drain')) return '🚿';
-  if (t.includes('telecom') || t.includes('bt') || t.includes('openreach')) return '📡';
-  if (t.includes('event'))        return '🎉';
-  if (t.includes('survey'))       return '📋';
-  return '🚧';
-}
-
-function isEventLike(disruption) {
-  const cats = ['event','festival','marathon','parade','closure','filming','ceremony','race','concert'];
-  const haystack = [(disruption.category||''), (disruption.subCategory||''), (disruption.comments||''), (disruption.location||'')].join(' ').toLowerCase();
-  return cats.some(c => haystack.includes(c));
-}
-
-/* ─────────────────────────────────────────────
-   TUBE STATUS
-───────────────────────────────────────────── */
+/* ── TUBE ── */
 async function loadTube() {
-  const grid = document.getElementById('tube-grid');
-  const upd  = document.getElementById('tube-upd');
-  grid.innerHTML = skels(7, skelRow());
-  upd.textContent = 'Fetching…';
-
+  const grid=document.getElementById('tube-grid'), upd=document.getElementById('tube-upd');
+  grid.innerHTML=skels(7,skelRow()); upd.textContent='Fetching…';
   try {
-    const lineIds = Object.keys(LINES).join(',');
-    const data = await tfl(`/Line/${lineIds}/Status`);
-
-    data.sort((a, b) => {
-      const ag = (a.lineStatuses[0]?.statusSeverityDescription||'').toLowerCase().includes('good');
-      const bg = (b.lineStatuses[0]?.statusSeverityDescription||'').toLowerCase().includes('good');
-      if (ag !== bg) return ag ? 1 : -1;
-      return (LINES[a.id]?.name||a.name).localeCompare(LINES[b.id]?.name||b.name);
-    });
-
-    let disrupted = 0;
-    grid.innerHTML = data.map(line => {
-      const meta = LINES[line.id] || { name: line.name, color: '#888' };
-      const statuses = (line.lineStatuses||[]).slice().sort((a,b) => a.statusSeverity - b.statusSeverity);
-      const top = statuses[0] || {};
-      const { label, cls } = classifyTube(top.statusSeverity, top.statusSeverityDescription);
-      const isGood = cls === 's-good';
-      if (!isGood) disrupted++;
-      const reason = top.reason ? top.reason.replace(/^[A-Z]+:\s*/,'').replace(/\[.+?\]/g,'').trim() : '';
-      return `
-        <div class="tube-row${!isGood && reason ? ' clickable' : ''}" ${!isGood && reason ? `onclick="this.classList.toggle('expanded')"` : ''}>
-          <div class="tube-dot" style="background:${meta.color}"></div>
-          <div class="tube-name-wrap">
-            <div class="tube-name">${meta.name}</div>
-            ${reason ? `<div class="tube-reason">${reason.substring(0,220)}</div>` : ''}
-          </div>
-          <span class="status-pill ${cls}">${label}</span>
-        </div>`;
-    }).join('');
-
-    document.getElementById('sum-disruptions').textContent = disrupted;
-    upd.textContent = `Updated ${ts()}`;
-
-    // Banner for severe disruptions
-    buildAlerts(data);
-
-  } catch(e) {
-    grid.innerHTML = `<div class="api-error">Couldn't load live tube data — <a href="https://tfl.gov.uk/tube-dlr-overground/status/" target="_blank">view TfL directly ↗</a></div>`;
-    upd.textContent = '';
-  }
+    const lineIds=Object.keys(LINES).join(',');
+    const data=await tfl(`/Line/${lineIds}/Status`);
+    data.sort((a,b)=>{ const ag=(a.lineStatuses[0]?.statusSeverityDescription||'').toLowerCase().includes('good'),bg=(b.lineStatuses[0]?.statusSeverityDescription||'').toLowerCase().includes('good'); if(ag!==bg)return ag?1:-1; return(LINES[a.id]?.name||a.name).localeCompare(LINES[b.id]?.name||b.name); });
+    let disrupted=0;
+    grid.innerHTML=data.map(line=>{ const meta=LINES[line.id]||{name:line.name,color:'#888'}; const statuses=(line.lineStatuses||[]).slice().sort((a,b)=>a.statusSeverity-b.statusSeverity); const top=statuses[0]||{}; const{label,cls}=classifyTube(top.statusSeverity,top.statusSeverityDescription); const isGood=cls==='s-good'; if(!isGood)disrupted++; const reason=top.reason?top.reason.replace(/^[A-Z]+:\s*/,'').replace(/\[.+?\]/g,'').trim():''; return `<div class="tube-row${!isGood&&reason?' clickable':''}" ${!isGood&&reason?`onclick="this.classList.toggle('expanded')"`:''}>
+      <div class="tube-dot" style="background:${meta.color}"></div>
+      <div class="tube-name-wrap"><div class="tube-name">${meta.name}</div>${reason?`<div class="tube-reason">${reason.substring(0,220)}</div>`:''}</div>
+      <span class="status-pill ${cls}">${label}</span></div>`; }).join('');
+    document.getElementById('sum-disruptions').textContent=disrupted;
+    upd.textContent=`Updated ${ts()}`; buildAlerts(data);
+  } catch(e){ grid.innerHTML=`<div class="api-error">Couldn't load tube data — <a href="https://tfl.gov.uk/tube-dlr-overground/status/" target="_blank">view TfL ↗</a></div>`; upd.textContent=''; }
 }
 
 function buildAlerts(data) {
-  const strip = document.getElementById('alert-strip');
-  const severes = data.filter(l => {
-    const d = (l.lineStatuses[0]?.statusSeverityDescription||'').toLowerCase();
-    return d.includes('suspended') || d.includes('severe') || d.includes('part suspend');
-  });
-  if (!severes.length) { strip.innerHTML = ''; return; }
-  strip.innerHTML = severes.map(l => {
-    const meta = LINES[l.id] || {name: l.name, color:'#888'};
-    const st = l.lineStatuses[0]?.statusSeverityDescription || 'Disruption';
-    return `<div class="alert-banner alert-red">
-      <div class="alert-icon">🚨</div>
-      <div>
-        <div class="alert-title red">${meta.name} — ${st}</div>
-        <div class="alert-body">${(l.lineStatuses[0]?.reason||'').replace(/^[A-Z]+:\s*/,'').substring(0,160) || 'See TfL for details'}</div>
-      </div>
-    </div>`;
-  }).join('');
+  const strip=document.getElementById('alert-strip');
+  const severes=data.filter(l=>{ const d=(l.lineStatuses[0]?.statusSeverityDescription||'').toLowerCase(); return d.includes('suspended')||d.includes('severe')||d.includes('part suspend'); });
+  if(!severes.length){strip.innerHTML='';return;}
+  strip.innerHTML=severes.map(l=>{ const meta=LINES[l.id]||{name:l.name}; const st=l.lineStatuses[0]?.statusSeverityDescription||'Disruption'; return `<div class="alert-banner alert-red"><div class="alert-icon">🚨</div><div><div class="alert-title red">${meta.name} — ${st}</div><div class="alert-body">${(l.lineStatuses[0]?.reason||'').replace(/^[A-Z]+:\s*/,'').substring(0,160)||'See TfL for details'}</div></div></div>`; }).join('');
 }
 
-/* ─────────────────────────────────────────────
-   SEVERE & SERIOUS DELAYS
-───────────────────────────────────────────── */
+/* ── SEVERE DELAYS ── */
 async function loadIncidents() {
-  const ilist = document.getElementById('incident-list');
-  const upd   = document.getElementById('incident-upd');
-
+  const ilist=document.getElementById('incident-list'), upd=document.getElementById('incident-upd');
   try {
-    const data = await tfl('/Road/all/Disruption?severities=Serious');
-    const items = Array.isArray(data) ? data : [];
+    const data=await tfl('/Road/all/Disruption?severities=Serious'), items=Array.isArray(data)?data:[];
+    if(!items.length){ ilist.innerHTML=`<div class="empty-state">No severe or serious delays on the TLRN right now.</div>`; upd.textContent=`Updated ${ts()}`; return; }
+    items.sort((a,b)=>new Date(b.startAt||0)-new Date(a.startAt||0));
+    ilist.innerHTML=items.slice(0,15).map(d=>{ const startDate=d.startAt?new Date(d.startAt):null, endDate=d.endAt?new Date(d.endAt):null, now=new Date(), isCleared=endDate&&endDate<now; const startStr=startDate?startDate.toLocaleString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):null, endStr=endDate?endDate.toLocaleString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):null; const statusTag=isCleared?`<span class="status-tag tag-cleared">✓ Cleared</span>`:`<span class="status-tag tag-active">● Active</span>`; const update=(d.comments||'').replace(/\s+/g,' ').trim(); return `<div class="incident-row"><div class="incident-badge badge-rtc">🚨</div><div class="incident-body"><div class="incident-title">${d.location||d.street||'London road network'}</div><div class="incident-loc">${d.category||'Serious disruption'}${d.subCategory?' · '+d.subCategory:''}</div><div class="incident-timeline">${startStr?`<div class="tl-item"><div class="tl-dot open"></div><span>Started: ${startStr}</span></div>`:''}${endStr?`<span class="tl-arrow">→</span><div class="tl-item"><div class="tl-dot closed"></div><span>Cleared: ${endStr}</span></div>`:(!endStr&&startStr?`<span class="tl-arrow">→</span><div class="tl-item" style="color:var(--red);font-weight:500"><div class="tl-dot open"></div><span>Still active</span></div>`:'')}</div>${statusTag}${update?`<div class="incident-update">"${update.substring(0,180)}${update.length>180?'…':''}"</div>`:''}</div></div>`; }).join('');
+    upd.textContent=`Updated ${ts()} · ${items.length} serious disruption${items.length!==1?'s':''}`;
+  } catch(e){ ilist.innerHTML=`<div class="api-error">Couldn't load delay data — <a href="https://tfl.gov.uk/traffic/status/" target="_blank">view TfL ↗</a></div>`; upd.textContent=''; }
+}
 
-    if (!items.length) {
-      ilist.innerHTML = `<div class="empty-state">No severe or serious delays on the TLRN right now.</div>`;
-      upd.textContent = `Updated ${ts()}`;
-      return;
-    }
+/* ── ROAD DISRUPTIONS (filterable) ── */
+const BOROUGH_LIST = [
+  'Barking and Dagenham','Barnet','Bexley','Brent','Bromley',
+  'Camden','City of London','Croydon','Ealing','Enfield',
+  'Greenwich','Hackney','Hammersmith and Fulham','Haringey','Harrow',
+  'Havering','Hillingdon','Hounslow','Islington','Kensington and Chelsea',
+  'Kingston upon Thames','Lambeth','Lewisham','Merton','Newham',
+  'Redbridge','Richmond upon Thames','Southwark','Sutton','Tower Hamlets',
+  'Waltham Forest','Wandsworth','Westminster'
+];
 
-    // Sort most recent first
-    items.sort((a,b) => new Date(b.startAt||0) - new Date(a.startAt||0));
+let _allRoadData = [];
 
-    ilist.innerHTML = items.slice(0, 15).map(d => {
-      const startDate = d.startAt ? new Date(d.startAt) : null;
-      const endDate   = d.endAt   ? new Date(d.endAt)   : null;
-      const now       = new Date();
-      const isCleared = endDate && endDate < now;
+function rdRenderFiltered() {
+  const cat     = document.getElementById('rd-cat')?.value     || '';
+  const sev     = document.getElementById('rd-sev')?.value     || '';
+  const borough = document.getElementById('rd-borough')?.value || '';
+  const list    = document.getElementById('road-list');
+  const upd     = document.getElementById('road-upd');
 
-      const startStr = startDate
-        ? startDate.toLocaleString('en-GB', {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'})
-        : null;
-      const endStr = endDate
-        ? endDate.toLocaleString('en-GB', {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'})
-        : null;
+  let filtered = _allRoadData.filter(d =>
+    (!cat     || d.category === cat) &&
+    (!sev     || d.severity === sev) &&
+    (!borough || (d.location || '').includes(borough))
+  );
 
-      const statusTag = isCleared
-        ? `<span class="status-tag tag-cleared">✓ Cleared</span>`
-        : `<span class="status-tag tag-active">● Active</span>`;
+  document.getElementById('sum-works').textContent = filtered.length;
+  document.getElementById('sum-incidents').textContent = filtered.length;
 
-      const update = (d.comments||'').replace(/\s+/g,' ').trim();
+  if (!filtered.length) {
+    list.innerHTML = `<div class="empty-state">No disruptions match the current filters.</div>`;
+    return;
+  }
 
-      return `<div class="incident-row">
-        <div class="incident-badge badge-rtc">🚨</div>
-        <div class="incident-body">
-          <div class="incident-title">${d.location || d.street || 'London road network'}</div>
-          <div class="incident-loc">${d.category || 'Serious disruption'}${d.subCategory ? ' · '+d.subCategory : ''}</div>
-          <div class="incident-timeline">
-            ${startStr ? `<div class="tl-item"><div class="tl-dot open"></div><span>Started: ${startStr}</span></div>` : ''}
-            ${endStr   ? `<span class="tl-arrow">→</span><div class="tl-item"><div class="tl-dot closed"></div><span>Cleared: ${endStr}</span></div>` : ''}
-            ${!endStr && startStr ? `<span class="tl-arrow">→</span><div class="tl-item" style="color:var(--red);font-weight:500"><div class="tl-dot open"></div><span>Still active</span></div>` : ''}
+  // Group by street / location (mirrors original code)
+  const grouped = {};
+  filtered.forEach(d => {
+    const streets = (d.affectedStreets || []).map(s => s.streetName).filter(Boolean);
+    const key = streets.join(', ') || d.location || 'Unspecified location';
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push(d);
+  });
+
+  const sevColour = { Low:'var(--green)', Moderate:'var(--amber)', High:'var(--red)', Severe:'var(--red)' };
+  const sevPill   = { Low:'pill-green',   Moderate:'pill-amber',   High:'pill-red',   Severe:'pill-red' };
+
+  let html = '<div class="disruption-list">';
+  Object.entries(grouped).forEach(([street, disruptions]) => {
+    // Street heading
+    html += `<div style="font-size:11px;font-weight:600;color:var(--muted);padding:8px 0 4px;border-bottom:1px solid var(--border);margin-bottom:0;letter-spacing:0.01em">${street}</div>`;
+    disruptions.forEach(d => {
+      const sCol   = sevColour[d.severity] || 'var(--dim)';
+      const sPill  = sevPill[d.severity]   || 'pill-gray';
+      const start  = d.startDateTime ? new Date(d.startDateTime).toLocaleDateString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '';
+      const end    = d.endDateTime   ? new Date(d.endDateTime).toLocaleDateString('en-GB',{day:'numeric',month:'short'}) : 'Ongoing';
+      const comments = (d.comments || 'No further details provided').trim();
+      const hasMore  = comments.length > 120;
+      const preview  = hasMore ? comments.substring(0, 120) + '…' : comments;
+      html += `<div class="disruption-row" onclick="this.classList.toggle('expanded')">
+        <div class="d-sev-bar" style="background:${sCol}"></div>
+        <div style="flex:1;min-width:0">
+          <div class="d-meta" style="margin-bottom:3px">
+            <span class="pill ${sPill}" style="font-size:10px;padding:2px 7px">${d.severity || 'Unknown'}</span>
+            ${d.category ? `<span class="pill pill-gray" style="font-size:10px;padding:2px 7px">${d.category}</span>` : ''}
+            ${start ? `<span style="color:var(--dim);font-size:10px">· ${start} → ${end}</span>` : ''}
           </div>
-          ${statusTag}
-          ${update ? `<div class="incident-update">"${update.substring(0,180)}${update.length>180?'…':''}"</div>` : ''}
+          <div class="d-desc-preview d-meta">${preview}</div>
+          <div class="d-desc-full">${comments}</div>
+          ${hasMore ? `<div class="d-expand-hint">Tap to read full description</div>` : ''}
         </div>
       </div>`;
-    }).join('');
-
-    upd.textContent = `Updated ${ts()} · ${items.length} serious disruption${items.length !== 1 ? 's' : ''}`;
-
-  } catch(e) {
-    ilist.innerHTML = `<div class="api-error">Couldn't load delay data — <a href="https://tfl.gov.uk/traffic/status/" target="_blank">view TfL directly ↗</a></div>`;
-    upd.textContent = '';
-  }
+    });
+  });
+  html += '</div>';
+  list.innerHTML = html;
 }
 
-/* ─────────────────────────────────────────────
-   ROAD DISRUPTIONS
-───────────────────────────────────────────── */
 async function loadRoads() {
   const list = document.getElementById('road-list');
   const upd  = document.getElementById('road-upd');
   list.innerHTML = skels(3, `<div class="skel-row"><div class="skel" style="width:3px;height:36px;border-radius:2px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:70px;height:20px;border-radius:20px"></div></div>`);
 
   try {
-    const data = await tfl('/Road/all/Disruption?severities=Serious,Moderate,Slight');
-    const items = Array.isArray(data) ? data : [];
+    const res  = await fetch(`${BASE}/Road/all/Disruption?stripContent=true&app_key=${API_KEY}`);
+    const data = await res.json();
+    _allRoadData = Array.isArray(data) ? data : [];
 
-    // Filter out tunnel-specific entries (handled separately)
-    const roadItems = items.filter(d => {
-      const loc = (d.location||d.street||'').toLowerCase();
-      return !loc.includes('tunnel');
-    });
-
-    document.getElementById('sum-incidents').textContent = roadItems.length;
-
-    if (!roadItems.length) {
-      list.innerHTML = `<div class="empty-state">No active road disruptions on the TLRN right now.</div>`;
-      upd.textContent = `Updated ${ts()}`;
-      return;
+    // Populate category filter
+    const catEl = document.getElementById('rd-cat');
+    if (catEl) {
+      const cats = [...new Set(_allRoadData.map(d => d.category).filter(Boolean))].sort();
+      catEl.innerHTML = `<option value="">All</option>` + cats.map(c => `<option>${c}</option>`).join('');
     }
 
-    // Sort: serious first
-    roadItems.sort((a,b) => {
-      const order = {serious:0, moderate:1, slight:2};
-      return (order[severityOf(a.severity)]||2) - (order[severityOf(b.severity)]||2);
-    });
-
-    list.innerHTML = `<div class="disruption-list">${roadItems.slice(0,20).map(d => {
-      const sev = severityOf(d.severity);
-      const startStr = d.startAt ? fmtDate(d.startAt) : '';
-      const endStr   = d.endAt   ? fmtShort(d.endAt)  : 'ongoing';
-      const sevLabel = {serious:'Serious', moderate:'Moderate', slight:'Slight'}[sev] || d.severity || 'Disruption';
-      const pillCls  = {serious:'pill-red', moderate:'pill-amber', slight:'pill-gray'}[sev] || 'pill-gray';
-      const comments = (d.comments || '').trim();
-      const previewText = comments ? comments.substring(0,120) + (comments.length > 120 ? '…' : '') : '';
-      const hasMore = comments.length > 120;
-      return `<div class="disruption-row" onclick="this.classList.toggle('expanded')">
-        <div class="d-sev-bar d-sev-${sev}"></div>
-        <div style="flex:1;min-width:0">
-          <div class="d-title">${d.location || d.street || comments.substring(0,80) || 'Road disruption'}</div>
-          <div class="d-meta">
-            <span class="pill ${pillCls}" style="font-size:10px;padding:2px 7px">${sevLabel}</span>
-            ${d.category ? `<span class="pill pill-gray" style="font-size:10px;padding:2px 7px">${d.category}</span>` : ''}
-            ${startStr ? `· From ${startStr}${endStr !== 'ongoing' ? ' – '+endStr : ''}` : ''}
-          </div>
-          ${comments && comments !== d.location ? `
-            <div class="d-preview d-meta" style="margin-top:3px">${previewText}</div>
-            <div class="d-full">
-              <div class="d-full-text">${comments}</div>
-            </div>
-            <div class="expand-hint">${hasMore ? 'Tap to read full description' : 'Tap to expand'}</div>
-          ` : ''}
-        </div>
-      </div>`;
-    }).join('')}</div>`;
-
-    if (roadItems.length > 20) {
-      list.innerHTML += `<div class="empty-state" style="font-size:11px">Showing 20 of ${roadItems.length} — <a href="https://tfl.gov.uk/traffic/status/" target="_blank" style="color:var(--blue)">view all on TfL ↗</a></div>`;
+    // Populate borough filter
+    const borEl = document.getElementById('rd-borough');
+    if (borEl) {
+      borEl.innerHTML = `<option value="">All</option>` + BOROUGH_LIST.map(b => `<option>${b}</option>`).join('');
+      // Default to Tower Hamlets
+      borEl.value = 'Tower Hamlets';
     }
 
-    upd.textContent = `Updated ${ts()}`;
+    // Wire up filter change handlers (only on first load)
+    if (!window._rdFiltersWired) {
+      ['rd-cat','rd-sev','rd-borough'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.onchange = rdRenderFiltered;
+      });
+      window._rdFiltersWired = true;
+    }
+
+    rdRenderFiltered();
+    upd.textContent = `Updated ${ts()} · ${_allRoadData.length} total disruptions`;
 
     // Also feed tunnel filter
-    renderTunnels(items);
+    renderTunnels(_allRoadData);
 
   } catch(e) {
-    list.innerHTML = `<div class="api-error">Couldn't load road disruption data — <a href="https://tfl.gov.uk/traffic/status/" target="_blank">view TfL directly ↗</a></div>`;
+    list.innerHTML = `<div class="api-error">Couldn't load road disruption data — <a href="https://tfl.gov.uk/traffic/status/" target="_blank">view TfL ↗</a></div>`;
     upd.textContent = '';
     renderTunnels([]);
   }
 }
 
-/* ─────────────────────────────────────────────
-   TUNNEL STATUS (derived from road disruptions)
-───────────────────────────────────────────── */
+/* ── TUNNELS ── */
 function renderTunnels(allDisruptions) {
-  const tlist = document.getElementById('tunnel-list');
-  const upd   = document.getElementById('tunnel-upd');
-
-  const tunnelKeywords = ['blackwall','limehouse link','silvertown','rotherhithe','tunnel','underpass'];
-
-  // Find disruptions that mention tunnels
-  const tunnelDisruptions = allDisruptions.filter(d => {
-    const haystack = [(d.location||''), (d.street||''), (d.comments||''), (d.subCategory||'')].join(' ').toLowerCase();
-    return tunnelKeywords.some(k => haystack.includes(k));
-  });
-
-  // Build status for each known tunnel
-  const rows = KNOWN_TUNNELS.map(t => {
-    const match = tunnelDisruptions.find(d => {
-      const h = [(d.location||''), (d.street||''), (d.comments||'')].join(' ').toLowerCase();
-      return h.includes(t.name.toLowerCase().split(' ')[0]) || h.includes(t.id.toLowerCase());
-    });
-    if (match) {
-      const sev = severityOf(match.severity);
-      const pillCls = {serious:'s-severe', moderate:'s-minor', slight:'s-special'}[sev] || 's-special';
-      const label   = {serious:'Disruption', moderate:'Delays', slight:'Minor works'}[sev] || 'Check before travel';
-      return `<div class="tunnel-row">
-        <div class="tunnel-icon">🚧</div>
-        <div style="flex:1">
-          <div class="tunnel-name">${t.name}</div>
-          <div class="tunnel-meta">${match.location || match.comments?.substring(0,100) || 'Active disruption'}</div>
-          <div class="tunnel-meta" style="margin-top:2px;color:var(--muted)"><em>${t.tip}</em></div>
-        </div>
-        <span class="status-pill ${pillCls}">${label}</span>
-      </div>`;
-    } else {
-      return `<div class="tunnel-row">
-        <div class="tunnel-icon">🟢</div>
-        <div style="flex:1">
-          <div class="tunnel-name">${t.name}</div>
-          <div class="tunnel-meta" style="color:var(--muted)"><em>${t.tip}</em></div>
-        </div>
-        <span class="status-pill s-good">Clear</span>
-      </div>`;
-    }
-  });
-
-  tlist.innerHTML = rows.join('');
-  upd.textContent = `Updated ${ts()}`;
+  const tlist=document.getElementById('tunnel-list'), upd=document.getElementById('tunnel-upd');
+  const kwds=['blackwall','limehouse link','silvertown','rotherhithe','tunnel','underpass'];
+  const tunnelD=allDisruptions.filter(d=>{ const h=[(d.location||''),(d.street||''),(d.comments||''),(d.subCategory||'')].join(' ').toLowerCase(); return kwds.some(k=>h.includes(k)); });
+  tlist.innerHTML=KNOWN_TUNNELS.map(t=>{ const match=tunnelD.find(d=>{ const h=[(d.location||''),(d.street||''),(d.comments||'')].join(' ').toLowerCase(); return h.includes(t.name.toLowerCase().split(' ')[0])||h.includes(t.id.toLowerCase()); }); if(match){ const sev=severityOf(match.severity), pillCls={serious:'s-severe',moderate:'s-minor',slight:'s-special'}[sev]||'s-special', label={serious:'Disruption',moderate:'Delays',slight:'Minor works'}[sev]||'Check before travel'; return `<div class="tunnel-row"><div class="tunnel-icon">🚧</div><div style="flex:1"><div class="tunnel-name">${t.name}</div><div class="tunnel-meta">${match.location||match.comments?.substring(0,100)||'Active disruption'}</div><div class="tunnel-meta" style="margin-top:2px;color:var(--muted)"><em>${t.tip}</em></div></div><span class="status-pill ${pillCls}">${label}</span></div>`; } return `<div class="tunnel-row"><div class="tunnel-icon">🟢</div><div style="flex:1"><div class="tunnel-name">${t.name}</div><div class="tunnel-meta" style="color:var(--muted)"><em>${t.tip}</em></div></div><span class="status-pill s-good">Clear</span></div>`; }).join('');
+  upd.textContent=`Updated ${ts()}`;
 }
 
-/* ─────────────────────────────────────────────
-   ROADWORKS (gas, water, utilities)
-───────────────────────────────────────────── */
-async function loadRoadworks() {
-  const wlist = document.getElementById('works-list');
-  const upd   = document.getElementById('works-upd');
-  wlist.innerHTML = skels(3, `<div class="skel-row"><div class="skel" style="width:18px;height:18px;border-radius:4px;flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:55px;height:20px;border-radius:20px"></div></div>`);
-
-  const today = new Date().toISOString().slice(0,10);
-  const in60  = new Date(Date.now() + 60*86400000).toISOString().slice(0,10);
-
-  try {
-    const data = await tfl(`/Road/all/Street/Disruption?startDate=${today}&endDate=${in60}&includeProposals=false`);
-    const items = Array.isArray(data) ? data : [];
-
-    // Filter to utility / infrastructure works
-    const utilityTypes = ['gas','water','electric','power','cable','sewer','drain','telecom','bt','openreach','thames water','national grid','cadent','southern gas','wales & west'];
-    const works = items.filter(w => {
-      const haystack = [(w.activityType||''), (w.workingOrganisation||''), (w.permitReferenceNumber||''), (w.currentUpdate||''), (w.comments||'')].join(' ').toLowerCase();
-      return utilityTypes.some(u => haystack.includes(u));
-    });
-
-    document.getElementById('sum-works').textContent = works.length;
-
-    if (!works.length) {
-      // If no utility-filtered results, show all planned works (capped at 12)
-      const allWorks = items.slice(0,12);
-      if (!allWorks.length) {
-        wlist.innerHTML = `<div class="empty-state">No active roadworks found in the TfL feed right now.</div>`;
-      } else {
-        wlist.innerHTML = renderWorksRows(allWorks);
-        document.getElementById('sum-works').textContent = allWorks.length;
-      }
-    } else {
-      wlist.innerHTML = renderWorksRows(works.slice(0,15));
-    }
-
-    upd.textContent = `Updated ${ts()}`;
-  } catch(e) {
-    wlist.innerHTML = `<div class="api-error">Couldn't load roadworks — <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">view TfL ↗</a></div>`;
-    upd.textContent = '';
-  }
-}
-
-function renderWorksRows(works) {
-  return works.map(w => {
-    const icon  = workIcon(w.activityType || w.workingOrganisation);
-    const title = w.location || w.streetName || 'London street';
-    const org   = w.workingOrganisation || '';
-    const type  = w.activityType || '';
-    const start = w.startDate ? fmtShort(w.startDate) : '';
-    const end   = w.endDate   ? fmtShort(w.endDate)   : 'TBC';
-    const update = w.currentUpdate ? w.currentUpdate.substring(0,120) : '';
-    const borough = w.borough || '';
-    return `<div class="work-row">
-      <div class="work-icon">${icon}</div>
-      <div style="flex:1;min-width:0">
-        <div class="work-title">${title}</div>
-        <div class="work-meta">
-          ${org ? `<strong style="color:var(--text)">${org}</strong> · ` : ''}${type}
-          ${borough ? ` · ${borough}` : ''}
-        </div>
-        ${start ? `<div class="work-meta">${start} – ${end}</div>` : ''}
-        ${update ? `<div class="work-meta" style="margin-top:2px">${update}${update.length>=120?'…':''}</div>` : ''}
-      </div>
-    </div>`;
-  }).join('');
-}
-
-/* ─────────────────────────────────────────────
-   SPECIAL EVENTS (from TfL disruption + works feeds)
-───────────────────────────────────────────── */
+/* ── EVENTS ── */
 async function loadEvents() {
-  const elist = document.getElementById('events-list');
-  const upd   = document.getElementById('events-upd');
-
-  const today = new Date().toISOString().slice(0,10);
-  const in90  = new Date(Date.now() + 90*86400000).toISOString().slice(0,10);
-
+  const elist=document.getElementById('events-list'), upd=document.getElementById('events-upd');
+  const today=new Date().toISOString().slice(0,10), in90=new Date(Date.now()+90*86400000).toISOString().slice(0,10);
   try {
-    // Pull both feeds simultaneously
-    const [streetData, roadData] = await Promise.all([
-      tfl(`/Road/all/Street/Disruption?startDate=${today}&endDate=${in90}&includeProposals=true`).catch(() => []),
-      tfl('/Road/all/Disruption').catch(() => []),
-    ]);
-
-    const allItems = [...(Array.isArray(streetData)?streetData:[]), ...(Array.isArray(roadData)?roadData:[])];
-
-    const events = allItems.filter(d => isEventLike(d));
-
-    // Deduplicate by location+startDate
-    const seen = new Set();
-    const unique = events.filter(e => {
-      const key = (e.location||e.streetName||'') + (e.startDate||e.startAt||'');
-      if (seen.has(key)) return false;
-      seen.add(key); return true;
-    });
-
-    if (!unique.length) {
-      elist.innerHTML = `<div class="empty-state">No upcoming special events found in the TfL feed.<br><a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank" style="color:var(--blue)">Check tfl.gov.uk for latest events ↗</a></div>`;
-      upd.textContent = `Updated ${ts()}`;
-      return;
-    }
-
-    // Sort by start date
-    unique.sort((a,b) => new Date(a.startDate||a.startAt||0) - new Date(b.startDate||b.startAt||0));
-
-    const calClasses = ['red-cal','amber-cal','blue-cal','teal-cal','red-cal'];
-    elist.innerHTML = unique.slice(0,10).map((e, i) => {
-      const iso   = e.startDate || e.startAt || '';
-      const cal   = calInfo(iso);
-      const cls   = calClasses[i % calClasses.length];
-      const title = e.location || e.streetName || e.comments?.substring(0,60) || 'Special event';
-      const endStr = (e.endDate||e.endAt) ? ` – ${fmtShort(e.endDate||e.endAt)}` : '';
-      const org   = e.workingOrganisation || e.category || '';
-      const fullDesc = [org, e.currentUpdate||e.comments||''].filter(Boolean).join(' · ');
-      const previewDesc = fullDesc.substring(0,120) + (fullDesc.length > 120 ? '…' : '');
-      const hasMore = fullDesc.length > 120;
-      return `<div class="event-row" onclick="this.classList.toggle('expanded')">
-        <div class="event-cal ${cls}">
-          <div class="e-day">${cal.day}</div>
-          <div class="e-mon">${cal.mon}</div>
-        </div>
-        <div class="event-info">
-          <div class="event-title">${title}</div>
-          <div class="event-desc-preview event-desc">${iso ? fmtShort(iso)+endStr+' · ' : ''}${previewDesc}</div>
-          <div class="event-desc-full">
-            <div class="d-full-text">${iso ? `<strong>${fmtShort(iso)}${endStr}</strong><br>` : ''}${fullDesc}</div>
-          </div>
-          <div class="expand-hint">${hasMore ? 'Tap to read full description' : 'Tap to expand'}</div>
-        </div>
-      </div>`;
-    }).join('');
-
-    upd.textContent = `Updated ${ts()}`;
-  } catch(e) {
-    elist.innerHTML = `<div class="api-error">Couldn't load events data — <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">view TfL ↗</a></div>`;
-    upd.textContent = '';
-  }
+    const [streetData,roadData]=await Promise.all([tfl(`/Road/all/Street/Disruption?startDate=${today}&endDate=${in90}&includeProposals=true`).catch(()=>[]),tfl('/Road/all/Disruption').catch(()=>[])]);
+    const allItems=[...(Array.isArray(streetData)?streetData:[]),(Array.isArray(roadData)?roadData:[])].flat();
+    const events=allItems.filter(d=>isEventLike(d)); const seen=new Set();
+    const unique=events.filter(e=>{ const key=(e.location||e.streetName||'')+(e.startDate||e.startAt||''); if(seen.has(key))return false; seen.add(key);return true; });
+    if(!unique.length){ elist.innerHTML=`<div class="empty-state">No upcoming special events found in the TfL feed.<br><a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank" style="color:var(--blue)">Check tfl.gov.uk ↗</a></div>`; upd.textContent=`Updated ${ts()}`; return; }
+    unique.sort((a,b)=>new Date(a.startDate||a.startAt||0)-new Date(b.startDate||b.startAt||0));
+    const calClasses=['red-cal','amber-cal','blue-cal','teal-cal','red-cal'];
+    elist.innerHTML=unique.slice(0,10).map((e,i)=>{ const iso=e.startDate||e.startAt||'', cal=calInfo(iso), cls=calClasses[i%calClasses.length], title=e.location||e.streetName||e.comments?.substring(0,60)||'Special event', endStr=(e.endDate||e.endAt)?` – ${fmtShort(e.endDate||e.endAt)}`:'', org=e.workingOrganisation||e.category||'', fullDesc=[org,e.currentUpdate||e.comments||''].filter(Boolean).join(' · '), hasMore=fullDesc.length>120, preview=hasMore?fullDesc.substring(0,120)+'…':fullDesc; return `<div class="event-row" onclick="this.classList.toggle('expanded')"><div class="event-cal ${cls}"><div class="e-day">${cal.day}</div><div class="e-mon">${cal.mon}</div></div><div class="event-info"><div class="event-title">${title}</div><div class="e-desc-preview event-desc">${iso?fmtShort(iso)+endStr+' · ':''}${preview}</div><div class="e-desc-full">${iso?`<strong>${fmtShort(iso)}${endStr}</strong><br>`:''}${fullDesc}</div><div class="e-expand-hint">${hasMore?'Tap to read full description':'Tap to expand'}</div></div></div>`; }).join('');
+    upd.textContent=`Updated ${ts()}`;
+  } catch(e){ elist.innerHTML=`<div class="api-error">Couldn't load events data — <a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">view TfL ↗</a></div>`; upd.textContent=''; }
 }
 
-/* ─────────────────────────────────────────────
-   COLLAPSIBLE ROADWORKS
-───────────────────────────────────────────── */
-let _worksOpen = false; // starts closed
-function toggleWorks(e) {
-  if (e) e.stopPropagation();
-  _worksOpen = !_worksOpen;
-  const el     = document.getElementById('works-collapsible');
-  const toggle = document.getElementById('works-toggle');
-  el.classList.toggle('collapsed', !_worksOpen);
-  toggle.classList.toggle('open', _worksOpen);
-}
-
-/* ─────────────────────────────────────────────
-   UK BANK HOLIDAYS — GOV.UK API
-───────────────────────────────────────────── */
+/* ── BANK HOLIDAYS ── */
 async function loadBankHolidays() {
-  const blist = document.getElementById('bh-list');
-  const upd   = document.getElementById('bh-upd');
+  const blist=document.getElementById('bh-list'), upd=document.getElementById('bh-upd');
   try {
-    const res  = await fetch('https://www.gov.uk/bank-holidays.json');
-    const data = await res.json();
-
-    // England & Wales division
-    const events = (data['england-and-wales']?.events || []);
-    const today  = new Date();
-    today.setHours(0,0,0,0);
-
-    // Show upcoming (next 6) + today if it's a bank holiday
-    const upcoming = events
-      .filter(e => new Date(e.date) >= today)
-      .slice(0, 6);
-
-    if (!upcoming.length) {
-      blist.innerHTML = `<div class="empty-state">No upcoming bank holidays found.</div>`;
-      upd.textContent = `Updated ${ts()}`;
-      return;
-    }
-
-    blist.innerHTML = upcoming.map(e => {
-      const d       = new Date(e.date);
-      const isToday = d.toDateString() === today.toDateString();
-      const diffMs  = d - today;
-      const diffDays = Math.round(diffMs / 86400000);
-      const isSoon  = diffDays <= 7 && !isToday;
-
-      const calCls  = isToday ? 'today' : isSoon ? 'soon' : '';
-      const dayNum  = d.getDate();
-      const monStr  = d.toLocaleString('en-GB', {month:'short'}).toUpperCase();
-      const fullDate = d.toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
-      const daysLabel = isToday ? '🎉 Today!' : diffDays === 1 ? 'Tomorrow' : `In ${diffDays} days`;
-      const notesHtml = e.notes ? `<span class="pill pill-gray" style="font-size:10px;padding:2px 7px;margin-left:4px">${e.notes}</span>` : '';
-
-      return `<div class="bh-row">
-        <div class="bh-cal ${calCls}">
-          <div class="bh-day">${dayNum}</div>
-          <div class="bh-mon">${monStr}</div>
-        </div>
-        <div class="bh-info">
-          <div class="bh-title">${e.title}${notesHtml}</div>
-          <div class="bh-meta">${fullDate} · ${daysLabel}</div>
-        </div>
-      </div>`;
-    }).join('');
-
-    upd.textContent = `Updated ${ts()} · England & Wales`;
-  } catch(e) {
-    blist.innerHTML = `<div class="api-error">Couldn't load bank holidays — <a href="https://www.gov.uk/bank-holidays" target="_blank">view gov.uk ↗</a></div>`;
-    upd.textContent = '';
-  }
+    const res=await fetch('https://www.gov.uk/bank-holidays.json'), data=await res.json();
+    const evts=(data['england-and-wales']?.events||[]);
+    const today=new Date(); today.setHours(0,0,0,0);
+    const upcoming=evts.filter(e=>new Date(e.date)>=today).slice(0,6);
+    if(!upcoming.length){ blist.innerHTML=`<div class="empty-state">No upcoming bank holidays found.</div>`; upd.textContent=`Updated ${ts()}`; return; }
+    blist.innerHTML=upcoming.map(e=>{ const d=new Date(e.date), isToday=d.toDateString()===today.toDateString(), diffDays=Math.round((d-today)/86400000), isSoon=diffDays<=7&&!isToday, calCls=isToday?'today':isSoon?'soon':'', dayNum=d.getDate(), monStr=d.toLocaleString('en-GB',{month:'short'}).toUpperCase(), fullDate=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}), daysLabel=isToday?'🎉 Today!':diffDays===1?'Tomorrow':`In ${diffDays} days`, notesHtml=e.notes?`<span class="pill pill-gray" style="font-size:10px;padding:2px 7px;margin-left:4px">${e.notes}</span>`:''; return `<div class="bh-row"><div class="bh-cal ${calCls}"><div class="bh-day">${dayNum}</div><div class="bh-mon">${monStr}</div></div><div class="bh-info"><div class="bh-title">${e.title}${notesHtml}</div><div class="bh-meta">${fullDate} · ${daysLabel}</div></div></div>`; }).join('');
+    upd.textContent=`Updated ${ts()} · England & Wales`;
+  } catch(e){ blist.innerHTML=`<div class="api-error">Couldn't load bank holidays — <a href="https://www.gov.uk/bank-holidays" target="_blank">view gov.uk ↗</a></div>`; upd.textContent=''; }
 }
 
-/* ─────────────────────────────────────────────
-   ORCHESTRATE
-───────────────────────────────────────────── */
-let _refreshLock = false;
 
+/* ── ORCHESTRATE ── */
+let _refreshLock = false;
 async function refreshAll() {
   if (_refreshLock) return;
   _refreshLock = true;
-  const icon = document.getElementById('refresh-icon');
-  const btn  = document.getElementById('refresh-btn');
-  icon.classList.add('spinning');
-  btn.disabled = true;
-
-  await Promise.all([
-    loadTube(),
-    loadIncidents(),
-    loadRoads(),      // also calls renderTunnels
-    loadRoadworks(),
-    loadEvents(),
-    loadBankHolidays(),
-  ]);
-
-  icon.classList.remove('spinning');
-  btn.disabled = false;
-  _refreshLock = false;
+  const icon=document.getElementById('refresh-icon'), btn=document.getElementById('refresh-btn');
+  icon.classList.add('spinning'); btn.disabled=true;
+  await Promise.all([loadTube(), loadIncidents(), loadRoads(), loadEvents(), loadBankHolidays()]);
+  icon.classList.remove('spinning'); btn.disabled=false; _refreshLock=false;
 }
 
-/* ─────────────────────────────────────────────
-   INIT
-───────────────────────────────────────────── */
+/* ── INIT ── */
 document.getElementById('live-date').textContent =
-  new Date().toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+  new Date().toLocaleDateString('en-GB', {weekday:'short', day:'numeric', month:'short'});
 
 refreshAll();
-
-// Auto-refresh every 2 minutes
 setInterval(refreshAll, 120000);
 </script>
 </body>
