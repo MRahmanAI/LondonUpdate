@@ -368,18 +368,6 @@
     <div class="src"><a href="https://tfl.gov.uk/status-updates/major-works-and-events" target="_blank">tfl.gov.uk events ↗</a></div>
   </div>
 
-  <!-- ══ A-ROADS STATUS ══ -->
-  <div class="section-label">A-Roads status <span class="live-badge">LIVE · TfL API</span></div>
-  <div class="card">
-    <div id="aroad-list">
-      <div class="skel-row"><div class="skel" style="width:36px;height:36px;border-radius:var(--radius-sm);flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
-      <div class="skel-row"><div class="skel" style="width:36px;height:36px;border-radius:var(--radius-sm);flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
-      <div class="skel-row"><div class="skel" style="width:36px;height:36px;border-radius:var(--radius-sm);flex-shrink:0"></div><div class="skel" style="flex:1;height:13px;margin:0 8px"></div><div class="skel" style="width:88px;height:22px;border-radius:20px"></div></div>
-    </div>
-    <div class="last-upd" id="aroad-upd"></div>
-    <div class="src"><a href="https://tfl.gov.uk/traffic/status/" target="_blank">tfl.gov.uk/traffic ↗</a></div>
-  </div>
-
   <!-- ══ UK BANK HOLIDAYS ══ -->
   <div class="section-label">UK Bank Holidays <span class="live-badge">LIVE · GOV.UK API</span></div>
   <div class="card">
@@ -681,71 +669,6 @@ async function loadBankHolidays() {
 }
 
 
-/* ── A-ROADS STATUS ── */
-function roadInitials(name) {
-  if (!name) return '?';
-  // For roads where the bracket code is the clearest identifier, use it
-  const bracketMatch = name.match(/\(([^)]+)\)/);
-  if (bracketMatch && (name.includes('North Circular') || name.includes('South Circular'))) {
-    return bracketMatch[1].substring(0, 4); // e.g. A406, A205
-  }
-  // Strip brackets for everything else
-  const clean = name.replace(/\(.*?\)/g, '').trim();
-  const words = clean.split(/\s+/).filter(Boolean);
-  if (words.length === 1) return words[0].substring(0, 3);
-  return words.map(w => w[0].toUpperCase()).join('').substring(0, 3);
-}
-
-async function loadARoads() {
-  const list = document.getElementById('aroad-list');
-  const upd  = document.getElementById('aroad-upd');
-  try {
-    const res  = await fetch(`${BASE}/Road?app_key=${API_KEY}`);
-    const data = await res.json();
-    const roads = Array.isArray(data) ? data : [];
-
-    if (!roads.length) {
-      list.innerHTML = `<div class="empty-state">No A-road data available right now.</div>`;
-      upd.textContent = `Updated ${ts()}`;
-      return;
-    }
-
-    list.innerHTML = roads.map(road => {
-      const sev  = (road.statusSeverity || '').toLowerCase();
-      const desc = road.statusSeverityDescription || 'Unknown';
-      const isGood = sev === 'good' || desc.toLowerCase().includes('no exceptional');
-
-      let pillCls, badgeBg, badgeBorder, badgeColor;
-      if (isGood) {
-        pillCls = 's-good'; badgeBg = 'var(--green-bg)'; badgeBorder = 'var(--green-border)'; badgeColor = 'var(--green)';
-      } else if (sev.includes('minor') || sev.includes('moderate')) {
-        pillCls = 's-minor'; badgeBg = 'var(--amber-bg)'; badgeBorder = 'var(--amber-border)'; badgeColor = 'var(--amber)';
-      } else {
-        pillCls = 's-severe'; badgeBg = 'var(--red-bg)'; badgeBorder = 'var(--red-border)'; badgeColor = 'var(--red)';
-      }
-
-      const initials = roadInitials(road.displayName || road.id);
-      const fullName = (road.displayName || road.id).replace(/\(.*?\)/g, '').trim();
-
-      return `<div class="tunnel-row">
-        <div style="width:36px;height:36px;border-radius:var(--radius-sm);background:${badgeBg};border:1px solid ${badgeBorder};display:flex;align-items:center;justify-content:center;flex-shrink:0">
-          <span style="font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:${badgeColor};line-height:1;text-align:center">${initials}</span>
-        </div>
-        <div style="flex:1;min-width:0">
-          <div class="tunnel-name">${fullName}</div>
-          ${road.statusSeverityDescription ? `<div class="tunnel-meta">${road.statusSeverityDescription}</div>` : ''}
-        </div>
-        <span class="status-pill ${pillCls}">${isGood ? 'Good' : desc}</span>
-      </div>`;
-    }).join('');
-
-    upd.textContent = `Updated ${ts()} · ${roads.length} roads`;
-  } catch(e) {
-    list.innerHTML = `<div class="api-error">Couldn't load A-road status — <a href="https://tfl.gov.uk/traffic/status/" target="_blank">view TfL ↗</a></div>`;
-    upd.textContent = '';
-  }
-}
-
 /* ── ORCHESTRATE ── */
 let _refreshLock = false;
 async function refreshAll() {
@@ -753,7 +676,7 @@ async function refreshAll() {
   _refreshLock = true;
   const icon=document.getElementById('refresh-icon'), btn=document.getElementById('refresh-btn');
   icon.classList.add('spinning'); btn.disabled=true;
-  await Promise.all([loadTube(), loadIncidents(), loadRoads(), loadEvents(), loadBankHolidays(), loadARoads()]);
+  await Promise.all([loadTube(), loadIncidents(), loadRoads(), loadEvents(), loadBankHolidays()]);
   icon.classList.remove('spinning'); btn.disabled=false; _refreshLock=false;
 }
 
